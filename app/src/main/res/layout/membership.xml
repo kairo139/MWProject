@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- 상단 -->
+    <include
+        android:id="@+id/top"
+        layout="@layout/tool_bar" />
+
+    <!-- 아이디 입력 부분 -->
+    <TextView
+        android:id="@+id/txtid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:id="@+id/edtid"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="n글자 미만"
+        app:layout_constraintLeft_toRightOf="@id/txtid"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:id="@+id/btnid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="중복확인"
+        app:layout_constraintLeft_toRightOf="@id/edtid"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        android:layout_marginTop="10dp"
+        />
+
+    <!-- 닉네임 입력 부분 -->
+    <TextView
+        android:id="@+id/txtname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtid"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:id="@+id/edtname"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="n글자 미만"
+        app:layout_constraintLeft_toRightOf="@id/txtname"
+        app:layout_constraintTop_toBottomOf="@id/edtid"
+        />
+
+    <Button
+        android:id="@+id/btnname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="중복확인"
+        app:layout_constraintLeft_toRightOf="@id/edtname"
+        app:layout_constraintTop_toBottomOf="@id/btnid"
+        />
+
+    <!-- 비밀번호 -->
+    <TextView
+        android:id="@+id/txtpasswd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtname"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:id="@+id/edtpasswd"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="n글자 미만"
+        app:layout_constraintLeft_toRightOf="@id/txtpasswd"
+        app:layout_constraintTop_toBottomOf="@id/edtname"
+        />
+
+    <!-- 비밀번호 확인-->
+    <TextView
+        android:id="@+id/txtpasswdchk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtpasswd"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:id="@+id/edtpasswdchk"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="n글자 미만"
+        app:layout_constraintLeft_toRightOf="@id/txtpasswd"
+        app:layout_constraintTop_toBottomOf="@id/edtpasswd"
+        />
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="55dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
