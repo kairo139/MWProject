@@ -23,23 +23,23 @@
         app:layout_constraintLeft_toLeftOf="@+id/toolbar"
         app:layout_constraintRight_toRightOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="@id/toolbar" />
+    <!--
+        <ImageButton
+            android:layout_width="56dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_menu_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar"
+            app:layout_constraintLeft_toLeftOf="@id/toolbar"
+            app:layout_constraintTop_toTopOf="@id/toolbar"
+            android:foreground="?attr/selectableItemBackground"/>
 
-    <ImageButton
-        android:layout_width="56dp"
-        android:layout_height="50dp"
-        android:background="@drawable/ic_menu_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        app:layout_constraintLeft_toLeftOf="@id/toolbar"
-        app:layout_constraintTop_toTopOf="@id/toolbar"
-        android:foreground="?attr/selectableItemBackground"/>
-
-    <ImageButton
-        android:layout_width="56dp"
-        android:layout_height="50dp"
-        android:background="@drawable/ic_search_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        app:layout_constraintRight_toRightOf="@id/toolbar"
-        app:layout_constraintTop_toTopOf="@id/toolbar" />
-
+        <ImageButton
+            android:layout_width="56dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_search_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar"
+            app:layout_constraintRight_toRightOf="@id/toolbar"
+            app:layout_constraintTop_toTopOf="@id/toolbar" />
+        -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
