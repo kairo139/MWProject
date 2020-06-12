@@ -6,42 +6,168 @@
 
     <me.relex.circleindicator.CircleIndicator
         android:id="@+id/indicator"
-        app:ci_drawable="@drawable/black_radius"
-        app:ci_height="7dp"
-        app:ci_width="7dp"
-        app:ci_margin="4dp"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:layout_constraintTop_toBottomOf="@+id/vpPager"/>
+        app:ci_drawable="@drawable/black_radius"
+        app:ci_height="7dp"
+        app:ci_margin="4dp"
+        app:ci_width="7dp"
+        app:layout_constraintTop_toBottomOf="@+id/vpPager" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpPager"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toTopOf="@id/guideline"/>
+        app:layout_constraintTop_toTopOf="@id/guideline" />
 
     <Button
         android:id="@+id/btnGoRd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/vpPager"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="50dp"
         android:background="#00ff0000"
         android:text="추천 영상 ->"
-        android:textSize="25dp"/>
-
-    <ImageButton
-        android:id="@+id/IBtn1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
+        android:textSize="25dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnGoRd"
-        android:background="clear"/>
+        app:layout_constraintTop_toBottomOf="@+id/vpPager" />
 
+    <ScrollView
+        android:id="@+id/ScrV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGoRd">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/IBtn1"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnGoRd" />
+
+                <ImageButton
+                    android:id="@+id/IBtn2"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    app:layout_constraintLeft_toRightOf="@id/IBtn1"
+                    app:layout_constraintTop_toBottomOf="@id/btnGoRd" />
+
+                <ImageButton
+                    android:id="@+id/IBtn3"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    app:layout_constraintLeft_toRightOf="@id/IBtn2"
+                    app:layout_constraintTop_toBottomOf="@id/btnGoRd" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/IBtn4"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/IBtn1" />
+
+                <ImageButton
+                    android:id="@+id/IBtn5"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    app:layout_constraintLeft_toRightOf="@id/IBtn4"
+                    app:layout_constraintTop_toBottomOf="@id/IBtn2" />
+
+                <ImageButton
+                    android:id="@+id/IBtn6"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    app:layout_constraintLeft_toRightOf="@id/IBtn5"
+                    app:layout_constraintTop_toBottomOf="@id/IBtn3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/IBtn7"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/IBtn4" />
+
+                <ImageButton
+                    android:id="@+id/IBtn8"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    app:layout_constraintLeft_toRightOf="@id/IBtn4"
+                    app:layout_constraintTop_toBottomOf="@id/IBtn5" />
+
+                <ImageButton
+                    android:id="@+id/IBtn9"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    app:layout_constraintLeft_toRightOf="@id/IBtn5"
+                    app:layout_constraintTop_toBottomOf="@id/IBtn6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sdfsssadf"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sdfsssadf"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sdfsssadf"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sdfsssadf"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

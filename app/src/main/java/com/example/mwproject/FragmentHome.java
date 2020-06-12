@@ -1,5 +1,6 @@
 package com.example.mwproject;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import me.relex.circleindicator.CircleIndicator;
 public class FragmentHome extends Fragment {
     FragmentPagerAdapter adapterViewPager;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class FragmentHome extends Fragment {
         return Current_v;
     }
 
+    //뷰 페이저
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;
 
