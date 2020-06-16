@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <!--
+    <include
+        android:id="@+id/top"
+        layout="@layout/tool_bar" />
+    -->
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/layout_tab"
         android:layout_width="match_parent"

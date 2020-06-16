@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--
+    <include
+        android:id="@+id/top"
+        layout="@layout/tool_bar" />
+-->
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="match_parent"
@@ -15,7 +20,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    // 검색결과가 몇개인지 알아내서 개수를 맞춰야 하는지?
+    <!-- 검색결과가 몇개인지 알아내서 개수를 맞춰야 하는지? -->
     <ImageButton
         android:id="@+id/ib1"
         android:layout_width="150dp"
@@ -25,7 +30,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvResult" />
 
-    // 텍스트뷰를 세개로 나눠서 하는게 나은지?
+    <!-- 텍스트뷰를 세개로 나눠서 하는게 나은지?  -->
     <TextView
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
@@ -70,5 +75,23 @@
         android:text=""
         app:layout_constraintLeft_toRightOf="@+id/ib3"
         app:layout_constraintTop_toBottomOf="@+id/tv2" />
+
+    <ImageButton
+        android:id="@+id/ib4"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        android:src=""
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ib3" />
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        android:text=""
+        app:layout_constraintLeft_toRightOf="@+id/ib4"
+        app:layout_constraintTop_toBottomOf="@+id/tv3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
