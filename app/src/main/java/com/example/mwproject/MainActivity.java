@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
     private FragmentHome fragmentHome = new FragmentHome();
     private FragmentRanking fragmentRanking = new FragmentRanking();
     private FragmentCategory fragmentCategory = new FragmentCategory();
+    private FragmentStorage fragmentStorage = new FragmentStorage();
     DrawerLayout drawerLayout;
 
     @Override
@@ -49,13 +50,12 @@ public class MainActivity extends AppCompatActivity{
 
 
         NavigationView side_nav = (NavigationView) findViewById(R.id.side_nav);
-
         side_nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.recently:
-                        fragmentManager.beginTransaction().replace(R.id.frameLayout,new FragmentStorage()).commitAllowingStateLoss();
+                        fragmentManager.beginTransaction().replace(R.id.frameLayout,fragmentStorage).commitAllowingStateLoss();
                         break;
                     case R.id.storageDrama:
                         break;
@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity{
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
+
+
     }
 
     class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{
