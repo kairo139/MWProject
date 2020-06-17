@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity{
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-
         NavigationView side_nav = (NavigationView) findViewById(R.id.side_nav);
         side_nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -58,6 +57,10 @@ public class MainActivity extends AppCompatActivity{
                         fragmentManager.beginTransaction().replace(R.id.frameLayout,fragmentStorage).commitAllowingStateLoss();
                         break;
                     case R.id.storageDrama:
+                        break;
+                    case R.id.btnLogin:
+                        System.out.println("sd");
+                        Toast.makeText(getApplicationContext(),"d",Toast.LENGTH_SHORT).show();
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -72,7 +75,6 @@ public class MainActivity extends AppCompatActivity{
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
 
-
     }
 
     class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{
@@ -84,7 +86,6 @@ public class MainActivity extends AppCompatActivity{
             {
                 case R.id.home:
                     transaction.replace(R.id.frameLayout, fragmentHome).commitAllowingStateLoss();
-
                     break;
                 case R.id.ranking:
                     transaction.replace(R.id.frameLayout, fragmentRanking).commitAllowingStateLoss();

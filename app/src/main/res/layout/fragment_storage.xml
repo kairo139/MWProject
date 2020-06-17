@@ -10,21 +10,37 @@
         android:text="보관함"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textSize="35dp"
-        android:textColor="#000000"/>
+        android:textSize="30dp"
+        android:textColor="#000000"
+        android:layout_marginTop="30dp"/>
 
     <ImageView
         android:layout_width="54dp"
         android:layout_height="46dp"
         app:layout_constraintLeft_toRightOf="@id/tvLocker1"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/tvLocker1"
+        android:src="@drawable/ic_file_download_black_24dp"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvLocker1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="10dp"
-        android:background="?android:attr/windowBackground">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:layout_constraintTop_toBottomOf="@+id/tvLocker1">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabRecent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabStorage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tabName"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
