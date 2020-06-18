@@ -16,6 +16,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ProfileChange"></activity>
+        <activity android:name=".birthchange"></activity>
+        <activity android:name=".genderchange"></activity>
+        <activity android:name=".namechange"></activity>
+        <activity android:name=".passwdchange"></activity>
+        <activity android:name=".search_resultActivity"
+            android:label="검색 결과 화면"/>
+        <activity android:name=".recommendationActivity"
+            android:label="추천 영상 화면"/>
+        <activity android:name=".genreActivity"
+            android:label="장르 화면"/>
+        <activity android:name=".rankingActivity"
+            android:label="랭킹 화면"/>
     </application>
 
 </manifest>
