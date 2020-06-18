@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity{
         btnPchange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("sd");
                 Intent intent = new Intent(getApplicationContext(),ProfileChange.class);
                 startActivity(intent);
             }

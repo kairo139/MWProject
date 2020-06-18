@@ -27,6 +27,7 @@ public class ProfileChange extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),namechange.class);
                 startActivity(intent);
+                //이름수정
             }
         });
 
@@ -35,6 +36,7 @@ public class ProfileChange extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),birthchange.class);
                 startActivity(intent);
+                //생일 수정
             }
         });
 
@@ -43,6 +45,7 @@ public class ProfileChange extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),genderchange.class);
                 startActivity(intent);
+                //성별 수정
             }
         });
 
@@ -51,6 +54,7 @@ public class ProfileChange extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),passwdchange.class);
                 startActivity(intent);
+                //패스워드 수정
             }
         });
     }
