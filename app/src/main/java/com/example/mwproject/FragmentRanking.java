@@ -1,5 +1,6 @@
 package com.example.mwproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,15 @@ public class FragmentRanking extends Fragment {
 
         ArrayAdapter spinnerAdpater = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, rank);
         rank_spinner.setAdapter(spinnerAdpater);
+
+        rank_ibRank1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),.class);
+                startActivity(intent);
+                //영상 실행 화면
+            }
+        });
 
         rank_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
