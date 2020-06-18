@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity{
     private FragmentStorage fragmentStorage = new FragmentStorage();
     DrawerLayout drawerLayout;
 
+    Button go;
+    public static final int sub = 1001;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity{
             }
             return true;
         }
+
     }
 
 
