@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity{
     private FragmentStorage fragmentStorage = new FragmentStorage();
     DrawerLayout drawerLayout;
 
-    Button go;
     public static final int sub = 1001;
 
     @Override
@@ -69,6 +68,14 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+
+        //바텀 네비게이션 (fragment)
+        FragmentTransaction transaction = fragmentManager.beginTransaction(); //맨 처음에 나타날 frameLayout 설정
+        transaction.replace(R.id.frameLayout, fragmentHome).commitAllowingStateLoss();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
+
+        //사이드 바
         side_nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -87,15 +94,6 @@ public class MainActivity extends AppCompatActivity{
                 return false;
             }
         });
-
-
-        //바텀 네비게이션 (fragment)
-        FragmentTransaction transaction = fragmentManager.beginTransaction(); //맨 처음에 나타날 frameLayout 설정
-        transaction.replace(R.id.frameLayout, fragmentHome).commitAllowingStateLoss();
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
-
     }
 
     class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{

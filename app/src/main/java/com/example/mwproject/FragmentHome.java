@@ -22,6 +22,8 @@ import androidx.viewpager.widget.ViewPager;
 import me.relex.circleindicator.CircleIndicator;
 
 public class FragmentHome extends Fragment {
+    private recommendationActivity recommendationActivity = new recommendationActivity();
+    private FragmentManager fragmentManager;
     FragmentPagerAdapter adapterViewPager;
     Button btnGoRd;
 
@@ -29,13 +31,15 @@ public class FragmentHome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View Current_v = inflater.inflate(R.layout.fragment_home, container, false); //Fragment View가 inflate하기전에 컴포넌트를 호출하기 때문에 NullPointerException 에러가 발생하므로
+        fragmentManager = getActivity().getSupportFragmentManager();
 
         //위 방식처럼 하지 않으면 findViewById에서 에러가 남
+
         btnGoRd = Current_v.findViewById(R.id.btnGoRd);
         btnGoRd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("sd");
+                fragmentManager.beginTransaction().replace(R.id.frameLayout,recommendationActivity).commitAllowingStateLoss();
             }
         });
 
