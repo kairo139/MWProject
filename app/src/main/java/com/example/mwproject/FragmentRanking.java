@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -34,19 +35,41 @@ public class FragmentRanking extends Fragment {
 
         String rank[] = new String[2];
         rank[0] = "추천순";
-        rank[1] = "주회수";
+        rank[1] = "조회수";
 
         ArrayAdapter spinnerAdpater = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, rank);
         rank_spinner.setAdapter(spinnerAdpater);
 
-        rank_ibRank1.setImageResource(R.drawable.ypl4);
-        rank_tvRank1.setText("연애플레이리스트4\n플레이리스트\n대학생들의 청춘 공감 멜로 드라마");
+        rank_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0){
+                    rank_ibRank1.setImageResource(R.drawable.ypl4);
+                    rank_tvRank1.setText("연애플레이리스트4\n플레이리스트\n대학생들의 청춘 공감 멜로 드라마");
 
-        rank_ibRank2.setImageResource(R.drawable.ypl1);
-        rank_tvRank2.setText("연애플레이리스트1\n플레이리스트\n새학기 시작을 풋풋한 대학 청춘 멜로와 함께");
+                    rank_ibRank2.setImageResource(R.drawable.ypl1);
+                    rank_tvRank2.setText("연애플레이리스트1\n플레이리스트\n새학기 시작을 풋풋한 대학 청춘 멜로와 함께");
 
-        rank_ibRank3.setImageResource(R.drawable.ijj1);
-        rank_tvRank3.setText("일진에게 찍혔을 때\n콕tv\n한장의 사진, 한순간의 실수. 지긋지긋한 스토커를 떼어내려 프사로 설정한 남친짤이 우리 반 일진 사진이라고?");
+                    rank_ibRank3.setImageResource(R.drawable.ijj1);
+                    rank_tvRank3.setText("일진에게 찍혔을 때\n콕tv\n한장의 사진, 한순간의 실수. 지긋지긋한 스토커를 떼어내려 프사로 설정한 남친짤이 우리 반 일진 사진이라고?");
+                }
+                else{
+                    rank_ibRank1.setImageResource(R.drawable.ijj1);
+                    rank_tvRank1.setText("일진에게 찍혔을 때\n콕tv\n한장의 사진, 한순간의 실수. 지긋지긋한 스토커를 떼어내려 프사로 설정한 남친짤이 우리 반 일진 사진이라고?");
+
+                    rank_ibRank2.setImageResource(R.drawable.ypl4);
+                    rank_tvRank2.setText("연애플레이리스트4\n플레이리스트\n대학생들의 청춘 공감 멜로 드라마");
+
+                    rank_ibRank3.setImageResource(R.drawable.ypl1);
+                    rank_tvRank3.setText("연애플레이리스트1\n플레이리스트\n새학기 시작을 풋풋한 대학 청춘 멜로와 함께");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         return Current_v;
     }
