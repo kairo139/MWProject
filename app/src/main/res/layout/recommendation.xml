@@ -20,6 +20,7 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
+        android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRecom1" />
 
@@ -37,6 +38,7 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
+        android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ibRecom1_1" />
 
@@ -65,6 +67,7 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
+        android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRecom2" />
 
