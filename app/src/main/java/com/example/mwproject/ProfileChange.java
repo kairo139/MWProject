@@ -49,7 +49,7 @@ public class ProfileChange extends AppCompatActivity {
         prof_passwdbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),birthchange.class);
+                Intent intent = new Intent(getApplicationContext(),passwdchange.class);
                 startActivity(intent);
             }
         });
