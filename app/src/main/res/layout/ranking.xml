@@ -44,7 +44,6 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
-        android:src=""
         app:layout_constraintLeft_toRightOf="@+id/tvNum1"
         app:layout_constraintTop_toBottomOf="@+id/tvRanking" />
 
@@ -73,7 +72,6 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
-        android:src=""
         app:layout_constraintLeft_toRightOf="@+id/tvNum2"
         app:layout_constraintTop_toBottomOf="@+id/ibRank1" />
 
@@ -102,7 +100,6 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
-        android:src=""
         app:layout_constraintLeft_toRightOf="@+id/tvNum3"
         app:layout_constraintTop_toBottomOf="@+id/ibRank2" />
 
