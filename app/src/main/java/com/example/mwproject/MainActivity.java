@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity{
+    Button btnPchange;
+    View header;
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentHome fragmentHome = new FragmentHome();
@@ -41,6 +44,10 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //header = getLayoutInflater().inflate(R.layout.side_header_login,null,false);
+
+
+
         //툴바
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,6 +60,17 @@ public class MainActivity extends AppCompatActivity{
         actionBarDrawerToggle.syncState();
 
         NavigationView side_nav = (NavigationView) findViewById(R.id.side_nav);
+
+        header = side_nav.inflateHeaderView(R.layout.side_header_login);
+        btnPchange = header.findViewById(R.id.btnPchange);
+        //정보수정 버튼
+        btnPchange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("sd");
+            }
+        });
+
         side_nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -71,6 +89,7 @@ public class MainActivity extends AppCompatActivity{
                 return false;
             }
         });
+
 
         //바텀 네비게이션 (fragment)
         FragmentTransaction transaction = fragmentManager.beginTransaction(); //맨 처음에 나타날 frameLayout 설정
