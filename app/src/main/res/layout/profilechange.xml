@@ -37,9 +37,9 @@
 
     <ImageButton
         android:id="@+id/p_namebtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/p_imgbtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/p_imgbtn"
         android:scaleType="fitXY"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/p_txtname"
@@ -73,9 +73,9 @@
 
     <ImageButton
         android:id="@+id/p_birthbtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/p_imgbtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/p_imgbtn"
         android:scaleType="fitXY"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/p_txtbirth"
@@ -109,9 +109,9 @@
 
     <ImageButton
         android:id="@+id/p_genderbtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/p_imgbtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/p_imgbtn"
         android:scaleType="fitXY"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/p_txtgender"
@@ -133,13 +133,14 @@
 
     <ImageButton
         android:id="@+id/p_passwdbtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/p_imgbtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/p_imgbtn"
         android:scaleType="fitXY"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/p_genderbtn"
         android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
         />
 
     <!-- 그래프 -->
