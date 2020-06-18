@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_account_circle_black_24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최병현"
+        app:layout_constraintLeft_toRightOf="@+id/ivProfile"
+        app:layout_constraintTop_toTopOf="@+id/ivProfile"
+        app:layout_constraintBottom_toBottomOf="@+id/ivProfile"/>
+    <Button
+        android:id="@+id/btnPchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="정보 수정"
+        app:layout_constraintTop_toBottomOf="@+id/ivProfile"
+        app:layout_constraintLeft_toLeftOf="@+id/ivProfile"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그아웃"
+        app:layout_constraintLeft_toRightOf="@+id/btnPchange"
+        app:layout_constraintTop_toTopOf="@+id/btnPchange"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
