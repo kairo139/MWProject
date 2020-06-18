@@ -44,7 +44,7 @@ public class FragmentRanking extends Fragment {
         rank_ibRank1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),.class);
+                Intent intent = new Intent(getActivity(),Player.class);
                 startActivity(intent);
                 //영상 실행 화면
             }
