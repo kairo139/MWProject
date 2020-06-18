@@ -35,7 +35,7 @@ public class FragmentHome extends Fragment {
         btnGoRd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 몰라
+                System.out.println("sd");
             }
         });
 
