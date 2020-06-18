@@ -26,7 +26,6 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
-        android:src=""
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvResult" />
 
@@ -45,7 +44,6 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
-        android:src=""
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ib1" />
 
@@ -63,7 +61,6 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
-        android:src=""
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ib2" />
 
@@ -81,7 +78,6 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
-        android:src=""
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ib3" />
 
