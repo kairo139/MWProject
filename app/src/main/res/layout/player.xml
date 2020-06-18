@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- 툴바 대신 뒤로 가기만 있는 툴바 만들어서 교체 -->
+    <include
+        android:id="@+id/top"
+        layout="@layout/tool_bar" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="676dp" />
+
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/youtubeplayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        />
+
+    <TextView
+        android:id="@+id/player_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[연플리] - EP-1. 남친이 술자리에 여자와 같이 있다"
+        app:layout_constraintTop_toBottomOf="@+id/youtubeplayer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/player_hits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_text"
+        android:text="100,000,000"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/player_hits"
+        app:layout_constraintTop_toBottomOf="@id/player_text"
+        android:text="5000"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
