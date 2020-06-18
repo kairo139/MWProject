@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 상단 -->
+    <include
+        android:id="@+id/top"
+        layout="@layout/tool_bar" />
+
+    <!-- 아이디 입력 부분 -->
+    <TextView
+        android:id="@+id/m_txtid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="아이디"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+    <EditText
+        android:id="@+id/m_edtid"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="n글자 미만"
+        app:layout_constraintLeft_toRightOf="@id/m_txtid"
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+    <Button
+        android:id="@+id/m_btnid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="중복확인"
+        app:layout_constraintLeft_toRightOf="@id/m_edtid"
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+    <!-- 닉네임 입력 부분 -->
+    <TextView
+        android:id="@+id/m_txtname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="닉네임"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_txtid" />
+
+    <EditText
+        android:id="@+id/m_edtname"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="n글자 미만"
+        app:layout_constraintLeft_toRightOf="@id/m_txtname"
+        app:layout_constraintTop_toBottomOf="@id/m_edtid" />
+
+    <Button
+        android:id="@+id/m_btnname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="중복확인"
+        app:layout_constraintLeft_toRightOf="@id/m_edtname"
+        app:layout_constraintTop_toBottomOf="@id/m_btnid" />
+
+    <!-- 비밀번호 -->
+    <TextView
+        android:id="@+id/m_txtpasswd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="비밀번호"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_txtname" />
+
+    <EditText
+        android:id="@+id/m_edtpasswd"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="n글자 미만"
+        app:layout_constraintLeft_toRightOf="@id/m_txtpasswd"
+        app:layout_constraintTop_toBottomOf="@id/m_edtname" />
+
+    <!-- 비밀번호 확인-->
+    <TextView
+        android:id="@+id/m_txtpasswdchk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="비밀번호 확인"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_txtpasswd" />
+
+    <EditText
+        android:id="@+id/m_edtpasswdchk"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="n글자 미만"
+        app:layout_constraintLeft_toRightOf="@id/m_txtpasswdchk"
+        app:layout_constraintTop_toBottomOf="@id/m_edtpasswd" />
+
+    <!-- 비밀번호 힌트-->
+    <TextView
+        android:id="@+id/m_txtpasswdhint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="비밀번호 힌트"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk" />
+
+    <!-- 성별-->
+    <TextView
+        android:id="@+id/m_txtgender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="성별"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdhint" />
+
+    <!-- 취향 선택 부분 -->
+
+    <TextView
+        android:id="@+id/m_txtliketitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="당신의 취향은?"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline2"
+        android:layout_marginLeft="20dp"
+        />
+
+    <TextView
+        android:id="@+id/m_txtlikebody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="선택하신 장르에 따라 드라마를 추천해 드립니다!"
+        android:textSize="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_txtliketitle"
+        android:layout_marginLeft="20dp"
+        />
+
+    <!-- 이전 완료 버튼 -->
+    <Button
+        android:id="@+id/m_btnback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이전"
+        app:layout_constraintRight_toLeftOf="@+id/m_btnok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        />
+
+    <Button
+        android:id="@+id/m_btnok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        />
+
+    <!-- 가이드라인 -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="55dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="365dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
