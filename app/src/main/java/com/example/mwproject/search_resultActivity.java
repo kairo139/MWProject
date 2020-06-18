@@ -30,16 +30,16 @@ public class search_resultActivity extends AppCompatActivity {
         resu_tvResult.setText("연플리");
 
         resu_ib1.setImageResource(R.drawable.ypl1);
-        resu_tv1.setText("연애플레이리스트1\n플레이리스트\n새학기 시작을 풋풋한 대학 청춘 멜로와 함께");
+        resu_tv1.setText("연애플레이리스트1\n\n플레이리스트\n\n새학기 시작을 풋풋한 대학 청춘 멜로와 함께");
 
         resu_ib2.setImageResource(R.drawable.ypl2);
-        resu_tv2.setText("연애플레이리스트2\n플레이리스트\n풋풋한 대학 청춘 멜로 드라마");
+        resu_tv2.setText("연애플레이리스트2\n\n플레이리스트\n\n풋풋한 대학 청춘 멜로 드라마");
 
         resu_ib3.setImageResource(R.drawable.ypl3);
-        resu_tv3.setText("연애플레이리스트3\n플레이리스트\n캠퍼스 청춘 멜로 드라마");
+        resu_tv3.setText("연애플레이리스트3\n\n플레이리스트\n\n캠퍼스 청춘 멜로 드라마");
 
         resu_ib4.setImageResource(R.drawable.ypl4);
-        resu_tv4.setText("연애플레이리스트4\n플레이리스트\n대학생들의 청춘 공감 멜로 드라마");
+        resu_tv4.setText("연애플레이리스트4\n\n플레이리스트\n\n대학생들의 청춘 공감 멜로 드라마");
 
     }
 }
