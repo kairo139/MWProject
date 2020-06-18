@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/tvRecom1_1"
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
         android:text=""
@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/tvRecom1_2"
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
         android:text=""
@@ -73,7 +73,7 @@
 
     <TextView
         android:id="@+id/tvRecom2_1"
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
         android:text=""

@@ -1,14 +1,17 @@
 package com.example.mwproject;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -20,7 +23,7 @@ import me.relex.circleindicator.CircleIndicator;
 
 public class FragmentHome extends Fragment {
     FragmentPagerAdapter adapterViewPager;
-
+    Button btnGoRd;
 
     @Nullable
     @Override
@@ -28,6 +31,14 @@ public class FragmentHome extends Fragment {
         View Current_v = inflater.inflate(R.layout.fragment_home, container, false); //Fragment View가 inflate하기전에 컴포넌트를 호출하기 때문에 NullPointerException 에러가 발생하므로
 
         //위 방식처럼 하지 않으면 findViewById에서 에러가 남
+        btnGoRd = Current_v.findViewById(R.id.btnGoRd);
+        btnGoRd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 몰라
+            }
+        });
+
         ViewPager vpPager = Current_v.findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter((getFragmentManager()));
         vpPager.setAdapter(adapterViewPager);
@@ -75,4 +86,6 @@ public class FragmentHome extends Fragment {
         }
 
     }
+
+
 }
