@@ -142,34 +142,6 @@
                     app:layout_constraintLeft_toRightOf="@id/IBtn5"
                     app:layout_constraintTop_toBottomOf="@id/IBtn6" />
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="sdfsssadf" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="sdfsssadf" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="sdfsssadf" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="sdfsssadf" />
-
-            </LinearLayout>
-
         </LinearLayout>
 
     </ScrollView>
