@@ -19,7 +19,7 @@ public class Player extends YouTubeBaseActivity {
         setContentView(R.layout.player);
 
         youtubeView = (YouTubePlayerView)findViewById(R.id.youtubeplayer);
-        
+
 
     }
 }

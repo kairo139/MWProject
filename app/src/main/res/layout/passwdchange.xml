@@ -2,19 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- 툴바 대신 뒤로 가기만 있는 툴바 만들어서 교체 -->
-    <include
-        android:id="@+id/top"
-        layout="@layout/tool_bar" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="676dp" />
+        tools:ignore="MissingConstraints"
+        android:id="@+id/tb">
+        <!-- 상단 -->
+        <include
+            android:id="@+id/top"
+            layout="@layout/tool_bar" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/psw_title"
@@ -25,7 +26,7 @@
         android:textSize="30dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tb"
         android:layout_margin="20dp"
         />
 
