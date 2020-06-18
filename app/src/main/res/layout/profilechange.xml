@@ -2,14 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:id="@+id/tb">
     <!-- 상단 -->
     <include
         android:id="@+id/top"
         layout="@layout/tool_bar" />
+</com.google.android.material.appbar.AppBarLayout>
 
     <!-- 이름 -->
     <TextView
@@ -18,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="이름"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/tb"
         android:layout_margin="20dp"
         android:textSize="25dp"
         android:textStyle="bold"/>

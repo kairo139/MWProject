@@ -17,6 +17,7 @@ import org.w3c.dom.Text;
 
 public class FragmentCategory extends Fragment {
     View Current_v;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
