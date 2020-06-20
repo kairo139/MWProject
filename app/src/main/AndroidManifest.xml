@@ -27,6 +27,7 @@
         <activity android:name=".Player"/>
         <activity android:name=".search_resultActivity"
             android:label="검색 결과 화면"/>
+        <activity android:name=".FragmentStorage"/>
 
     </application>
 

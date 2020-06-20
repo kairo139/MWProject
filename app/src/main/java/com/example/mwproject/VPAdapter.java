@@ -12,6 +12,7 @@ public class VPAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> items;
     private  ArrayList<String> itext = new ArrayList<String>();
 
+
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {

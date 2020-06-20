@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.recently:
-                        fragmentManager.beginTransaction().replace(R.id.frameLayout,fragmentStorage).commitAllowingStateLoss();
+                        Intent intent = new Intent(getApplicationContext(),FragmentStorage.class);
+                        startActivity(intent);
                         break;
                     case R.id.storageDrama:
                         break;
