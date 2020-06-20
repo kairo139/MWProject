@@ -5,10 +5,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/SigColor">
 
-    <TextView
-        android:layout_width="match_parent"
+    <EditText
+        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="sdwwwwwf"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/edtID"
+        android:hint="ID"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/edtID"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:id="@+id/edtPW"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/edtPW"
+        app:layout_constraintLeft_toLeftOf="@+id/edtID"
+        android:id="@+id/chkautoLogin"
+        android:text="자동로그인"/>
+
+    <Button
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/cancel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/ic_close_black_24dp" />
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/chkautoLogin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/login"
+        android:text="로그인"/>
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="회원가입"
+        android:layout_marginBottom="20dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignUp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="비밀번호를 잊으셨나요?"
+        android:background="#00ff0000"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
