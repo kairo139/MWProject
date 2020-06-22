@@ -20,6 +20,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity{
     private FragmentCategory fragmentCategory = new FragmentCategory();
     private FragmentStorage fragmentStorage = new FragmentStorage();
     DrawerLayout drawerLayout;
+
+    ImageButton ibSearch;
 
     public static final int sub = 1001;
 
@@ -91,6 +94,15 @@ public class MainActivity extends AppCompatActivity{
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
+            }
+        });
+
+        ibSearch = findViewById(R.id.ibSearch);
+        ibSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, searchActivity.class);
+                startActivity(intent);
             }
         });
     }
