@@ -13,25 +13,25 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-public class search_resultActivity extends AppCompatActivity {
+public class search_resultActivity extends Fragment {
 
     TextView resu_tvResult, resu_tv1, resu_tv2, resu_tv3, resu_tv4;
     ImageButton resu_ib1, resu_ib2, resu_ib3, resu_ib4;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_result);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View Current_v = inflater.inflate(R.layout.search_result, container, false);
 
-        resu_tvResult = findViewById(R.id.tvResult);
-        resu_tv1 = findViewById(R.id.tv1);
-        resu_tv2 = findViewById(R.id.tv2);
-        resu_tv3 = findViewById(R.id.tv3);
-        resu_tv4 = findViewById(R.id.tv4);
-        resu_ib1 = findViewById(R.id.ib1);
-        resu_ib2 = findViewById(R.id.ib2);
-        resu_ib3 = findViewById(R.id.ib3);
-        resu_ib4 = findViewById(R.id.ib4);
+        resu_tvResult = Current_v.findViewById(R.id.tvResult);
+        resu_tv1 = Current_v.findViewById(R.id.tv1);
+        resu_tv2 = Current_v.findViewById(R.id.tv2);
+        resu_tv3 = Current_v.findViewById(R.id.tv3);
+        resu_tv4 = Current_v.findViewById(R.id.tv4);
+        resu_ib1 = Current_v.findViewById(R.id.ib1);
+        resu_ib2 = Current_v.findViewById(R.id.ib2);
+        resu_ib3 = Current_v.findViewById(R.id.ib3);
+        resu_ib4 = Current_v.findViewById(R.id.ib4);
 
         resu_tvResult.setText("연플리");
 
@@ -46,5 +46,7 @@ public class search_resultActivity extends AppCompatActivity {
 
         resu_ib4.setImageResource(R.drawable.ypl4);
         resu_tv4.setText("연애플레이리스트4\n\n플레이리스트\n\n대학생들의 청춘 공감 멜로 드라마");
+
+        return Current_v;
     }
 }

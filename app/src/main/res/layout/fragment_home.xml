@@ -40,7 +40,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="50dp"
                 android:background="#00ff0000"
-                android:text="추천 영상 ->"
+                android:text="추천 영상"
                 android:textSize="25dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vpPager" />
@@ -53,30 +53,19 @@
 
                 <ImageButton
                     android:id="@+id/IBtn1"
-                    android:layout_width="125dp"
+                    android:layout_width="200dp"
                     android:layout_height="125dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_crop_original_black_24dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btnGoRd" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/recom1" />
 
-                <ImageButton
-                    android:id="@+id/IBtn2"
-                    android:layout_width="125dp"
+                <TextView
+                    android:id="@+id/tvRecom1"
+                    android:layout_width="170dp"
                     android:layout_height="125dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_crop_original_black_24dp"
-                    app:layout_constraintLeft_toRightOf="@id/IBtn1"
-                    app:layout_constraintTop_toBottomOf="@id/btnGoRd" />
+                    android:text="전남친과 마주치는 최악의 시나리오 [연플리 시즌4] - EP.01" />
 
-                <ImageButton
-                    android:id="@+id/IBtn3"
-                    android:layout_width="125dp"
-                    android:layout_height="125dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ic_crop_original_black_24dp"
-                    app:layout_constraintLeft_toRightOf="@id/IBtn2"
-                    app:layout_constraintTop_toBottomOf="@id/btnGoRd" />
             </LinearLayout>
 
             <LinearLayout
@@ -85,30 +74,18 @@
 
                 <ImageButton
                     android:id="@+id/IBtn4"
-                    android:layout_width="125dp"
+                    android:layout_width="200dp"
                     android:layout_height="125dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_crop_original_black_24dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/IBtn1" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/recom2" />
 
-                <ImageButton
-                    android:id="@+id/IBtn5"
-                    android:layout_width="125dp"
+                <TextView
+                    android:id="@+id/tvRecom2"
+                    android:layout_width="170dp"
                     android:layout_height="125dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_crop_original_black_24dp"
-                    app:layout_constraintLeft_toRightOf="@id/IBtn4"
-                    app:layout_constraintTop_toBottomOf="@id/IBtn2" />
-
-                <ImageButton
-                    android:id="@+id/IBtn6"
-                    android:layout_width="125dp"
-                    android:layout_height="125dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ic_crop_original_black_24dp"
-                    app:layout_constraintLeft_toRightOf="@id/IBtn5"
-                    app:layout_constraintTop_toBottomOf="@id/IBtn3" />
+                    android:text="군대 가기 전 커플 특징 [연플리4] - EP.14" />
             </LinearLayout>
 
             <LinearLayout
@@ -117,30 +94,19 @@
 
                 <ImageButton
                     android:id="@+id/IBtn7"
-                    android:layout_width="125dp"
+                    android:layout_width="200dp"
                     android:layout_height="125dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_crop_original_black_24dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/IBtn4" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/recom3" />
 
-                <ImageButton
-                    android:id="@+id/IBtn8"
-                    android:layout_width="125dp"
+                <TextView
+                    android:id="@+id/tvRecom3"
+                    android:layout_width="170dp"
                     android:layout_height="125dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_crop_original_black_24dp"
-                    app:layout_constraintLeft_toRightOf="@id/IBtn4"
-                    app:layout_constraintTop_toBottomOf="@id/IBtn5" />
-
-                <ImageButton
-                    android:id="@+id/IBtn9"
-                    android:layout_width="125dp"
-                    android:layout_height="125dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ic_crop_original_black_24dp"
-                    app:layout_constraintLeft_toRightOf="@id/IBtn5"
-                    app:layout_constraintTop_toBottomOf="@id/IBtn6" />
+                    android:text="너냐, 내 여자친구가? [일진에게 찍혔을 때] EP01" />
+                
             </LinearLayout>
         </LinearLayout>
 

@@ -25,8 +25,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/bottom_navigationView">
+            android:layout_height="match_parent">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigationView"
@@ -35,7 +34,9 @@
                 android:background="?android:attr/windowBackground"
                 app:menu="@menu/menu"
                 android:layout_gravity="bottom"/>
+
         </FrameLayout>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView

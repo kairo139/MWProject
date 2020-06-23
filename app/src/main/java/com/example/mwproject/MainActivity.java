@@ -47,16 +47,21 @@ public class MainActivity extends AppCompatActivity{
     private FragmentRanking fragmentRanking = new FragmentRanking();
     private FragmentCategory fragmentCategory = new FragmentCategory();
     private FragmentStorage fragmentStorage = new FragmentStorage();
+    private search_resultActivity search_resultActivity = new search_resultActivity();
+
     DrawerLayout drawerLayout;
 
     NavigationView side_nav;
 
     public static final int sub = 1001;
 
+    public static Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = this;
 
         //툴바
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -238,4 +243,10 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
+
+    public void SearchResultView(String str){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        System.out.println(str);
+        transaction.replace(R.id.frameLayout, search_resultActivity).commitAllowingStateLoss();
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.mwproject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -12,15 +13,18 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.mwproject.R;
 
 public class searchActivity extends AppCompatActivity {
-    private FragmentManager fragmentManager;
-    private search_resultActivity search_resultActivity = new search_resultActivity();
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private search_resultActivity search_resultActivity2 = new search_resultActivity();
 
     ImageButton ibSearch;
     AutoCompleteTextView auto;
+    View header;
+    MainActivity ma;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,14 +39,12 @@ public class searchActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, items);
         auto.setAdapter(adapter);
 
+
         ibSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(searchActivity.this, search_resultActivity.class);
-                String str = auto.getText().toString();
-                intent.putExtra("SEARCH", str);
-                startActivity(intent);
-                //startActivityForResult(intent, 0);
+                finish();
+                ((MainActivity) MainActivity.mContext).SearchResultView("hi");
             }
         });
     }
