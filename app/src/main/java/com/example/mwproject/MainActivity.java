@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 System.out.println(edtPW.getText().toString());
+                
             }
         });
 

@@ -80,6 +80,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/n_edtfirstname"
         android:layout_marginTop="20dp"
+        android:background="@color/SigColor"
         />
 
     <Button
@@ -90,6 +91,8 @@
         app:layout_constraintRight_toLeftOf="@+id/n_btnsave"
         app:layout_constraintTop_toBottomOf="@+id/n_edtfirstname"
         android:layout_marginTop="20dp"
+        android:background="@color/SigColor"
+        android:layout_marginRight="10dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

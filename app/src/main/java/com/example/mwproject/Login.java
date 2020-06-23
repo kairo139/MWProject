@@ -25,6 +25,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 System.out.println(edtID);
+
             }
         });
 
@@ -38,8 +39,7 @@ public class Login extends AppCompatActivity {
         edtID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),membership.class);
-                startActivity(intent);
+
             }
         });
     }

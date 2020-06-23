@@ -66,12 +66,12 @@
         android:textSize="30dp"
     />
 
-    <Spinner
+    <EditText
         android:id="@+id/birth_spinday"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@+id/birth_txtmonth"
-        app:layout_constraintTop_toBottomOf="@+id/birth_title"
+        app:layout_constraintTop_toBottomOf="@id/birth_title"
         />
 
     <TextView
@@ -92,6 +92,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/birth_txtday"
         android:layout_marginTop="20dp"
+        android:background="@color/SigColor"
         />
 
     <Button
@@ -102,5 +103,7 @@
         app:layout_constraintRight_toLeftOf="@+id/g_btnsave"
         app:layout_constraintTop_toBottomOf="@id/birth_txtday"
         android:layout_marginTop="20dp"
+        android:background="@color/SigColor"
+        android:layout_marginRight="10dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
