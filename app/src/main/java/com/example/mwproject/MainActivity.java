@@ -181,8 +181,9 @@ public class MainActivity extends AppCompatActivity{
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(edtPW.getText().toString());
-                
+                ad2.dismiss();
+                Intent intent = new Intent(getApplicationContext(),membership.class);
+                startActivity(intent);
             }
         });
 
