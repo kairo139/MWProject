@@ -1,6 +1,7 @@
 package com.example.mwproject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -42,7 +43,8 @@ public class searchActivity extends AppCompatActivity {
         ibSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
+                ((MainActivity) MainActivity.mContext).SearchResultView("hi");
             }
         });
     }
