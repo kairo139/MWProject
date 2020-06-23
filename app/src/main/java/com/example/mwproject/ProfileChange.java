@@ -9,10 +9,13 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
@@ -33,15 +36,44 @@ public class ProfileChange extends AppCompatActivity {
         prof_passwdbtn = findViewById(R.id.p_passwdbtn);
         pieChart = findViewById(R.id.p_piechart);
 
-        PieDataSet pieDataSet = new PieDataSet(data1(),"");
-        pieDataSet.setColors(colorArray);
-        PieData pieData = new PieData(pieDataSet);
-        pieChart.setDrawEntryLabels(false);
         pieChart.setUsePercentValues(true);
-        pieData.setValueTextSize(20);
-        pieChart.setHoleRadius(30);
-        pieChart.setData(pieData);
-        pieChart.invalidate();
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setExtraOffsets(5,10,5,5);
+
+        pieChart.setDragDecelerationFrictionCoef(0.95f);
+
+        pieChart.setDrawHoleEnabled(false);
+        pieChart.setHoleColor(Color.WHITE);
+        pieChart.setTransparentCircleRadius(61f);
+
+        ArrayList<PieEntry> datavalue = new ArrayList<PieEntry>();
+
+        datavalue.add(new PieEntry(30,"학교"));
+        datavalue.add(new PieEntry(20,"회사"));
+        datavalue.add(new PieEntry(10,"액션"));
+        datavalue.add(new PieEntry(10,"코미디"));
+        datavalue.add(new PieEntry(5,"일상"));
+        datavalue.add(new PieEntry(5,"로맨스"));
+        datavalue.add(new PieEntry(5,"판타지"));
+        datavalue.add(new PieEntry(5,"추리"));
+        datavalue.add(new PieEntry(5,"리얼리티"));
+        datavalue.add(new PieEntry(5,"웹툰원작"));
+
+        Description description = new Description();
+        description.setText("당신의 취향");
+        description.setTextSize(15);
+        pieChart.setDescription(description);
+
+        PieDataSet dataSet = new PieDataSet(datavalue,"Countries");
+        dataSet.setSliceSpace(3f);
+        dataSet.setSelectionShift(5f);
+        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+
+        PieData data = new PieData((dataSet));
+        data.setValueTextSize(10f);
+        data.setValueTextColor(Color.YELLOW);
+
+        pieChart.setData(data);
 
         prof_namebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,20 +112,4 @@ public class ProfileChange extends AppCompatActivity {
         });
     }
 
-    private ArrayList<PieEntry> data1() {
-        ArrayList<PieEntry> datavalue = new ArrayList<>();
-
-        datavalue.add(new PieEntry(30,"학교"));
-        datavalue.add(new PieEntry(20,"회사"));
-        datavalue.add(new PieEntry(10,"액션"));
-        datavalue.add(new PieEntry(10,"코미디"));
-        datavalue.add(new PieEntry(5,"일상"));
-        datavalue.add(new PieEntry(5,"로맨스"));
-        datavalue.add(new PieEntry(5,"판타지"));
-        datavalue.add(new PieEntry(5,"추리"));
-        datavalue.add(new PieEntry(5,"리얼리티"));
-        datavalue.add(new PieEntry(5,"웹툰원작"));
-
-        return datavalue;
-    }
 }
