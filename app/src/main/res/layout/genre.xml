@@ -39,7 +39,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ypl1"
+                android:src="@drawable/school"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -48,7 +48,7 @@
                 android:layout_width="230dp"
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
-                android:text="연애플레이리스트1\n\n플레이리스트\n\n새학기 시작을 풋풋한 대학 청춘 멜로와 함께"
+                android:text="에이틴1\n\n플레이리스트\n\n지나온 10대를 이야하는 것은 쉽지만, 우린 지금 처음으로 10대를 보내고 있으니까. 고민 없을 나이라고 하기엔 모든 순간이 너무 진심이었으니까."
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -59,6 +59,7 @@
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
+                android:src="@drawable/daily"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -68,6 +69,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:visibility="invisible"
+                android:text="인서울1\n\n플레이리스트\n\n내가 독립하는 유일한 방법."
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -78,6 +80,7 @@
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
+                android:src="@drawable/company"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -87,6 +90,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:visibility="invisible"
+                android:text="게임회사 여직원들\n\n네이버TV\n\n다음웹툰 게임회사 여직원들을 기반으로 기린 제작사에서 제작된 5인5색 직원들의 발칙한 오피스 하드캐리"
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -97,6 +101,7 @@
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
+                android:src="@drawable/action"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -106,6 +111,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:visibility="invisible"
+                android:text="멈추지마\n\n네이버TV\n\n국내 최초 SF 액션 웹드라마"
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -116,6 +122,7 @@
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
+                android:src="@drawable/comedy"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -125,6 +132,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:visibility="invisible"
+                android:text="공대감성\n\n뷰자데 스튜디오\n\n아는 거는 미생물뿐인 공대 남자한테 새로운 문제가 생겼다."
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -135,6 +143,7 @@
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
+                android:src="@drawable/ypl1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -144,6 +153,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:visibility="invisible"
+                android:text="연애플레이리스트1\n\n플레이리스트\n\n새학기 시작을 풋풋한 대학 청춘 멜로와 함께"
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -154,6 +164,7 @@
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
+                android:src="@drawable/fantasy"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -163,6 +174,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:visibility="invisible"
+                android:text="천년째 연애중\n\n온스타일\n\n1000년간 쌓아온 연애 경험을 바탕으로 당신의 연애를 상담해드릴게요~"
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -173,6 +185,7 @@
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
+                android:src="@drawable/reasoning"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -182,6 +195,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:visibility="invisible"
+                android:text="악동탐정스\n\n미래엔\n\n사건이 있는 곳이면 어디든 간다!"
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -192,6 +206,7 @@
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
+                android:src="@drawable/reality"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -201,6 +216,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:visibility="invisible"
+                android:text="청춘 리얼리티:크리에이터 캠퍼스\n\n마이뷰티씨\n\n청춘들의 어색하면서도 설레는 첫 만남이 시작된다."
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -211,6 +227,7 @@
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
+                android:src="@drawable/webtoon"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -220,6 +237,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:visibility="invisible"
+                android:text="만찢남녀\n\n플레이리스트\n\n여고생 한선녀 앞에 10년도 더 된 순정만화 '선녀와 남욱군'의 주인공인 천남욱이 나타나면서 벌어지는 좌충우돌 로맨스 드라마."
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 

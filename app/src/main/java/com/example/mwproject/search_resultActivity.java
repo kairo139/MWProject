@@ -1,11 +1,17 @@
 package com.example.mwproject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 public class search_resultActivity extends AppCompatActivity {
 
@@ -40,6 +46,5 @@ public class search_resultActivity extends AppCompatActivity {
 
         resu_ib4.setImageResource(R.drawable.ypl4);
         resu_tv4.setText("연애플레이리스트4\n\n플레이리스트\n\n대학생들의 청춘 공감 멜로 드라마");
-
     }
 }
