@@ -12,6 +12,8 @@
         </menu>
     </item>
 
-    <item android:title="도움말">
+    <item
+        android:id="@+id/advice"
+        android:title="도움말">
     </item>
 </menu>
