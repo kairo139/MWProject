@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity{
     private FragmentHome fragmentHome = new FragmentHome();
     private FragmentRanking fragmentRanking = new FragmentRanking();
     private FragmentCategory fragmentCategory = new FragmentCategory();
-    private FragmentStorage fragmentStorage = new FragmentStorage();
+
     DrawerLayout drawerLayout;
 
     NavigationView side_nav;
@@ -85,12 +85,13 @@ public class MainActivity extends AppCompatActivity{
             }
         });*/
 
+        //검색
         btnSearch = findViewById(R.id.ibSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, searchActivity.class);
-                startActivityForResult(intent, 0);
+                Intent intent = new Intent(getApplicationContext(),searchActivity.class);
+                startActivity(intent);
             }
         });
 
