@@ -17,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -158,7 +159,8 @@ public class MainActivity extends AppCompatActivity{
         LayoutInflater li = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final ConstraintLayout loginLayout = (ConstraintLayout) li.inflate(R.layout.login_dialog,null);
         final AlertDialog.Builder ad = new AlertDialog.Builder(this).setView(loginLayout);
-        ad.show();
+        ad.create();
+        final DialogInterface ad2 = ad.show();
 
         edtID = loginLayout.findViewById(R.id.edtID);   edtPW = loginLayout.findViewById(R.id.edtPW); btnClose = loginLayout.findViewById(R.id.cancel);
         Login = loginLayout.findViewById(R.id.login);   btnSignUp = loginLayout.findViewById(R.id.btnSignUp);
@@ -169,6 +171,7 @@ public class MainActivity extends AppCompatActivity{
                 String a = edtID.getText().toString(); String b = edtPW.getText().toString();
                 if(a.equals(id) && b.equals(pw)){
                     header.setVisibility(View.GONE);
+                    ad2.dismiss();
                     logIn();
                 }
                 else ;
