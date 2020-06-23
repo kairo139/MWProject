@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity{
     private FragmentHome fragmentHome = new FragmentHome();
     private FragmentRanking fragmentRanking = new FragmentRanking();
     private FragmentCategory fragmentCategory = new FragmentCategory();
-
+    private FragmentStorage fragmentStorage = new FragmentStorage();
     DrawerLayout drawerLayout;
 
     NavigationView side_nav;
@@ -85,13 +85,12 @@ public class MainActivity extends AppCompatActivity{
             }
         });*/
 
-        //검색
         btnSearch = findViewById(R.id.ibSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),searchActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, searchActivity.class);
+                startActivityForResult(intent, 0);
             }
         });
 
@@ -160,8 +159,8 @@ public class MainActivity extends AppCompatActivity{
         LayoutInflater li = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final ConstraintLayout loginLayout = (ConstraintLayout) li.inflate(R.layout.login_dialog,null);
         final AlertDialog.Builder ad = new AlertDialog.Builder(this).setView(loginLayout);
-
-        ad.show();
+        ad.create();
+        final DialogInterface ad2 = ad.show();
 
         edtID = loginLayout.findViewById(R.id.edtID);   edtPW = loginLayout.findViewById(R.id.edtPW); btnClose = loginLayout.findViewById(R.id.cancel);
         Login = loginLayout.findViewById(R.id.login);   btnSignUp = loginLayout.findViewById(R.id.btnSignUp);
@@ -172,7 +171,7 @@ public class MainActivity extends AppCompatActivity{
                 String a = edtID.getText().toString(); String b = edtPW.getText().toString();
                 if(a.equals(id) && b.equals(pw)){
                     header.setVisibility(View.GONE);
-
+                    ad2.dismiss();
                     logIn();
                 }
                 else ;
@@ -183,6 +182,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 System.out.println(edtPW.getText().toString());
+                
             }
         });
 

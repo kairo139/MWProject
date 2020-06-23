@@ -106,7 +106,7 @@
         android:id="@+id/p_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="남"
+        android:text="남성"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/p_txtgender"
         android:layout_marginLeft="25dp"
