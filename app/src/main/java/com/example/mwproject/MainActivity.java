@@ -1,6 +1,7 @@
 package com.example.mwproject;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,6 +35,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity{
     Button btnPchange, btnLogin, btnLogOut;
+    ImageButton btnSearch;
     View header;
     EditText edtID, edtPW;
     Button Login,btnSignUp, btnClose;
@@ -82,6 +85,16 @@ public class MainActivity extends AppCompatActivity{
             }
         });*/
 
+        btnSearch = findViewById(R.id.ibSearch);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, searchActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+
 
         //바텀 네비게이션 (fragment)
         FragmentTransaction transaction = fragmentManager.beginTransaction(); //맨 처음에 나타날 frameLayout 설정
@@ -109,6 +122,15 @@ public class MainActivity extends AppCompatActivity{
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK){
+
+        }
     }
 
     class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{
@@ -206,4 +228,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
+
+
 }
