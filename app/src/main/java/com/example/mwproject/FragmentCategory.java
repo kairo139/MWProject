@@ -1,5 +1,6 @@
 package com.example.mwproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import org.w3c.dom.Text;
 
 public class FragmentCategory extends Fragment {
     View Current_v;
+    ImageButton ibGenre_school1;
+
 
     @Nullable
     @Override
@@ -24,7 +27,15 @@ public class FragmentCategory extends Fragment {
         Current_v = inflater.inflate(R.layout.genre, container, false);
 
         TabLayout mTabLayout = Current_v.findViewById(R.id.layout_tab);
+        ibGenre_school1 = Current_v.findViewById(R.id.ibGenre_school1);
 
+        ibGenre_school1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Player.class);
+                startActivity(intent);
+            }
+        });
         mTabLayout.addTab(mTabLayout.newTab().setText("학교"));
         mTabLayout.addTab(mTabLayout.newTab().setText("일상"));
         mTabLayout.addTab(mTabLayout.newTab().setText("회사"));
