@@ -29,6 +29,7 @@
         <activity android:name=".search_resultActivity"/>
         <activity android:name=".searchActivity"/>
         <activity android:name=".FragmentStorage"/>
+        <activity android:name=".advice"/>
 
     </application>
 

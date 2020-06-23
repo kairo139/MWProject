@@ -19,7 +19,7 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vpPager"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,7 +106,7 @@
                     android:layout_height="125dp"
                     android:layout_margin="10dp"
                     android:text="너냐, 내 여자친구가? [일진에게 찍혔을 때] EP01" />
-                
+
             </LinearLayout>
         </LinearLayout>
 

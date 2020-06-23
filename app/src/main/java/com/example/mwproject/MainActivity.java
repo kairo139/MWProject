@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -122,6 +123,10 @@ public class MainActivity extends AppCompatActivity{
                         System.out.println("sd");
                         Toast.makeText(getApplicationContext(),"d",Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.advice:
+                        Intent intentd = new Intent(getApplicationContext(),advice.class);
+                        startActivity(intentd);
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
@@ -187,8 +192,9 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 ad2.dismiss();
-                Intent intent = new Intent(getApplicationContext(),membership.class);
-                startActivity(intent);
+                Intent intentd = new Intent(getApplicationContext(),membership.class);
+                startActivity(intentd);
+                finish();
             }
         });
 
