@@ -17,6 +17,12 @@
             layout="@layout/tool_bar" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <ScrollView
+        android:id="@+id/ScrV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     <!-- 아이디 입력 부분 -->
     <TextView
         android:id="@+id/m_txtid"
@@ -121,7 +127,8 @@
         android:text="비밀번호 힌트"
         android:textSize="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk" />
+        app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk"
+        />
 
     <!-- 성별-->
     <TextView
@@ -160,6 +167,78 @@
         />
 
     <!-- 장르 표시 -->
+    <GridLayout
+        android:id="@+id/membership_gridlayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="4"
+        android:orientation="horizontal"
+
+        app:layout_constraintTop_toBottomOf="@+id/m_txtlikebody"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/membership_school_icon"
+                android:scaleType="fitXY"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/membership_company_img"
+                android:scaleType="fitXY"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/membership_action_img"
+                android:scaleType="fitXY"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/membership_comedy_img"
+                android:scaleType="fitXY"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/membership_daily_img"
+                android:scaleType="fitXY"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/membership_romance_img"
+                android:scaleType="fitXY"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/membership_fantasy_img"
+                android:scaleType="fitXY"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/membership_inference_img"
+                android:scaleType="fitXY"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/membership_reality_img"
+                android:scaleType="fitXY"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/membership_webtoon_img"
+                android:scaleType="fitXY"
+            />
+    </GridLayout>
 
     <!-- 이전 완료 버튼 -->
     <Button
@@ -168,7 +247,7 @@
         android:layout_height="wrap_content"
         android:text="이전"
         app:layout_constraintRight_toLeftOf="@+id/m_btnok"
-        app:layout_constraintTop_toBottomOf="@+id/m_txtlikebody"
+        app:layout_constraintTop_toBottomOf="@+id/membership_gridlayout"
         android:layout_marginBottom="10dp"
         />
 
@@ -178,10 +257,10 @@
         android:layout_height="wrap_content"
         android:text="완료"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/m_txtlikebody"
+        app:layout_constraintTop_toBottomOf="@+id/membership_gridlayout"
         android:layout_marginBottom="10dp"
         />
-
+    </ScrollView>
     <!-- 가이드라인 -->
 
     <androidx.constraintlayout.widget.Guideline
