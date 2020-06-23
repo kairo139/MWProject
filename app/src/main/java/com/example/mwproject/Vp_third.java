@@ -34,8 +34,6 @@ public class Vp_third extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.vp_third, container, false);
-        EditText tvLabel = (EditText) v.findViewById(R.id.editText);
-        tvLabel.setText(page + " -- " + title);
         return v;
     }
 }
