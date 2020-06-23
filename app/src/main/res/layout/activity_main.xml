@@ -34,7 +34,6 @@
                 android:background="?android:attr/windowBackground"
                 app:menu="@menu/menu"
                 android:layout_gravity="bottom"/>
-
         </FrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
