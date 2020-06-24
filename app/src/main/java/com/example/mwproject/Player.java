@@ -30,7 +30,7 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored){
         if(!wasRestored){
-            player.cueVideo("vidieoID");
+            player.cueVideo(vidieoID);
         }
     }
 
