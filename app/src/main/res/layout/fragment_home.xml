@@ -57,7 +57,7 @@
                     android:layout_height="125dp"
                     android:layout_margin="10dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/recom1" />
+                    android:background="@drawable/recom1" />
 
                 <TextView
                     android:id="@+id/tvRecom1"
@@ -78,7 +78,7 @@
                     android:layout_height="125dp"
                     android:layout_margin="10dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/recom2" />
+                    android:background="@drawable/recom2" />
 
                 <TextView
                     android:id="@+id/tvRecom2"
@@ -98,7 +98,7 @@
                     android:layout_height="125dp"
                     android:layout_margin="10dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/recom3" />
+                    android:background="@drawable/recom3" />
 
                 <TextView
                     android:id="@+id/tvRecom3"

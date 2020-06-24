@@ -18,29 +18,27 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/bottom_navigationView">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/topBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/topBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <include layout="@layout/tool_bar" />
-        </com.google.android.material.appbar.AppBarLayout>
-
-
+                <include layout="@layout/tool_bar" />
+            </com.google.android.material.appbar.AppBarLayout>
 
             <FrameLayout
                 android:id="@+id/frameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@id/bottom_navigationView"
-                android:layout_below="@+id/topBar"/>
+                android:layout_below="@+id/topBar" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/windowBackground"
                 android:layout_alignParentBottom="true"
+                android:background="?android:attr/windowBackground"
                 app:menu="@menu/menu" />
         </RelativeLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
