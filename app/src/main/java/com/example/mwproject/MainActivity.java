@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity{
     View header;
     EditText edtID, edtPW;
     Button Login,btnSignUp, btnClose;
-    String id = "aaa"; String pw = "ab";
+    String id = "mwproject"; String pw = "dlwlrma";
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentHome fragmentHome = new FragmentHome();
