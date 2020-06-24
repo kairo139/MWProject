@@ -50,6 +50,7 @@ public class FragmentEpisode extends Fragment {
         String[] titles = getResources().getStringArray(R.array.title);
 
         for (int i = 0; i < arrResId.length(); i++) {
+            System.out.println(arrResId.length());
             DTP dto = new DTP();
             dto.setResId(arrResId.getResourceId(i, 0));
             dto.setTitle(titles[i]);

@@ -56,7 +56,6 @@ public class EPAdapter extends BaseAdapter {
     class CustomViewHolder {
         ImageView imageView;
         TextView textTitle;
-        TextView textContent;
     }
 
     // MainActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수

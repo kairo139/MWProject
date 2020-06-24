@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@id/imgTitle"
         android:background="#3E3C3C"
         android:id="@+id/line"
-        />
+        android:orientation="horizontal" />
 
         <ListView
             android:layout_width="match_parent"

@@ -18,20 +18,20 @@
     </integer-array>
 
     <string-array name="title">
-        <item>ep1</item>
-        <item>ep2</item>
-        <item>ep3</item>
-        <item>ep4</item>
-        <item>ep5</item>
-        <item>ep6</item>
-        <item>ep7</item>
-        <item>ep8</item>
-        <item>ep9</item>
-        <item>ep10</item>
-        <item>ep11</item>
-        <item>ep12</item>
-        <item>ep13</item>
-        <item>ep14</item>
-        <item>ep15</item>
+        <item>[ep1] 너냐, 내 여자친구가?</item>
+        <item>[ep2] 반장을 술집에서 만났다?</item>
+        <item>[ep3] 너와 나 그리고?</item>
+        <item>[ep4] 두 남자가 나 때문에 싸운다면?</item>
+        <item>[ep5] 나를 괴롭히던 일진의 과거는?</item>
+        <item>[ep6] 모르는 애들이 내 얼평을 한다</item>
+        <item>[ep7] 교문 앞에서 일진이 날 찾는다</item>
+        <item>[ep8] 두남자가 나를 구해주러 왔다</item>
+        <item>[ep9] 매일 놀던 친구들이 날 버렸다</item>
+        <item>[ep10] 일진과의 첫번째 데이트</item>
+        <item>[ep11] 데이트하면 이제 행복할 줄 알았는데...</item>
+        <item>[ep12] 모두가 날 안믿고 의심할 때...</item>
+        <item>[ep13] 날 좋아하는 남자가 집으로 초대했다</item>
+        <item>[ep14] 좋아하는 사람이 위험에 빠졌다면</item>
+        <item>[ep15] 좋아하는 사람에게 고백하러간다</item>
     </string-array>
 </resources>
