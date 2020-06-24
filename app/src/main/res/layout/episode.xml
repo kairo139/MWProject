@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="5dp"
+        android:id="@+id/imgTitle"
+        android:src="@drawable/ijj1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="일찐에게 찍혔을때"
+        app:layout_constraintLeft_toRightOf="@+id/imgTitle"
+        app:layout_constraintTop_toTopOf="@id/imgTitle"
+        android:id="@+id/tvTitle"/>
+    <TextView
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/imgTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tvCharacter"
+        android:text="출연진: 이은재, 강율, 윤준원, 박이현, 최찬이, 주현영"/>
+    <TextView
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/imgTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvCharacter"
+        android:layout_marginTop="10dp"
+        android:text="한 장의 사진, 한순간의 실수. 지긋지긋한 스토커를 떼어내려 프사로 설정한 남친짤이 우리 반 일진 사진이라고? 절대 엮일 일 없을거라 생각한 애들과 엮여버렸다. 그것도 아주 단단히."/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/imgTitle"
+        android:background="#3E3C3C"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/imgTitle"
+        android:layout_marginTop="5dp">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView">
+
+        </ListView>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

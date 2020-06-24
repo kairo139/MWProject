@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity{
     private FragmentHome fragmentHome = new FragmentHome();
     private FragmentRanking fragmentRanking = new FragmentRanking();
     private FragmentCategory fragmentCategory = new FragmentCategory();
-    private FragmentStorage fragmentStorage = new FragmentStorage();
+    private FragmentEpisode episode = new FragmentEpisode();
     private search_resultActivity search_resultActivity = new search_resultActivity();
 
     DrawerLayout drawerLayout;
@@ -246,7 +246,14 @@ public class MainActivity extends AppCompatActivity{
 
     public void SearchResultView(String str){
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.addToBackStack(null); //이전 화면 기억
         System.out.println(str);
         transaction.replace(R.id.frameLayout, search_resultActivity).commitAllowingStateLoss();
+    }
+
+    public  void ToEpisodeActivity(){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.addToBackStack(null); //이전 화면 기억
+        transaction.replace(R.id.frameLayout, episode).commitAllowingStateLoss();
     }
 }
