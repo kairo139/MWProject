@@ -119,13 +119,12 @@
                 android:id="@+id/m_edtpasswdchk"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:hint="n글자 미만"
                 app:layout_constraintLeft_toRightOf="@id/m_txtpasswdchk"
                 app:layout_constraintTop_toBottomOf="@id/m_edtpasswd" />
 
             <!-- 비밀번호 힌트-->
-            <TextView
+            <!--<TextView
                 android:id="@+id/m_txtpasswdhint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -134,6 +133,74 @@
                 android:textSize="20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk" />
+            -->
+            <!--생년월일-->
+            <TextView
+                android:id="@+id/m_txtbirth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="생년월일"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk"/>
+
+            <EditText
+                android:id="@+id/membership_edtyear"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/m_txtbirth"
+                app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk"
+                />
+
+            <TextView
+                android:id="@+id/membership_txtyear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="년"
+                app:layout_constraintLeft_toRightOf="@+id/membership_edtyear"
+                app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                />
+
+            <Spinner
+                android:id="@+id/membership_spinmonth"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                app:layout_constraintLeft_toRightOf="@+id/membership_txtyear"
+                app:layout_constraintTop_toBottomOf="@id/m_txtpasswdchk"
+                />
+
+            <TextView
+                android:id="@+id/membership_txtmonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월"
+                app:layout_constraintLeft_toRightOf="@+id/membership_spinmonth"
+                app:layout_constraintTop_toBottomOf="@id/m_txtpasswdchk"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                />
+
+            <EditText
+                android:id="@+id/membership_spinday"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/membership_txtmonth"
+                app:layout_constraintTop_toBottomOf="@id/m_txtpasswdchk"
+                />
+
+            <TextView
+                android:id="@+id/membership_txtday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일"
+                app:layout_constraintLeft_toRightOf="@+id/membership_spinday"
+                app:layout_constraintTop_toBottomOf="@id/m_txtpasswdchk"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                />
 
             <!-- 성별-->
             <TextView
@@ -144,7 +211,40 @@
                 android:text="성별"
                 android:textSize="20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdhint" />
+                app:layout_constraintTop_toBottomOf="@+id/m_txtbirth" />
+
+            <RadioGroup
+                android:id="@+id/g_radiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/membership_txtday"
+                app:layout_constraintLeft_toRightOf="@+id/m_txtgender"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                >
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="남성"
+                    android:id="@+id/g_radio1"
+                    android:textSize="20dp"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="여성"
+                    android:id="@+id/g_radio2"
+                    android:textSize="20dp"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="선택 안함"
+                    android:id="@+id/g_radio3"
+                    android:textSize="20dp"/>
+
+            </RadioGroup>
 
             <!-- 취향 선택 부분 -->
 
