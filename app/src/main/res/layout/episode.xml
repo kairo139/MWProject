@@ -39,19 +39,16 @@
         android:layout_height="1dp"
         app:layout_constraintTop_toBottomOf="@id/imgTitle"
         android:background="#3E3C3C"
+        android:id="@+id/line"
         />
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/imgTitle"
-        android:layout_marginTop="5dp">
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/listView">
+            android:id="@+id/listView"
+            app:layout_constraintTop_toTopOf="@+id/line">
 
         </ListView>
 
-    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

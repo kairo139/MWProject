@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="resId">
+        <item>@drawable/ij_ep1</item>
+        <item>@drawable/ij_ep2</item>
+        <item>@drawable/ij_ep3</item>
+        <item>@drawable/ij_ep4</item>
+        <item>@drawable/ij_ep5</item>
+        <item>@drawable/ij_ep6</item>
+        <item>@drawable/ij_ep7</item>
+        <item>@drawable/ij_ep8</item>
+        <item>@drawable/ij_ep9</item>
+        <item>@drawable/ij_ep11</item>
+        <item>@drawable/ij_ep12</item>
+        <item>@drawable/ij_ep13</item>
+        <item>@drawable/ij_ep14</item>
+        <item>@drawable/ij_ep15</item>
+    </integer-array>
+
+    <string-array name="title">
+        <item>ep1</item>
+        <item>ep2</item>
+        <item>ep3</item>
+        <item>ep4</item>
+        <item>ep5</item>
+        <item>ep6</item>
+        <item>ep7</item>
+        <item>ep8</item>
+        <item>ep9</item>
+        <item>ep10</item>
+        <item>ep11</item>
+        <item>ep12</item>
+        <item>ep13</item>
+        <item>ep14</item>
+        <item>ep15</item>
+    </string-array>
+</resources>

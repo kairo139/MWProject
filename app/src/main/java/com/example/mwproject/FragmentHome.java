@@ -48,7 +48,7 @@ public class FragmentHome extends Fragment {
         });
 
         ViewPager vpPager = Current_v.findViewById(R.id.vpPager);
-        adapterViewPager = new MyPagerAdapter((getFragmentManager()));
+        adapterViewPager = new MyPagerAdapter((getChildFragmentManager()));
         vpPager.setAdapter(adapterViewPager);
 
         CircleIndicator indicator = Current_v.findViewById(R.id.indicator);

@@ -49,7 +49,6 @@ public class EPAdapter extends BaseAdapter {
 
         holder.imageView.setImageResource(dto.getResId());
         holder.textTitle.setText(dto.getTitle());
-        holder.textContent.setText(dto.getContent());
 
         return convertView;
     }

@@ -36,4 +36,5 @@ public class Vp_second extends Fragment {
         View v = inflater.inflate(R.layout.vp_second, container, false);
         return v;
     }
+
 }
