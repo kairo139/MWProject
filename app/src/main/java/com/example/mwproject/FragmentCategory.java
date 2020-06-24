@@ -32,8 +32,7 @@ public class FragmentCategory extends Fragment {
         ibGenre_school1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Player.class);
-                startActivity(intent);
+                ((MainActivity) MainActivity.mContext).ToEpisodeActivity();
             }
         });
         mTabLayout.addTab(mTabLayout.newTab().setText("학교"));
