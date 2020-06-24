@@ -14,6 +14,8 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
 
+    String vidieoID = "ok9sgJtaIvY";
+
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
     @Override
@@ -28,7 +30,7 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored){
         if(!wasRestored){
-            player.cueVideo("ok9sgJtaIvY");
+            player.cueVideo("vidieoID");
         }
     }
 
