@@ -39,7 +39,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/school"
+                android:src="@drawable/ijj1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
@@ -48,7 +48,7 @@
                 android:layout_width="230dp"
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
-                android:text="에이틴1\n\n플레이리스트\n\n지나온 10대를 이야하는 것은 쉽지만, 우린 지금 처음으로 10대를 보내고 있으니까. 고민 없을 나이라고 하기엔 모든 순간이 너무 진심이었으니까."
+                android:text="일진에게 찍혔을 때\n\n콕tv\n\n한장의 사진, 한순간의 실수, 지긋지긋한 스토커를 떼어내려 프사로 설정한 남친짤이 우리 반 일진 사진이라고?"
                 app:layout_constraintLeft_toRightOf="@+id/ibGenre_school1"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
