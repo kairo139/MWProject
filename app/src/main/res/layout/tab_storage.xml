@@ -4,4 +4,33 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageButton
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/ijj1"
+        android:id="@+id/ibtnIJ"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="일진에게 찍혔을때"
+        app:layout_constraintTop_toBottomOf="@+id/ibtnIJ"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/ibtnIJ"/>
+
+    <ImageButton
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/ypl1"
+        android:id="@+id/ibtnYpl"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="연애 플레이 리스트 시즌1"
+        app:layout_constraintTop_toBottomOf="@+id/ibtnYpl"
+        app:layout_constraintLeft_toLeftOf="@+id/ibtnYpl"
+        app:layout_constraintRight_toRightOf="@id/ibtnYpl"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
