@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="평범하지 않은, 아 사실은 평범하기 싫은 [에이틴] - EP.01"
+        android:text="너냐, 내 여자친구가? [일진에게 찍혔을 때] EP01"
         android:textSize="25dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/youtubeplayer" />
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:text="8,000,000"
+        android:text="10,343,729"
         android:textSize="20dp"
         app:layout_constraintLeft_toRightOf="@+id/player_viewimg"
         app:layout_constraintTop_toBottomOf="@+id/player_text" />
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:text="6,100"
+        android:text="110,000"
         android:textSize="20dp"
         app:layout_constraintLeft_toRightOf="@+id/player_likeimg"
         app:layout_constraintTop_toBottomOf="@id/player_text" />
