@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class membership extends AppCompatActivity {
 
     //Integer[] membershipimgID = {R.drawable.membership_school_icon,R.drawable.membership_company_img,R.drawable.membership_action_img,R.drawable.membership_comedy_img,R.drawable.membership_daily_img,R.drawable.membership_romance_img,R.drawable.membership_fantasy_img,R.drawable.membership_inference_img,R.drawable.membership_reality_img,R.drawable.membership_webtoon_img};
-    Button g_btnsave;
+    Button g_btnsave,m_btnback;
 
     Spinner monthspinner;
 
@@ -26,12 +26,20 @@ public class membership extends AppCompatActivity {
 
         monthspinner = (Spinner)findViewById(R.id.membership_spinmonth);
         g_btnsave = findViewById(R.id.m_btnok);
-
+        m_btnback = findViewById(R.id.m_btnback);
 
         ArrayAdapter<String> monthadapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,month);
         monthspinner.setAdapter(monthadapter);
 
         g_btnsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        m_btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
