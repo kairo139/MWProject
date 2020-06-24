@@ -35,8 +35,8 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ep2"
-                android:id="@+id/recent_ep2"
+                android:background="@drawable/ij_ep5"
+                android:id="@+id/recent_ep5"
                 app:layout_constraintTop_toBottomOf="@+id/recnet_ep1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_margin="10dp"/>
@@ -45,7 +45,43 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="[연플리] - EP2.남친에게 여친이 생겼다."
+                android:text="[ep1] 나를 괴롭히던 일진의 과거는?"
+                app:layout_constraintLeft_toRightOf="@+id/guideline"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recent_ep5" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ij_ep4"
+                android:id="@+id/recent_ep4"
+                app:layout_constraintTop_toBottomOf="@+id/recent_ep5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="[ep1] "
+                app:layout_constraintLeft_toRightOf="@+id/guideline"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recent_ep5" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ij_ep1"
+                android:id="@+id/recent_ep2"
+                app:layout_constraintTop_toBottomOf="@+id/recent_ep4"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="[ep1] 너냐, 내 여자친구가?"
                 app:layout_constraintLeft_toRightOf="@+id/guideline"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/recent_ep2" />
