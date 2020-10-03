@@ -2,7 +2,6 @@ package com.example.mwproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,8 +11,6 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
-
-import java.util.Collections;
 
 public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
 
@@ -32,9 +29,8 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored){
-        if(!wasRestored) {
+        if(!wasRestored){
             player.cueVideo(vidieoID);
-
         }
     }
 
@@ -57,5 +53,6 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
             getYouTubePlayerProvider().initialize(DeveloperKey.DEVELOPER_KEY,this);
         }
     }
+
 }
 
