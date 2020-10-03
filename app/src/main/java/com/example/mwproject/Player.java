@@ -14,8 +14,8 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
 
-    String vidieoID = "ok9sgJtaIvY";
-
+    String vidieoID = "ok9sgJtaIvY";    // 데이터 베이스 완벽히 연결 후 실행 하려는 유튜브 영상 아이디 가져오기
+    YouTubePlayer players;
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
     @Override
@@ -29,10 +29,30 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored){
+        players = player;
         if(!wasRestored){
             player.cueVideo(vidieoID);
+            /*
+                1.이부분에다가 책갈피에서 들어온거면 sqlite 확인해서 시간 가져와서 재생
+                player.seekToMillis(이부분에 가져온 시간 대입);
+                player.play();
+                2.그냥 다른 부분에서 들어온거면 처음부터 실행
+                player.cueVideo(vidieoID);
+                player.play();
+             */
         }
     }
+
+    // 해당하는 데이터 베이스는 SQLite Database 를 활용하여 저장할걸로 변경
+    @Override
+    public void onBackPressed(){    // 뒤로가기 버튼을 눌렀을 시
+        int pauseTime = players.getCurrentTimeMillis();  // 영상을 실행 한 후 경과된 시간을 리턴
+        /*
+            vidieoID / pauseTime
+            DB 설계 다시한후에 sqlite 설정 끝나면 이 부분에다가 가져가서  db에 저장 후 활용
+         */
+    }
+
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult errorReason){
