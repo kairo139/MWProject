@@ -76,7 +76,6 @@ public class FragmentHome extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-
                     return Vp_first.newInstance(0, "Page # 1");
                 case 1:
                     return Vp_second.newInstance(1, "Page # 2");
