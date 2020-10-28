@@ -112,20 +112,24 @@ public class MainActivity extends AppCompatActivity{
         side_nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()){
                     case R.id.recently:
-                        Intent intent = new Intent(getApplicationContext(),FragmentStorage.class);
+                        intent = new Intent(getApplicationContext(),FragmentStorage.class);
                         startActivity(intent);
                         break;
                     case R.id.storageDrama:
                         break;
                     case R.id.btnLogin:
-                        System.out.println("sd");
-                        Toast.makeText(getApplicationContext(),"d",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"d",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.advice:
-                        Intent intentd = new Intent(getApplicationContext(),advice.class);
-                        startActivity(intentd);
+                        intent = new Intent(getApplicationContext(),advice.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.dbtest:
+                        intent = new Intent(getApplicationContext(),dbtestt.class);
+                        startActivity(intent);
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
