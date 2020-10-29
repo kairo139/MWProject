@@ -3,21 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/vid"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="dbtest하는 곳"
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/genre"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textSize="20dp"
-        android:id="@+id/testTV"/>
+        app:layout_constraintTop_toBottomOf="@+id/vid"/>
 
-    <ListView
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        app:layout_constraintTop_toBottomOf="@+id/testTV"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-
+        android:id="@+id/title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genre"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
