@@ -37,6 +37,7 @@ public class FragmentEpisode extends Fragment {
                 switch (position){
                     case 0:
                         Intent intent = new Intent(getActivity(),Player.class);
+                        /*intent.putExtra("playTime",80000);*/
                         startActivity(intent);
                         break;
                 }
