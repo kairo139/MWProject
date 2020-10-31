@@ -33,6 +33,7 @@
         <activity android:name=".advice"/>
         <activity android:name=".FragmentEpisode"/>
         <activity android:name=".dbtestt"/>
+        <activity android:name=".User_DB"/>
 
     </application>
 

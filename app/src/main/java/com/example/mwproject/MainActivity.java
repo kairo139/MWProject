@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity{
     View header;
     EditText edtID, edtPW;
     Button Login,btnSignUp, btnClose;
-    String id = "mwproject"; String pw = "dlwlrma";
+    public String inputUID, inputPW;
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentHome fragmentHome = new FragmentHome();
@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity{
         side_nav = (NavigationView) findViewById(R.id.side_nav);
 
         //default(비 로그인)
-        notLogIn();
+        //notLogIn();
 
-        /*if(로그인 됐을때)
+        //if(로그인 됐을때)
         header = side_nav.inflateHeaderView(R.layout.side_header_login);
         btnPchange = header.findViewById(R.id.btnPchange);
         //정보수정 버튼
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity{
                 Intent intent = new Intent(getApplicationContext(),ProfileChange.class);
                 startActivity(intent);
             }
-        });*/
+        });//*/
 
         btnSearch = findViewById(R.id.ibSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -182,13 +182,13 @@ public class MainActivity extends AppCompatActivity{
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String a = edtID.getText().toString(); String b = edtPW.getText().toString();
-                if(a.equals(id) && b.equals(pw)){
+                inputUID = edtID.getText().toString(); inputPW = edtPW.getText().toString();
+               /*if(inputUID.equals( ) && inputPW.equals(pw)){
                     header.setVisibility(View.GONE);
                     ad2.dismiss();
                     logIn();
                 }
-                else ;
+                else ;*/
             }
         });
 
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     //로그인 method
-    private void logIn(){
+    public void logIn(){
         header = side_nav.inflateHeaderView(R.layout.side_header_login);
         btnPchange = header.findViewById(R.id.btnPchange);
         btnLogOut = header.findViewById(R.id.btnLogOut);
@@ -260,4 +260,6 @@ public class MainActivity extends AppCompatActivity{
         transaction.addToBackStack(null); //이전 화면 기억
         transaction.replace(R.id.frameLayout, episode).commitAllowingStateLoss();
     }
+
+
 }
