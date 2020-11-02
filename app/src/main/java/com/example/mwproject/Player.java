@@ -13,7 +13,7 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
 
-    String vidieoID = "ok9sgJtaIvY";    // 데이터 베이스 완벽히 연결 후 실행 하려는 유튜브 영상 아이디 가져오기
+    String vidieoID = getIntent().getStringExtra("videoID");    // 데이터 베이스 완벽히 연결 후 실행 하려는 유튜브 영상 아이디 가져오기
     YouTubePlayer players;
 
     private static final int RECOVERY_DIALOG_REQUEST = 1;
