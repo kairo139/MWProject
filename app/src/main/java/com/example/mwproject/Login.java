@@ -17,7 +17,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_dialog);
+        setContentView(R.layout.side_header_login);
         btnLogin = findViewById(R.id.btnLogin); btnSignUp = findViewById(R.id.btnSignUp); btnClose = findViewById(R.id.cancel);
         edtID = findViewById(R.id.edtID); edtPW = findViewById(R.id.edtPW);
 

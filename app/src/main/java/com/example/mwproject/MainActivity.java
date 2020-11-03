@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -29,10 +30,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity{
     Button btnPchange, btnLogin, btnLogOut;
@@ -40,7 +58,8 @@ public class MainActivity extends AppCompatActivity{
     View header;
     EditText edtID, edtPW;
     Button Login,btnSignUp, btnClose;
-    public String inputUID, inputPW;
+    String inputUID, inputPW;
+    String uid, upw, uNickname;
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentHome fragmentHome = new FragmentHome();
@@ -56,6 +75,21 @@ public class MainActivity extends AppCompatActivity{
     public static final int sub = 1001;
 
     public static Context mContext;
+
+    String myJSON;
+
+    private static final String TAG_URESULTS = "User_result";
+    private static final String TAG_UID = "User_ID";
+    private static final String TAG_UPW = "User_PW";
+    private static final String TAG_NICKNAME = "User_NICKNAME";
+    private static final String TAG_BIRTH = "User_BIRTH";
+    private static final String TAG_GENDER = "User_GENDER";
+
+    AlertDialog.Builder ad; DialogInterface ad2;
+
+    JSONArray userDB = null;
+
+    ArrayList<HashMap<String, String>> userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +111,9 @@ public class MainActivity extends AppCompatActivity{
         side_nav = (NavigationView) findViewById(R.id.side_nav);
 
         //default(비 로그인)
-        //notLogIn();
+        notLogIn();
 
-        //if(로그인 됐을때)
+        /*//if(로그인 됐을때)
         header = side_nav.inflateHeaderView(R.layout.side_header_login);
         btnPchange = header.findViewById(R.id.btnPchange);
         //정보수정 버튼
@@ -99,8 +133,6 @@ public class MainActivity extends AppCompatActivity{
                 startActivityForResult(intent, 0);
             }
         });
-
-
 
         //바텀 네비게이션 (fragment)
         FragmentTransaction transaction = fragmentManager.beginTransaction(); //맨 처음에 나타날 frameLayout 설정
@@ -172,9 +204,9 @@ public class MainActivity extends AppCompatActivity{
     private void showLoginDialog(){
         LayoutInflater li = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final ConstraintLayout loginLayout = (ConstraintLayout) li.inflate(R.layout.login_dialog,null);
-        final AlertDialog.Builder ad = new AlertDialog.Builder(this).setView(loginLayout);
+        ad = new AlertDialog.Builder(this).setView(loginLayout);
         ad.create();
-        final DialogInterface ad2 = ad.show();
+        ad2 = ad.show();
 
         edtID = loginLayout.findViewById(R.id.edtID);   edtPW = loginLayout.findViewById(R.id.edtPW); btnClose = loginLayout.findViewById(R.id.cancel);
         Login = loginLayout.findViewById(R.id.login);   btnSignUp = loginLayout.findViewById(R.id.btnSignUp);
@@ -183,10 +215,15 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 inputUID = edtID.getText().toString(); inputPW = edtPW.getText().toString();
-               /*if(inputUID.equals( ) && inputPW.equals(pw)){
+
+                userList = new ArrayList<HashMap<String, String>>();
+
+                getData("https://mw-zhdtw.run.goorm.io/PHP_login.php",inputUID,inputPW);
+
+               /*if(inputUID.equals(userID) && inputPW.equals(userPW)){
                     header.setVisibility(View.GONE);
+                    System.out.println(userID);
                     ad2.dismiss();
-                    logIn();
                 }
                 else ;*/
             }
@@ -207,13 +244,17 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
             }
         });
+
     }
 
     //로그인 method
-    public void logIn(){
+    public void logIn(final String unickname){
+        TextView userNickname;
         header = side_nav.inflateHeaderView(R.layout.side_header_login);
         btnPchange = header.findViewById(R.id.btnPchange);
         btnLogOut = header.findViewById(R.id.btnLogOut);
+        userNickname = header.findViewById(R.id.tvUserName);
+        userNickname.setText(unickname);
 
         //정보수정 버튼
         btnPchange.setOnClickListener(new View.OnClickListener() {
@@ -229,7 +270,9 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 header.setVisibility(View.GONE);
+                uid = null; upw = null; uNickname = null;
                 notLogIn();
+
             }
         });
     }
@@ -261,5 +304,75 @@ public class MainActivity extends AppCompatActivity{
         transaction.replace(R.id.frameLayout, episode).commitAllowingStateLoss();
     }
 
+    protected void showList(String id, String pw) {
+        try {
+            JSONObject jsonObj = new JSONObject(myJSON);
+            userDB = jsonObj.getJSONArray(TAG_URESULTS);
 
+            //사용자db정보 받기
+            for (int i = 0; i < userDB.length(); i++) {
+                JSONObject c = userDB.getJSONObject(i);
+                uid = c.getString(TAG_UID);
+                upw = c.getString(TAG_UPW);
+                uNickname = c.getString(TAG_NICKNAME);
+
+                HashMap<String, String> userInfo = new HashMap<String, String>();
+
+                userInfo.put(TAG_UID, uid);
+                userInfo.put(TAG_UPW, upw);
+
+                if(uid.equals(id) && upw.equals(pw)){
+                    header.setVisibility(View.GONE);
+                    logIn(uNickname);
+                    ad2.dismiss();
+
+                }
+                userList.add(userInfo);
+            }
+            //여까지
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getData(String url, final String uid, final String upw) {
+        class GetDataJSON extends AsyncTask<String, Void, String> {
+            String id = uid; String pw = upw;
+
+            @Override
+            protected String doInBackground(String... params) {
+                String uri = params[0];
+                BufferedReader bufferedReader = null;
+                try {
+                    URL url = new URL(uri);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    StringBuilder sb = new StringBuilder();
+
+                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                    String json;
+                    while ((json = bufferedReader.readLine()) != null) {
+                        sb.append(json + "\n");
+                    }
+                    return sb.toString().trim();
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return uri;
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                myJSON = result;
+                showList(id,pw);
+            }
+        }
+
+        GetDataJSON g = new GetDataJSON();
+        g.execute(url);
+    }
 }

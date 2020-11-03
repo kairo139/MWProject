@@ -29,13 +29,11 @@ public class dbtestt extends AppCompatActivity {
     String myJSON;
 
     private static final String TAG_RESULTS = "result";
-    private static final String TAG_VID = "Video_ID";
-    private static final String TAG_GENRE = "Genre";
-    private static final String TAG_RECOM = "Recommendation";
-    private static final String TAG_Lookup = "Lookup";
-    private static final String TAG_TITLE = "Title";
-    private static final String TAG_Date = "Date";
-    private static final String TAG_Episode = "Episode";
+    private static final String TAG_VID = "WebDarma_SEQ";
+    private static final String TAG_GENRE = "WebDrama_title";
+    private static final String TAG_RECOM = "WebDrama_case";
+    private static final String TAG_Lookup = "WebDrama_content";
+    private static final String TAG_TITLE = "Genere_SEQ";
 
     JSONArray video = null;
 
@@ -50,7 +48,7 @@ public class dbtestt extends AppCompatActivity {
 
         list = (ListView) findViewById(R.id.listView);
         videoList = new ArrayList<HashMap<String, String>>();
-        getData("http://192.168.35.73/PHP_connection.php");
+        getData("https://mw-zhdtw.run.goorm.io/PHP_connection.php");
     }
 
     protected void showList() {
@@ -66,8 +64,6 @@ public class dbtestt extends AppCompatActivity {
                 String recommendation = c.getString(TAG_RECOM);
                 String lookup = c.getString(TAG_Lookup);
                 String title = c.getString(TAG_TITLE);
-                String date = c.getString(TAG_Date);
-                String episode = c.getString(TAG_Episode);
 
                 System.out.println(vid + "\n");
 
