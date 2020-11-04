@@ -110,20 +110,7 @@ public class MainActivity extends AppCompatActivity{
 
         side_nav = (NavigationView) findViewById(R.id.side_nav);
 
-        //default(비 로그인)
-        notLogIn();
-
-        /*//if(로그인 됐을때)
-        header = side_nav.inflateHeaderView(R.layout.side_header_login);
-        btnPchange = header.findViewById(R.id.btnPchange);
-        //정보수정 버튼
-        btnPchange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),ProfileChange.class);
-                startActivity(intent);
-            }
-        });//*/
+        notLogIn(); //default(비 로그인)
 
         btnSearch = findViewById(R.id.ibSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -218,7 +205,7 @@ public class MainActivity extends AppCompatActivity{
 
                 userList = new ArrayList<HashMap<String, String>>();
 
-                getData("https://mw-zhdtw.run.goorm.io/PHP_login.php",inputUID,inputPW);
+                getData(inputUID,inputPW);
 
                /*if(inputUID.equals(userID) && inputPW.equals(userPW)){
                     header.setVisibility(View.GONE);
@@ -316,27 +303,19 @@ public class MainActivity extends AppCompatActivity{
                 upw = c.getString(TAG_UPW);
                 uNickname = c.getString(TAG_NICKNAME);
 
-                HashMap<String, String> userInfo = new HashMap<String, String>();
-
-                userInfo.put(TAG_UID, uid);
-                userInfo.put(TAG_UPW, upw);
-
                 if(uid.equals(id) && upw.equals(pw)){
                     header.setVisibility(View.GONE);
                     logIn(uNickname);
                     ad2.dismiss();
-
                 }
-                userList.add(userInfo);
             }
-            //여까지
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public void getData(String url, final String uid, final String upw) {
+    public void getData(final String uid, final String upw) {
+        String url = "https://mw-zhdtw.run.goorm.io/PHP_login.php";
         class GetDataJSON extends AsyncTask<String, Void, String> {
             String id = uid; String pw = upw;
 
