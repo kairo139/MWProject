@@ -122,8 +122,8 @@ public class membership extends AppCompatActivity {
                     getuserinfo.insertToDatabase(id,pw,nickname,uBirth,uGender);
                 }
                 else Toast.makeText(getApplicationContext(), "비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 

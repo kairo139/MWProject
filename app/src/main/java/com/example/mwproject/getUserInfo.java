@@ -195,6 +195,7 @@ public class getUserInfo extends Application {
         }
         InsertData task = new InsertData();
         task.execute(id,pw, nickname, birth, gender);
+
     }
 
 
