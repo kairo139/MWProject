@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity{
     String myJSON;
 
     private static final String TAG_URESULTS = "User_result";
+    private static final String TAG_USEQ = "User_SEQ";
     private static final String TAG_UID = "User_ID";
     private static final String TAG_UPW = "User_PW";
     private static final String TAG_NICKNAME = "User_NICKNAME";
