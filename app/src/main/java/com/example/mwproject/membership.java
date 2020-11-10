@@ -3,6 +3,7 @@ package com.example.mwproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,6 +26,8 @@ public class membership extends AppCompatActivity {
     String uGender = "";
     RadioButton rb_male, rb_female, rb_no;
 
+    Context C_memberShip;
+
     private getUserInfo getuserinfo;
 
     Spinner monthspinner, yearSpinner, daySpinner;
@@ -34,6 +37,8 @@ public class membership extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.membership);
         getuserinfo = (getUserInfo) getApplicationContext();
+
+        C_memberShip = this;
 
         edt_ID = findViewById(R.id.m_edtid);
         edt_NickName = findViewById(R.id.m_edtname);
@@ -108,7 +113,10 @@ public class membership extends AppCompatActivity {
             public void onClick(View v) {
                 pw = edt_PW.getText().toString();
                 chkPW = edt_PWCheck.getText().toString();
-                if (pw.equals(chkPW)) {
+
+                if (pw.equals(chkPW)&&!(getuserinfo.isNickOverlap)&&!(getuserinfo.isIdOverlap)) {
+
+                    Log.d("dd:",getuserinfo.isIdOverlap + "," + getuserinfo.isNickOverlap);
                     uYear = yearSpinner.getSelectedItem().toString();
                     uMonth = monthspinner.getSelectedItem().toString();
                     uDay = monthspinner.getSelectedItem().toString();
@@ -120,10 +128,13 @@ public class membership extends AppCompatActivity {
                         uGender = "F";
                     else uGender = "";
                     getuserinfo.insertToDatabase(id,pw,nickname,uBirth,uGender);
+                    //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    //startActivity(intent);
                 }
+                else if(getuserinfo.isIdOverlap){Toast.makeText(getApplicationContext(), "아이디 중복확인을 완료해주세요.", Toast.LENGTH_SHORT).show();}
+                else if(getuserinfo.isNickOverlap){Toast.makeText(getApplicationContext(), "닉네임 중복확인을 완료해주세요.", Toast.LENGTH_SHORT).show();}
                 else Toast.makeText(getApplicationContext(), "비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+
             }
         });
 
