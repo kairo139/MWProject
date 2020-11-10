@@ -46,6 +46,7 @@ public class FragmentRanking extends Fragment {
             public void onClick(View v) {
                 ((MainActivity) MainActivity.mContext).ToEpisodeActivity();
                 //Intent intent = new Intent(getActivity(),Player.class);
+                //intent.putExtra("videoID","ok9sgJtaIvY");
                 //startActivity(intent);
                 //영상 실행 화면
             }

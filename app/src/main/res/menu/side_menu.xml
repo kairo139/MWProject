@@ -16,4 +16,9 @@
         android:id="@+id/advice"
         android:title="도움말">
     </item>
+
+    <item
+        android:id="@+id/dbtest"
+        android:title="DBtest">
+    </item>
 </menu>
