@@ -186,12 +186,11 @@ public class getUserInfo extends Application {
                 String gender = (String) params[4];
                 if (save_id.equals(id) && save_nick.equals(nickname)) {
                     try {
-                        System.out.println("sdd");
                         String link = "https://mw-zhdtw.run.goorm.io/PHP_signUp.php";
                         String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
                         data += "&" + URLEncoder.encode("pw", "UTF-8") + "=" + URLEncoder.encode(pw, "UTF-8")
                                 + "&" + URLEncoder.encode("nickname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8")
-                                //+ "&" + URLEncoder.encode("birth", "UTF-8") + "=" + URLEncoder.encode(birth, "UTF-8")
+                                + "&" + URLEncoder.encode("birth", "UTF-8") + "=" + URLEncoder.encode(birth, "UTF-8")
                                 + "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender, "UTF-8");
 
                         URL url = new URL(link);

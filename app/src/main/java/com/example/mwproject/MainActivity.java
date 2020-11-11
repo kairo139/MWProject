@@ -223,7 +223,6 @@ public class MainActivity extends AppCompatActivity{
                 ad2.dismiss();
                 Intent intentd = new Intent(getApplicationContext(),membership.class);
                 startActivity(intentd);
-                finish();
             }
         });
 

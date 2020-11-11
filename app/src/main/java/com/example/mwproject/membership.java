@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,10 +27,13 @@ public class membership extends AppCompatActivity {
     String uYear, uMonth, uDay, uBirth;
     String uGender = "";
     RadioButton rb_male, rb_female, rb_no;
+    RadioGroup rg_gender;
 
     Context C_memberShip;
 
     private getUserInfo getuserinfo;
+
+    public static membership mmembership;
 
     Spinner monthspinner, yearSpinner, daySpinner;
 
@@ -36,6 +41,7 @@ public class membership extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.membership);
+        mmembership = this;
         getuserinfo = (getUserInfo) getApplicationContext();
 
         C_memberShip = this;
@@ -50,7 +56,7 @@ public class membership extends AppCompatActivity {
         rb_male = findViewById(R.id.g_radioMale);
         rb_female = findViewById(R.id.g_radioFemale);
         rb_no = findViewById(R.id.g_radioNo);
-
+        rg_gender = findViewById(R.id.g_radiogroup);
 
         final String[] month = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
         final String[] year = new String[120];
@@ -65,14 +71,13 @@ public class membership extends AppCompatActivity {
             int j = i + 1900;
             year[i] = String.valueOf(j);
         }
+        yearSpinner = (Spinner) findViewById(R.id.membership_spinyear);
+        ArrayAdapter<String> yearadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, year);
+        yearSpinner.setAdapter(yearadapter);
 
         monthspinner = (Spinner) findViewById(R.id.membership_spinmonth);
         ArrayAdapter<String> monthadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, month);
         monthspinner.setAdapter(monthadapter);
-
-        yearSpinner = (Spinner) findViewById(R.id.membership_spinyear);
-        ArrayAdapter<String> yearadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, year);
-        yearSpinner.setAdapter(yearadapter);
 
         daySpinner = (Spinner) findViewById(R.id.membership_spinday);
         ArrayAdapter<String> dayadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, day);
@@ -107,29 +112,64 @@ public class membership extends AppCompatActivity {
             }
         });
 
+        //성별 확인
+        rg_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.g_radioFemale)
+                    uGender = "F";
+                else if(checkedId == R.id.g_radioMale)
+                    uGender ="M";
+                else
+                    uGender = "";
+            }
+        });
+
+        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                uYear = year[position];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                uYear = year[0];
+            }
+        });
+
+        monthspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                uMonth = month[position];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                uMonth = month[0];
+            }
+        });
+
+        daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                uDay = day[position];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                uDay = day[0];
+            }
+        });
 
         g_btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pw = edt_PW.getText().toString();
                 chkPW = edt_PWCheck.getText().toString();
+                uBirth = uYear + "-" + uMonth + "-" + uDay;
+
+                Log.d("dd:",getuserinfo.isIdOverlap + "," + getuserinfo.isNickOverlap + "," + uBirth);
 
                 if (pw.equals(chkPW)&&!(getuserinfo.isNickOverlap)&&!(getuserinfo.isIdOverlap)) {
-
-                    Log.d("dd:",getuserinfo.isIdOverlap + "," + getuserinfo.isNickOverlap);
-                    uYear = yearSpinner.getSelectedItem().toString();
-                    uMonth = monthspinner.getSelectedItem().toString();
-                    uDay = monthspinner.getSelectedItem().toString();
-                    uBirth = uYear + uMonth + uDay;
-
-                    if (rb_male.isSelected())
-                        uGender = "M";
-                    else if (rb_female.isSelected())
-                        uGender = "F";
-                    else uGender = "";
                     getuserinfo.insertToDatabase(id,pw,nickname,uBirth,uGender);
-                    //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    //startActivity(intent);
+                    finish();
                 }
                 else if(getuserinfo.isIdOverlap){Toast.makeText(getApplicationContext(), "아이디 중복확인을 완료해주세요.", Toast.LENGTH_SHORT).show();}
                 else if(getuserinfo.isNickOverlap){Toast.makeText(getApplicationContext(), "닉네임 중복확인을 완료해주세요.", Toast.LENGTH_SHORT).show();}
@@ -141,8 +181,7 @@ public class membership extends AppCompatActivity {
         m_btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

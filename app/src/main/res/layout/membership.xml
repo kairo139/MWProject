@@ -147,60 +147,60 @@
 
             <Spinner
                 android:id="@+id/membership_spinyear"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@+id/m_txtbirth"
-                app:layout_constraintTop_toTopOf="@+id/membership_spinmonth"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/m_edtpasswdchk"
+                app:layout_constraintBottom_toTopOf="@+id/g_radiogroup"/>
 
             <TextView
                 android:id="@+id/membership_txtyear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="년"
-                app:layout_constraintLeft_toRightOf="@+id/membership_spinyear"
-                app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk"
-                android:textSize="20dp"
                 android:layout_marginTop="15dp"
+                android:text="년"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/m_txtbirth"
+                app:layout_constraintLeft_toRightOf="@+id/membership_spinyear"
                 />
 
             <Spinner
                 android:id="@+id/membership_spinmonth"
-                android:layout_width="80dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@+id/membership_txtyear"
-                app:layout_constraintTop_toBottomOf="@id/m_txtpasswdchk"
+                app:layout_constraintTop_toBottomOf="@+id/m_edtpasswdchk"
+                app:layout_constraintBottom_toTopOf="@+id/g_radiogroup"
                 />
 
             <TextView
                 android:id="@+id/membership_txtmonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="월"
-                app:layout_constraintLeft_toRightOf="@+id/membership_spinmonth"
-                app:layout_constraintTop_toBottomOf="@id/m_txtpasswdchk"
-                android:textSize="20dp"
                 android:layout_marginTop="15dp"
-                />
+                android:text="월"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/m_txtbirth"
+                app:layout_constraintLeft_toRightOf="@+id/membership_spinmonth" />
 
             <Spinner
                 android:id="@+id/membership_spinday"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@+id/membership_txtmonth"
-                app:layout_constraintTop_toTopOf="@id/membership_spinmonth"
+                app:layout_constraintTop_toBottomOf="@+id/m_edtpasswdchk"
+                app:layout_constraintBottom_toTopOf="@+id/g_radiogroup"
                 />
 
             <TextView
                 android:id="@+id/membership_txtday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="일"
-                app:layout_constraintLeft_toRightOf="@+id/membership_spinday"
-                app:layout_constraintTop_toBottomOf="@id/m_txtpasswdchk"
-                android:textSize="20dp"
                 android:layout_marginTop="15dp"
-                />
+                android:text="일"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/membership_txtmonth"
+                app:layout_constraintLeft_toRightOf="@+id/membership_spinday" />
 
             <!-- 성별-->
             <TextView
