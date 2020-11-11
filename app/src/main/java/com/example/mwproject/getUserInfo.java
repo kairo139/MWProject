@@ -36,8 +36,10 @@ public class getUserInfo extends Application {
     String myJSON;
     JSONArray userDB = null;
     String uid, upw, uNickname;
-    boolean isIdOverlap = true;
-    boolean isNickOverlap = true;
+    String save_id="",save_pw="",save_nick="";
+
+    boolean isIdOverlap = true; //아이디 중복이라는 뜻
+    boolean isNickOverlap = true; //닉네임 중복이라는 뜻
 
     ArrayList<HashMap<String, String>> userList;
 
@@ -57,6 +59,7 @@ public class getUserInfo extends Application {
     }
 
     public void checkID(String getID, String check) {
+        boolean btnCheck = true; //true가 id중복확인
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             userDB = jsonObj.getJSONArray(TAG_URESULTS);
@@ -68,26 +71,49 @@ public class getUserInfo extends Application {
                 upw = c.getString(TAG_UPW);
                 uNickname = c.getString(TAG_NICKNAME);
 
+
+                Log.d("a:",uid);
+                Log.d("a1:",uid);
+
+
                 //아이디 중복확인
                 if (check.equals("idCheck")) {
-                    if (uid.equals(getID)) {
-                        Toast.makeText(getApplicationContext(), "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
+                    if (getID.equals(uid)) {
+                        isIdOverlap = true; //중복
+                        break;
                     } else {
                         isIdOverlap = false;
-                        Toast.makeText(getApplicationContext(), "사용할수 있는 아이디입니다.", Toast.LENGTH_SHORT).show();
+                        save_id = getID;
                     }
                 }
 
                 //닉네임 중복확인
                 if (check.equals("nickCheck")) {
-                    if (uNickname.equals(getID)) {
-                        Toast.makeText(getApplicationContext(), "중복된 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                    if (getID.equals(uNickname)) {
+                        isNickOverlap = true;
+                        break;
                     } else {
                         isNickOverlap = false;
-                        Toast.makeText(getApplicationContext(), "사용할수 있는 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                        save_nick = getID;
                     }
                 }
             }
+
+            if (check.equals("idCheck")) {
+                if (isIdOverlap && btnCheck) {
+                    Toast.makeText(getApplicationContext(), "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
+                } else if (!isIdOverlap && btnCheck) {
+                    Toast.makeText(getApplicationContext(), "사용할수 있는 아이디입니다.", Toast.LENGTH_SHORT).show();
+                }
+            } else if (check.equals("nickCheck")) {
+                if (isNickOverlap) {
+                    Toast.makeText(getApplicationContext(), "중복된 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                } else if (!isNickOverlap) {
+                    Toast.makeText(getApplicationContext(), "사용할수 있는 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -139,32 +165,33 @@ public class getUserInfo extends Application {
         insertToDatabase(name, address);
     }*/
 
-    public void insertToDatabase(String id, String pw, String nickname, String birth, String gender){
-        class InsertData extends AsyncTask<String, Void, String>{
+    public void insertToDatabase(String id, String pw, String nickname, String birth, String gender) {
+        class InsertData extends AsyncTask<String, Void, String> {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
             }
+
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
             }
+
             @Override
             protected String doInBackground(String... params) {
-                //if(isIdOverlap){Toast.makeText(getApplicationContext(),"아이디 중복확인", Toast.LENGTH_SHORT).show();}
-                //else if(isNickOverlap){Toast.makeText(getApplicationContext(),"닉네임 중복확인", Toast.LENGTH_SHORT).show();}
-                //else {
+                String id = (String) params[0];
+                String pw = (String) params[1];
+                String nickname = (String) params[2];
+                String birth = (String) params[3];
+                String gender = (String) params[4];
+                if (save_id.equals(id) && save_nick.equals(nickname)) {
                     try {
-                        String id = (String) params[0];
-                        String pw = (String) params[1];
-                        String nickname = (String) params[2];
-                        String birth = (String) params[3];
-                        String gender = (String) params[4];
+                        System.out.println("sdd");
                         String link = "https://mw-zhdtw.run.goorm.io/PHP_signUp.php";
                         String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
                         data += "&" + URLEncoder.encode("pw", "UTF-8") + "=" + URLEncoder.encode(pw, "UTF-8")
                                 + "&" + URLEncoder.encode("nickname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8")
-                                + "&" + URLEncoder.encode("birth", "UTF-8") + "=" + URLEncoder.encode(birth, "UTF-8")
+                                //+ "&" + URLEncoder.encode("birth", "UTF-8") + "=" + URLEncoder.encode(birth, "UTF-8")
                                 + "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender, "UTF-8");
 
                         URL url = new URL(link);
@@ -185,19 +212,19 @@ public class getUserInfo extends Application {
                             sb.append(line);
                             break;
                         }
+
                         return sb.toString();
                     } catch (Exception e) {
                         return new String("Exception: " + e.getMessage());
                     }
-                //}
-                //return new String("NoException");
+                }
+                return new String("NoException");
             }
         }
         InsertData task = new InsertData();
-        task.execute(id,pw, nickname, birth, gender);
+        task.execute(id, pw, nickname, birth, gender);
 
     }
 
 
 }
-
