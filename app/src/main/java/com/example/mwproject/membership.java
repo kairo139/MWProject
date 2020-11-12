@@ -163,12 +163,9 @@ public class membership extends AppCompatActivity {
             public void onClick(View v) {
                 pw = edt_PW.getText().toString();
                 chkPW = edt_PWCheck.getText().toString();
-                uBirth = uYear + "-" + uMonth + "-" + uDay;
-
-                Log.d("dd:",getuserinfo.isIdOverlap + "," + getuserinfo.isNickOverlap + "," + uBirth);
 
                 if (pw.equals(chkPW)&&!(getuserinfo.isNickOverlap)&&!(getuserinfo.isIdOverlap)) {
-                    getuserinfo.insertToDatabase(id,pw,nickname,uBirth,uGender);
+                    getuserinfo.insertToDatabase(id,pw,nickname,uYear,uMonth,uDay,uGender);
                     finish();
                 }
                 else if(getuserinfo.isIdOverlap){Toast.makeText(getApplicationContext(), "아이디 중복확인을 완료해주세요.", Toast.LENGTH_SHORT).show();}

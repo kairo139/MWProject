@@ -165,7 +165,7 @@ public class getUserInfo extends Application {
         insertToDatabase(name, address);
     }*/
 
-    public void insertToDatabase(String id, String pw, String nickname, String birth, String gender) {
+    public void insertToDatabase(String id, String pw, String nickname,String year, String month, String date,String gender) {
         class InsertData extends AsyncTask<String, Void, String> {
             @Override
             protected void onPreExecute() {
@@ -182,16 +182,22 @@ public class getUserInfo extends Application {
                 String id = (String) params[0];
                 String pw = (String) params[1];
                 String nickname = (String) params[2];
-                String birth = (String) params[3];
-                String gender = (String) params[4];
+                String year = (String) params[3];
+                String month = (String)params[4];
+                String date = (String)params[5];
+                String gender = (String) params[6];
+
                 if (save_id.equals(id) && save_nick.equals(nickname)) {
                     try {
-                        String link = "https://mw-zhdtw.run.goorm.io/PHP_signUp.php";
+                        String link = "https://mw-zhdtw.run.goorm.io/PHP_getUserInfo.php";
                         String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
                         data += "&" + URLEncoder.encode("pw", "UTF-8") + "=" + URLEncoder.encode(pw, "UTF-8")
                                 + "&" + URLEncoder.encode("nickname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8")
-                                + "&" + URLEncoder.encode("birth", "UTF-8") + "=" + URLEncoder.encode(birth, "UTF-8")
+                                + "&" + URLEncoder.encode("year", "UTF-8") + "=" + URLEncoder.encode(year, "UTF-8")
+                                + "&" + URLEncoder.encode("month", "UTF-8") + "=" + URLEncoder.encode(month, "UTF-8")
+                                + "&" + URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(date, "UTF-8")
                                 + "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender, "UTF-8");
+                        Log.d("insert",data);
 
                         URL url = new URL(link);
                         URLConnection conn = url.openConnection();
@@ -200,7 +206,6 @@ public class getUserInfo extends Application {
 
                         wr.write(data);
                         wr.flush();
-
                         BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
                         StringBuilder sb = new StringBuilder();
@@ -221,7 +226,7 @@ public class getUserInfo extends Application {
             }
         }
         InsertData task = new InsertData();
-        task.execute(id, pw, nickname, birth, gender);
+        task.execute(id, pw, nickname, year, month, date, gender);
 
     }
 
