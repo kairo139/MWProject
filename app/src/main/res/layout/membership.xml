@@ -286,11 +286,15 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_school_icon" />
+                    android:src="@drawable/membership_school_icon"
+                    android:id="@+id/imgBtn_school"/>
 
                 <ImageButton
+                    android:id="@+id/imgBtn_company"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_row="0"
+                    android:layout_column="1"
                     android:scaleType="fitXY"
                     android:src="@drawable/membership_company_img" />
 
@@ -298,7 +302,8 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_action_img" />
+                    android:src="@drawable/membership_action_img"
+                    android:id="@+id/imgBtn_action"/>
 
                 <ImageButton
                     android:layout_width="100dp"

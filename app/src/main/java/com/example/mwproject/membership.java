@@ -2,6 +2,7 @@ package com.example.mwproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -28,12 +30,14 @@ public class membership extends AppCompatActivity {
     String uGender = "";
     RadioButton rb_male, rb_female, rb_no;
     RadioGroup rg_gender;
-
+    ImageButton[] imgBtn_Pre;
     Context C_memberShip;
 
     private getUserInfo getuserinfo;
 
     public static membership mmembership;
+
+    int chkSelect = 0;
 
     Spinner monthspinner, yearSpinner, daySpinner;
 
@@ -57,6 +61,32 @@ public class membership extends AppCompatActivity {
         rb_female = findViewById(R.id.g_radioFemale);
         rb_no = findViewById(R.id.g_radioNo);
         rg_gender = findViewById(R.id.g_radiogroup);
+
+        imgBtn_Pre = new ImageButton[3];
+        Integer[] btnId = {R.id.imgBtn_school,R.id.imgBtn_company,R.id.imgBtn_action};
+
+        for(int i = 0; i<3; i++){
+            imgBtn_Pre[i] = findViewById(btnId[i]);
+        }
+
+        //선호 버튼
+        for(int i = 0; i<imgBtn_Pre.length; i++){
+            final int INDEX;
+            INDEX = i;
+            imgBtn_Pre[INDEX].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!imgBtn_Pre[INDEX].isSelected()) {
+                            imgBtn_Pre[INDEX].setBackgroundColor(Color.parseColor("#6c9bd4"));
+                            imgBtn_Pre[INDEX].setSelected(true);
+                        }
+                    else{
+                        imgBtn_Pre[INDEX].setBackgroundColor(Color.parseColor("#00ff0000"));
+                        imgBtn_Pre[INDEX].setSelected(false);
+                    }
+                }
+            });
+        }
 
         final String[] month = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
         final String[] year = new String[120];
@@ -163,6 +193,14 @@ public class membership extends AppCompatActivity {
             public void onClick(View v) {
                 pw = edt_PW.getText().toString();
                 chkPW = edt_PWCheck.getText().toString();
+                int j;
+
+                for(int i =0; i<imgBtn_Pre.length; i++){
+
+                    if(imgBtn_Pre[i].isSelected()){ j =0;} else j =1;
+                    Log.d("isselect", String.valueOf(j));
+
+                }
 
                 if (pw.equals(chkPW)&&!(getuserinfo.isNickOverlap)&&!(getuserinfo.isIdOverlap)) {
                     getuserinfo.insertToDatabase(id,pw,nickname,uYear,uMonth,uDay,uGender);
