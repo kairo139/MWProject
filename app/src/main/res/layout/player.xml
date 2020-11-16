@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="너냐, 내 여자친구가? [일진에게 찍혔을 때] EP01"
+        android:text="제목"
         android:textSize="25dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/youtubeplayer" />
@@ -56,7 +56,7 @@
         app:layout_constraintLeft_toRightOf="@+id/player_viewimg"
         app:layout_constraintTop_toBottomOf="@+id/player_text" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/player_likeimg"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -64,7 +64,8 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_thumb_up_black_24dp"
         app:layout_constraintLeft_toRightOf="@+id/player_hits"
-        app:layout_constraintTop_toBottomOf="@+id/player_text" />
+        app:layout_constraintTop_toBottomOf="@+id/player_text"
+        android:background="#DDFFFFFF"/>
 
     <TextView
         android:id="@+id/player_liketxt"
