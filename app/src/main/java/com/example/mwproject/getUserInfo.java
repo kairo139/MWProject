@@ -1,17 +1,13 @@
 package com.example.mwproject;
 
 import android.app.Application;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,9 +15,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -36,7 +30,7 @@ public class getUserInfo extends Application {
     String myJSON;
     JSONArray userDB = null;
     String uid, upw, uNickname;
-    String save_id="",save_pw="",save_nick="";
+    String save_id = "", save_pw = "", save_nick = "";
 
     boolean isIdOverlap = true; //아이디 중복이라는 뜻
     boolean isNickOverlap = true; //닉네임 중복이라는 뜻
@@ -72,8 +66,8 @@ public class getUserInfo extends Application {
                 uNickname = c.getString(TAG_NICKNAME);
 
 
-                Log.d("a:",uid);
-                Log.d("a1:",uid);
+                Log.d("a:", uid);
+                Log.d("a1:", uid);
 
 
                 //아이디 중복확인
@@ -161,11 +155,7 @@ public class getUserInfo extends Application {
         g.execute(url);
     }
 
-    /*public void insert(View view){
-        insertToDatabase(name, address);
-    }*/
-
-    public void insertToDatabase(String id, String pw, String nickname,String year, String month, String date,String gender) {
+    public void insertToDatabase(String id, String pw, String nickname, String year, String month, String date, String gender,String[] preValue) {
         class InsertData extends AsyncTask<String, Void, String> {
             @Override
             protected void onPreExecute() {
@@ -183,9 +173,11 @@ public class getUserInfo extends Application {
                 String pw = (String) params[1];
                 String nickname = (String) params[2];
                 String year = (String) params[3];
-                String month = (String)params[4];
-                String date = (String)params[5];
+                String month = (String) params[4];
+                String date = (String) params[5];
                 String gender = (String) params[6];
+                //String preValue[] = new String[];
+
 
                 if (save_id.equals(id) && save_nick.equals(nickname)) {
                     try {
@@ -197,7 +189,7 @@ public class getUserInfo extends Application {
                                 + "&" + URLEncoder.encode("month", "UTF-8") + "=" + URLEncoder.encode(month, "UTF-8")
                                 + "&" + URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(date, "UTF-8")
                                 + "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender, "UTF-8");
-                        Log.d("insert",data);
+                                //+ "&" + URLEncoder.encode("preValue", "UTF-8") + "=" + URLEncoder.encode(preValue, "UTF-8");
 
                         URL url = new URL(link);
                         URLConnection conn = url.openConnection();
@@ -227,8 +219,61 @@ public class getUserInfo extends Application {
         }
         InsertData task = new InsertData();
         task.execute(id, pw, nickname, year, month, date, gender);
-
     }
 
+    public void insertToPre(final int[] preChk) {
+        class InsertData extends AsyncTask<Integer, Void, String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+            }
+
+            @Override
+            protected String doInBackground(Integer... params) {
+                for(int i = 0; i<10; i++){
+                    preChk[i] = params[i];
+                }
+                try {
+                    String link = "https://mw-zhdtw.run.goorm.io/PHP_pre.php";
+                    String data = URLEncoder.encode(String.valueOf(preChk[0]), "UTF-8") + "=" + URLEncoder.encode(String.valueOf(preChk[0]), "UTF-8");
+                    for(int i = 1; i<10; i++){
+                        data += "&" + URLEncoder.encode(String.valueOf(preChk[i]), "UTF-8") + "=" + URLEncoder.encode(String.valueOf(preChk[i]), "UTF-8");
+                        Log.d("insert", data);
+                    }
+                    URL url = new URL(link);
+                    URLConnection conn = url.openConnection();
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write(data);
+                    wr.flush();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+
+                    return sb.toString();
+                } catch (Exception e) {
+                    return new String("Exception: " + e.getMessage());
+                }
+
+            }
+        }
+        InsertData task = new InsertData();
+        for(int i = 0;i<10;i++){
+            task.execute(preChk[i]);
+        }
+    }
 
 }

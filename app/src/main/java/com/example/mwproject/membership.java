@@ -32,12 +32,11 @@ public class membership extends AppCompatActivity {
     RadioGroup rg_gender;
     ImageButton[] imgBtn_Pre;
     Context C_memberShip;
+    String[] isImgBtnChk = new String[10];
 
     private getUserInfo getuserinfo;
 
     public static membership mmembership;
-
-    int chkSelect = 0;
 
     Spinner monthspinner, yearSpinner, daySpinner;
 
@@ -62,10 +61,13 @@ public class membership extends AppCompatActivity {
         rb_no = findViewById(R.id.g_radioNo);
         rg_gender = findViewById(R.id.g_radiogroup);
 
-        imgBtn_Pre = new ImageButton[3];
-        Integer[] btnId = {R.id.imgBtn_school,R.id.imgBtn_company,R.id.imgBtn_action};
+        imgBtn_Pre = new ImageButton[10];
+        Integer[] btnId = {R.id.imgBtn_school,R.id.imgBtn_company,R.id.imgBtn_action,
+                            R.id.imgBtn_comedy,R.id.imgBtn_daily,R.id.imgBtn_romance,
+                            R.id.imgBtn_fantasy,R.id.imgBtn_inference,R.id.imgBtn_reality,
+                            R.id.imgBtn_webtoon};
 
-        for(int i = 0; i<3; i++){
+        for(int i = 0; i<imgBtn_Pre.length; i++){
             imgBtn_Pre[i] = findViewById(btnId[i]);
         }
 
@@ -193,17 +195,16 @@ public class membership extends AppCompatActivity {
             public void onClick(View v) {
                 pw = edt_PW.getText().toString();
                 chkPW = edt_PWCheck.getText().toString();
-                int j;
 
                 for(int i =0; i<imgBtn_Pre.length; i++){
-
-                    if(imgBtn_Pre[i].isSelected()){ j =0;} else j =1;
-                    Log.d("isselect", String.valueOf(j));
-
+                    if(imgBtn_Pre[i].isSelected()){
+                        isImgBtnChk[i]="1";
+                    } else isImgBtnChk[i]="0";
+                    Log.d("isselect", String.valueOf(isImgBtnChk[i]));
                 }
 
                 if (pw.equals(chkPW)&&!(getuserinfo.isNickOverlap)&&!(getuserinfo.isIdOverlap)) {
-                    getuserinfo.insertToDatabase(id,pw,nickname,uYear,uMonth,uDay,uGender);
+                    getuserinfo.insertToDatabase(id,pw,nickname,uYear,uMonth,uDay,uGender,isImgBtnChk);
                     finish();
                 }
                 else if(getuserinfo.isIdOverlap){Toast.makeText(getApplicationContext(), "아이디 중복확인을 완료해주세요.", Toast.LENGTH_SHORT).show();}

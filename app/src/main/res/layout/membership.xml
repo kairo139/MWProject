@@ -22,7 +22,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tb">
+        app:layout_constraintTop_toBottomOf="@+id/tb"
+        tools:layout_editor_absoluteX="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/wrap"
@@ -143,15 +144,15 @@
                 android:text="생년월일"
                 android:textSize="20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk"/>
+                app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk" />
 
             <Spinner
                 android:id="@+id/membership_spinyear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/g_radiogroup"
                 app:layout_constraintLeft_toRightOf="@+id/m_txtbirth"
-                app:layout_constraintTop_toBottomOf="@+id/m_edtpasswdchk"
-                app:layout_constraintBottom_toTopOf="@+id/g_radiogroup"/>
+                app:layout_constraintTop_toBottomOf="@+id/m_edtpasswdchk" />
 
             <TextView
                 android:id="@+id/membership_txtyear"
@@ -161,17 +162,15 @@
                 android:text="년"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/m_txtbirth"
-                app:layout_constraintLeft_toRightOf="@+id/membership_spinyear"
-                />
+                app:layout_constraintLeft_toRightOf="@+id/membership_spinyear" />
 
             <Spinner
                 android:id="@+id/membership_spinmonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@+id/membership_txtyear"
-                app:layout_constraintTop_toBottomOf="@+id/m_edtpasswdchk"
                 app:layout_constraintBottom_toTopOf="@+id/g_radiogroup"
-                />
+                app:layout_constraintLeft_toRightOf="@+id/membership_txtyear"
+                app:layout_constraintTop_toBottomOf="@+id/m_edtpasswdchk" />
 
             <TextView
                 android:id="@+id/membership_txtmonth"
@@ -187,10 +186,9 @@
                 android:id="@+id/membership_spinday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@+id/membership_txtmonth"
-                app:layout_constraintTop_toBottomOf="@+id/m_edtpasswdchk"
                 app:layout_constraintBottom_toTopOf="@+id/g_radiogroup"
-                />
+                app:layout_constraintLeft_toRightOf="@+id/membership_txtmonth"
+                app:layout_constraintTop_toBottomOf="@+id/m_edtpasswdchk" />
 
             <TextView
                 android:id="@+id/membership_txtday"
@@ -217,32 +215,32 @@
                 android:id="@+id/g_radiogroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/membership_txtday"
-                app:layout_constraintLeft_toRightOf="@+id/m_txtgender"
-                android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
-                >
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toRightOf="@+id/m_txtgender"
+                app:layout_constraintTop_toBottomOf="@+id/membership_txtday">
+
                 <RadioButton
+                    android:id="@+id/g_radioMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="남성"
-                    android:id="@+id/g_radioMale"
-                    android:textSize="20dp"
-                    />
+                    android:textSize="20dp" />
+
                 <RadioButton
+                    android:id="@+id/g_radioFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="여성"
-                    android:id="@+id/g_radioFemale"
-                    android:textSize="20dp"
-                    />
+                    android:textSize="20dp" />
+
                 <RadioButton
+                    android:id="@+id/g_radioNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="선택 안함"
-                    android:id="@+id/g_radioNo"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
             </RadioGroup>
 
@@ -283,11 +281,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/m_txtlikebody">
 
                 <ImageButton
+                    android:id="@+id/imgBtn_school"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_school_icon"
-                    android:id="@+id/imgBtn_school"/>
+                    android:src="@drawable/membership_school_icon" />
 
                 <ImageButton
                     android:id="@+id/imgBtn_company"
@@ -299,49 +297,56 @@
                     android:src="@drawable/membership_company_img" />
 
                 <ImageButton
+                    android:id="@+id/imgBtn_action"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_action_img"
-                    android:id="@+id/imgBtn_action"/>
+                    android:src="@drawable/membership_action_img" />
 
                 <ImageButton
+                    android:id="@+id/imgBtn_comedy"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/membership_comedy_img" />
 
                 <ImageButton
+                    android:id="@+id/imgBtn_daily"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/membership_daily_img" />
 
                 <ImageButton
+                    android:id="@+id/imgBtn_romance"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/membership_romance_img" />
 
                 <ImageButton
+                    android:id="@+id/imgBtn_fantasy"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/membership_fantasy_img" />
 
                 <ImageButton
+                    android:id="@+id/imgBtn_inference"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/membership_inference_img" />
 
                 <ImageButton
+                    android:id="@+id/imgBtn_reality"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/membership_reality_img" />
 
                 <ImageButton
+                    android:id="@+id/imgBtn_webtoon"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
@@ -370,11 +375,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/m_btnok"
                 android:text="일단"
                 android:textSize="50dp"
-                />
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/m_btnok" />
             <!-- 가이드라인 -->
 
             <androidx.constraintlayout.widget.Guideline

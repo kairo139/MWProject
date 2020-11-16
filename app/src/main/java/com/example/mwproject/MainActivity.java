@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity{
     Button Login,btnSignUp, btnClose;
     String inputUID, inputPW;
     String uid, upw, uNickname;
+    int uSEQ;
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentHome fragmentHome = new FragmentHome();
@@ -208,12 +210,6 @@ public class MainActivity extends AppCompatActivity{
 
                 getData(inputUID,inputPW);
 
-               /*if(inputUID.equals(userID) && inputPW.equals(userPW)){
-                    header.setVisibility(View.GONE);
-                    System.out.println(userID);
-                    ad2.dismiss();
-                }
-                else ;*/
             }
         });
 
@@ -306,8 +302,10 @@ public class MainActivity extends AppCompatActivity{
                 if(uid.equals(id) && upw.equals(pw)){
                     header.setVisibility(View.GONE);
                     logIn(uNickname);
+                    uSEQ = Integer.parseInt(c.getString(TAG_USEQ));
                     ad2.dismiss();
                 }
+                Log.d("U_SQE", String.valueOf(uSEQ));
             }
         } catch (JSONException e) {
             e.printStackTrace();
