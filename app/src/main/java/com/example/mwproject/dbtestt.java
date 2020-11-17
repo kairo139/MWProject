@@ -1,7 +1,12 @@
 package com.example.mwproject;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -11,7 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -26,12 +33,17 @@ import java.net.URL;
 import java.io.BufferedReader;
 
 public class dbtestt extends AppCompatActivity {
+    View header;
     String myJSON;
-
+    ImageView ivThumb;
+    String imgUrl = "https://mw-zhdtw.run.goorm.io/image/";
+    Bitmap bmImg;
+    inputImage task;
+    String dThumb;
     private static final String TAG_RESULTS = "result";
-    private static final String TAG_VID = "WebDarma_SEQ";
-    private static final String TAG_GENRE = "WebDrama_title";
-    private static final String TAG_RECOM = "WebDrama_case";
+    private static final String TAG_DEPI = "Detail_Episode";
+    private static final String TAG_DSUB = "Detail_subTitle";
+    private static final String TAG_DTHUMB = "Detail_Thumb";
     private static final String TAG_Lookup = "WebDrama_content";
     private static final String TAG_TITLE = "Genere_SEQ";
 
@@ -45,10 +57,14 @@ public class dbtestt extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dbtest);
+        header = getLayoutInflater().inflate(R.layout.dbt_listitem,null,false);
+        ivThumb = (ImageView) header.findViewById(R.id.ivThumb);
+        task = new inputImage();
 
         list = (ListView) findViewById(R.id.listView);
         videoList = new ArrayList<HashMap<String, String>>();
         getData("https://mw-zhdtw.run.goorm.io/PHP_connection.php");
+
     }
 
     protected void showList() {
@@ -59,31 +75,31 @@ public class dbtestt extends AppCompatActivity {
             //웹드라마 db받는곳
             for (int i = 0; i < video.length(); i++) {
                 JSONObject c = video.getJSONObject(i);
-                String vid = c.getString(TAG_VID);
-                String genre = c.getString(TAG_GENRE);
-                String recommendation = c.getString(TAG_RECOM);
-                String lookup = c.getString(TAG_Lookup);
-                String title = c.getString(TAG_TITLE);
+                String dEpi = c.getString(TAG_DEPI);
+                String dSub = c.getString(TAG_DSUB);
+                dThumb = c.getString(TAG_DTHUMB);
 
-                System.out.println(vid + "\n");
+
+                Log.d("task", String.valueOf(task));
+
+                System.out.println(dSub + "\n");
 
                 HashMap<String, String> videoInfo = new HashMap<String, String>();
 
-                videoInfo.put(TAG_VID, vid);
-                videoInfo.put(TAG_GENRE, genre);
-                videoInfo.put(TAG_TITLE, title);
+                videoInfo.put(TAG_DEPI, dEpi);
+                videoInfo.put(TAG_DSUB, dSub);
+                //videoInfo.put(TAG_DTHUMB, dThumb);
                 System.out.println(videoInfo);
                 videoList.add(videoInfo);
             }
             //여까지
 
 
-
             //리스트에 띄워서 확인하려는거
             ListAdapter adapter = new SimpleAdapter(
                     dbtestt.this, videoList, R.layout.dbt_listitem,
-                    new String[]{TAG_VID, TAG_GENRE, TAG_TITLE},
-                    new int[]{R.id.vid, R.id.genre, R.id.title}
+                    new String[]{TAG_DEPI, TAG_DSUB},
+                    new int[]{R.id.tv_epi, R.id.tv_subTitle}
             );
             list.setAdapter(adapter);
             //여까지
@@ -125,10 +141,47 @@ public class dbtestt extends AppCompatActivity {
             protected void onPostExecute(String result) {
                 myJSON = result;
                 showList();
+                task.execute(imgUrl + dThumb);
             }
         }
 
         GetDataJSON g = new GetDataJSON();
         g.execute(url);
+
     }
+
+
+    class inputImage extends AsyncTask<String, Integer, Bitmap> {
+        URL myFileUrl = null;
+
+        protected Bitmap doInBackground(String... urls) {
+            try {
+                URL myFileUrl = new URL(urls[0]);
+                HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
+                conn.setDoInput(true);
+                conn.connect();
+
+                InputStream is = conn.getInputStream();
+                Log.d("is", String.valueOf(is));
+                bmImg = BitmapFactory.decodeStream(is);
+                Log.d("bmImg", String.valueOf(bmImg));
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bmImg;
+        }
+
+        public InputStream bATIS(byte[] srcBytes){
+            return new ByteArrayInputStream(srcBytes);
+        }
+        protected void onPostExecute(Bitmap img) {
+            Log.d("bitmapImg", String.valueOf(img));
+            ivThumb.setImageBitmap(img);
+            ivThumb.invalidate();
+        }
+    }
+
+
 }
