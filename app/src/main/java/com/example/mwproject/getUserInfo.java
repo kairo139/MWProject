@@ -155,7 +155,7 @@ public class getUserInfo extends Application {
         g.execute(url);
     }
 
-    public void insertToDatabase(String id, String pw, String nickname, String year, String month, String date, String gender,String[] preValue) {
+    public void insertToDatabase(String id, String pw, String nickname, String year, String month, String date, String gender, final String[] preValue) {
         class InsertData extends AsyncTask<String, Void, String> {
             @Override
             protected void onPreExecute() {
@@ -176,8 +176,9 @@ public class getUserInfo extends Application {
                 String month = (String) params[4];
                 String date = (String) params[5];
                 String gender = (String) params[6];
-                //String preValue[] = new String[];
-
+                for(int i =0; i<preValue.length; i++){
+                    System.out.println("select: "+preValue[i]);
+                }
 
                 if (save_id.equals(id) && save_nick.equals(nickname)) {
                     try {
@@ -188,8 +189,8 @@ public class getUserInfo extends Application {
                                 + "&" + URLEncoder.encode("year", "UTF-8") + "=" + URLEncoder.encode(year, "UTF-8")
                                 + "&" + URLEncoder.encode("month", "UTF-8") + "=" + URLEncoder.encode(month, "UTF-8")
                                 + "&" + URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(date, "UTF-8")
-                                + "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender, "UTF-8");
-                                //+ "&" + URLEncoder.encode("preValue", "UTF-8") + "=" + URLEncoder.encode(preValue, "UTF-8");
+                                + "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender, "UTF-8")
+                                + "&" + URLEncoder.encode("preValue", "UTF-8") + "=" + URLEncoder.encode(java.util.Arrays.toString(preValue), "UTF-8");
 
                         URL url = new URL(link);
                         URLConnection conn = url.openConnection();

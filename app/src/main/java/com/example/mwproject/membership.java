@@ -32,7 +32,7 @@ public class membership extends AppCompatActivity {
     RadioGroup rg_gender;
     ImageButton[] imgBtn_Pre;
     Context C_memberShip;
-    String[] isImgBtnChk = new String[10];
+    String[] isImgBtnChk ={"0","0","0","0","0","0","0","0","0","0"};
 
     private getUserInfo getuserinfo;
 
@@ -62,7 +62,7 @@ public class membership extends AppCompatActivity {
         rg_gender = findViewById(R.id.g_radiogroup);
 
         imgBtn_Pre = new ImageButton[10];
-        Integer[] btnId = {R.id.imgBtn_school,R.id.imgBtn_company,R.id.imgBtn_action,
+        int[] btnId = {R.id.imgBtn_school,R.id.imgBtn_company,R.id.imgBtn_action,
                             R.id.imgBtn_comedy,R.id.imgBtn_daily,R.id.imgBtn_romance,
                             R.id.imgBtn_fantasy,R.id.imgBtn_inference,R.id.imgBtn_reality,
                             R.id.imgBtn_webtoon};
@@ -78,13 +78,17 @@ public class membership extends AppCompatActivity {
             imgBtn_Pre[INDEX].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(!imgBtn_Pre[INDEX].isSelected()) {
+                    if(!(imgBtn_Pre[INDEX].isSelected())) {
                             imgBtn_Pre[INDEX].setBackgroundColor(Color.parseColor("#6c9bd4"));
                             imgBtn_Pre[INDEX].setSelected(true);
+                            System.out.println(imgBtn_Pre[INDEX] + "는 " + imgBtn_Pre[INDEX].isSelected());
+                            isImgBtnChk[INDEX]="1";
                         }
                     else{
                         imgBtn_Pre[INDEX].setBackgroundColor(Color.parseColor("#00ff0000"));
                         imgBtn_Pre[INDEX].setSelected(false);
+                        System.out.println(imgBtn_Pre[INDEX] + "는 " + imgBtn_Pre[INDEX].isSelected());
+                        isImgBtnChk[INDEX]="0";
                     }
                 }
             });
@@ -141,6 +145,11 @@ public class membership extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else
                     getuserinfo.getData(nickname, "nickCheck");
+
+                for(int i =0; i<10; i++){
+                    Log.i("isSelect",isImgBtnChk[i]);
+                }
+
             }
         });
 
@@ -154,6 +163,7 @@ public class membership extends AppCompatActivity {
                     uGender ="M";
                 else
                     uGender = "";
+
             }
         });
 
@@ -196,12 +206,7 @@ public class membership extends AppCompatActivity {
                 pw = edt_PW.getText().toString();
                 chkPW = edt_PWCheck.getText().toString();
 
-                for(int i =0; i<imgBtn_Pre.length; i++){
-                    if(imgBtn_Pre[i].isSelected()){
-                        isImgBtnChk[i]="1";
-                    } else isImgBtnChk[i]="0";
-                    Log.d("isselect", String.valueOf(isImgBtnChk[i]));
-                }
+
 
                 if (pw.equals(chkPW)&&!(getuserinfo.isNickOverlap)&&!(getuserinfo.isIdOverlap)) {
                     getuserinfo.insertToDatabase(id,pw,nickname,uYear,uMonth,uDay,uGender,isImgBtnChk);
