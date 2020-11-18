@@ -41,6 +41,7 @@ public class FragmentTabRecently extends Fragment{
     JSONArray userDB = null;
 
     TextView textView;
+    ListView listView;
 
     ArrayList<TabStorageVO> movieDataList;
     @Nullable
@@ -49,9 +50,10 @@ public class FragmentTabRecently extends Fragment{
         Current_v = inflater.inflate(R.layout.tab_recently, container, false);
         InitializeMovieData();
 
-        getData("1");
+        getData(Integer.toString(((MainActivity)MainActivity.mContext).uSEQ));
 
-        ListView listView = (ListView)Current_v.findViewById(R.id.wrap);
+
+        listView = (ListView)Current_v.findViewById(R.id.wrap);
         final TabStorageAdapter myAdapter = new TabStorageAdapter(Current_v.getContext(),movieDataList);
 
         listView.setAdapter(myAdapter);
@@ -68,13 +70,9 @@ public class FragmentTabRecently extends Fragment{
     public void InitializeMovieData()
     {
         movieDataList = new ArrayList<TabStorageVO>();
-        Log.d("test","dddddd");
-        movieDataList.add(new TabStorageVO(R.drawable.ep1, "미션임파서블","15세 이상관람가"));
-        movieDataList.add(new TabStorageVO(R.drawable.ep1, "아저씨","19세 이상관람가"));
-        movieDataList.add(new TabStorageVO(R.drawable.ep1, "어벤져스","12세 이상관람가"));
-        Log.d("test",movieDataList.get(0).getDramaName());
-        Log.d("test",movieDataList.get(1).getDramaName());
-        Log.d("test",movieDataList.get(2).getDramaName());
+        movieDataList.add(new TabStorageVO(R.drawable.ep1, "미션임파서블","15세 이상관람가","ok9sgJtaIvY"));
+        movieDataList.add(new TabStorageVO(R.drawable.ep1, "아저씨","19세 이상관람가","ok9sgJtaIvY"));
+        movieDataList.add(new TabStorageVO(R.drawable.ep1, "어벤져스","12세 이상관람가","ok9sgJtaIvY"));
     }
 
     public void getData(final String detail_seq) {

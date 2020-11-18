@@ -58,7 +58,8 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
         player_liketxt = findViewById(R.id.player_liketxt);
         player_text = findViewById(R.id.player_text);
         player_likeimg = findViewById(R.id.player_likeimg);
-        getData("1");
+        Log.d("test",vidieoID);
+        getData(vidieoID);
         getYouTubePlayerProvider().initialize(DeveloperKey.DEVELOPER_KEY,this);
 
         player_likeimg.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +94,7 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
             @Override
             protected String doInBackground(String... params) {
                 String uri = params[0];
-                String link = "https://mw-zhdtw.run.goorm.io/selectViewInfo.php?Detail_SEQ="+ Integer.parseInt(uri);
+                String link = "https://mw-zhdtw.run.goorm.io/selectViewInfo.php?VideoID='"+ uri +"'";
 
                 BufferedReader bufferedReader = null;
                 Log.d("test","22222");
