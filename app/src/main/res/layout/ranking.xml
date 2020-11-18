@@ -4,124 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
+
+
+    <TextView
+        android:id="@+id/tvRanking"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="랭킹"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvRanking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="랭킹"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvNum1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="1"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvRanking" />
-
-            <ImageButton
-                android:id="@+id/ibRank1"
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                android:layout_margin="10dp"
-                android:scaleType="fitXY"
-                app:layout_constraintLeft_toRightOf="@+id/tvNum1"
-                app:layout_constraintTop_toBottomOf="@+id/tvRanking" />
-
-            <TextView
-                android:id="@+id/tvRank1"
-                android:layout_width="210dp"
-                android:layout_height="200dp"
-                android:layout_margin="10dp"
-                android:text=""
-                app:layout_constraintLeft_toRightOf="@+id/ibRank1"
-                app:layout_constraintTop_toBottomOf="@+id/tvRanking" />
-
-            <TextView
-                android:id="@+id/tvNum2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="2"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ibRank1" />
-
-            <ImageButton
-                android:id="@+id/ibRank2"
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                android:layout_margin="10dp"
-                android:scaleType="fitXY"
-                app:layout_constraintLeft_toRightOf="@+id/tvNum2"
-                app:layout_constraintTop_toBottomOf="@+id/ibRank1" />
-
-            <TextView
-                android:id="@+id/tvRank2"
-                android:layout_width="210dp"
-                android:layout_height="200dp"
-                android:layout_margin="10dp"
-                android:text=""
-                app:layout_constraintLeft_toRightOf="@+id/ibRank1"
-                app:layout_constraintTop_toBottomOf="@+id/tvRank1" />
-
-            <TextView
-                android:id="@+id/tvNum3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="3"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ibRank2" />
-
-            <ImageButton
-                android:id="@+id/ibRank3"
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                android:layout_margin="10dp"
-                android:scaleType="fitXY"
-                app:layout_constraintLeft_toRightOf="@+id/tvNum3"
-                app:layout_constraintTop_toBottomOf="@+id/ibRank2" />
-
-            <TextView
-                android:id="@+id/tvRank3"
-                android:layout_width="210dp"
-                android:layout_height="200dp"
-                android:layout_margin="10dp"
-                android:text=""
-                app:layout_constraintLeft_toRightOf="@+id/ibRank2"
-                app:layout_constraintTop_toBottomOf="@+id/tvRank2" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/tvRanking"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

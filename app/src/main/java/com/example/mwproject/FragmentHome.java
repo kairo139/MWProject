@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -104,6 +105,7 @@ public class FragmentHome extends Fragment {
         ///////////////////////////////////
         header = getLayoutInflater().inflate(R.layout.recom_listitem,null,false);
         ivThumb = (ImageView) header.findViewById(R.id.ivThumb);
+
         task = new inputImage();
 
         list = (ListView) Current_v.findViewById(R.id.listView);
@@ -164,7 +166,6 @@ public class FragmentHome extends Fragment {
                 String dSub = c.getString(TAG_DSUB);
                 dThumb = c.getString(TAG_DTHUMB);
 
-
                 Log.d("task", String.valueOf(task));
 
                 System.out.println(dSub + "\n");
@@ -176,6 +177,8 @@ public class FragmentHome extends Fragment {
                 //videoInfo.put(TAG_DTHUMB, dThumb);
                 System.out.println(videoInfo);
                 videoList.add(videoInfo);
+
+
             }
             //여까지
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/tvNum1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivRank"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toRightOf="@+id/tvNum1"
+        app:layout_constraintTop_toBottomOf="@+id/tvRanking" />
+
+    <TextView
+        android:id="@+id/tvRank_WDTitle"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="제목"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/ivRank"/>
+
+    <TextView
+        android:id="@+id/tvRank_WDCase"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="출연진:"
+        app:layout_constraintTop_toBottomOf="@+id/tvRank_WDTitle"
+        app:layout_constraintLeft_toRightOf="@+id/ivRank"/>
+
+    <TextView
+        android:id="@+id/tvRank_WDContent"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="줄거리:"
+        app:layout_constraintTop_toBottomOf="@+id/tvRank_WDCase"
+        app:layout_constraintLeft_toRightOf="@+id/ivRank"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

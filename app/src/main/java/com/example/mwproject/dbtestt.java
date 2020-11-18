@@ -73,7 +73,7 @@ public class dbtestt extends AppCompatActivity {
         videoList = new ArrayList<HashMap<String, String>>();
         insertToDatabase(String.valueOf(uSeq));
         getData("https://mw-zhdtw.run.goorm.io/PHP_connection.php");
-
+        task.execute();
     }
 
     protected void showList() {
@@ -97,7 +97,7 @@ public class dbtestt extends AppCompatActivity {
 
                 videoInfo.put(TAG_DEPI, dEpi);
                 videoInfo.put(TAG_DSUB, dSub);
-                //videoInfo.put(TAG_DTHUMB, dThumb);
+                videoInfo.put(TAG_DTHUMB, dThumb);
                 System.out.println(videoInfo);
                 videoList.add(videoInfo);
             }
@@ -107,8 +107,8 @@ public class dbtestt extends AppCompatActivity {
             //리스트에 띄워서 확인하려는거
             ListAdapter adapter = new SimpleAdapter(
                     dbtestt.this, videoList, R.layout.dbt_listitem,
-                    new String[]{TAG_DEPI, TAG_DSUB},
-                    new int[]{R.id.tv_epi, R.id.tv_subTitle}
+                    new String[]{TAG_DEPI, TAG_DSUB, TAG_DTHUMB},
+                    new int[]{R.id.tv_epi, R.id.tv_subTitle,R.id.ivThumb}
             );
             list.setAdapter(adapter);
             //여까지
@@ -182,9 +182,6 @@ public class dbtestt extends AppCompatActivity {
             return bmImg;
         }
 
-        public InputStream bATIS(byte[] srcBytes){
-            return new ByteArrayInputStream(srcBytes);
-        }
         protected void onPostExecute(Bitmap img) {
             Log.d("bitmapImg", String.valueOf(img));
             ivThumb.setImageBitmap(img);
