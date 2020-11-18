@@ -20,8 +20,11 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,6 +43,7 @@ public class dbtestt extends AppCompatActivity {
     Bitmap bmImg;
     inputImage task;
     String dThumb;
+    int uSeq;
     private static final String TAG_RESULTS = "result";
     private static final String TAG_DEPI = "Detail_Episode";
     private static final String TAG_DSUB = "Detail_subTitle";
@@ -53,6 +57,8 @@ public class dbtestt extends AppCompatActivity {
 
     ListView list;
 
+    private getPreference getpreference;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +66,11 @@ public class dbtestt extends AppCompatActivity {
         header = getLayoutInflater().inflate(R.layout.dbt_listitem,null,false);
         ivThumb = (ImageView) header.findViewById(R.id.ivThumb);
         task = new inputImage();
+        uSeq = ((MainActivity)MainActivity.mContext).uSEQ;
 
         list = (ListView) findViewById(R.id.listView);
         videoList = new ArrayList<HashMap<String, String>>();
+        insertToDatabase(String.valueOf(uSeq));
         getData("https://mw-zhdtw.run.goorm.io/PHP_connection.php");
 
     }
@@ -183,5 +191,51 @@ public class dbtestt extends AppCompatActivity {
         }
     }
 
+    public void insertToDatabase(String uSeq) {
+        class InsertData extends AsyncTask<String, Void, String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
 
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+                String uSeq =  params[0];
+                try {
+                    String link = "https://mw-zhdtw.run.goorm.io/PHP_pre.php";
+                    String data = URLEncoder.encode("uSeq", "UTF-8") + "=" + URLEncoder.encode(uSeq, "UTF-8");
+
+                    URL url = new URL(link);
+                    URLConnection conn = url.openConnection();
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write(data);
+                    wr.flush();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+
+                    return sb.toString();
+                } catch (Exception e) {
+                    return new String("Exception: " + e.getMessage());
+                }
+
+            }
+        }
+        InsertData task = new InsertData();
+        task.execute(uSeq);
+    }
 }

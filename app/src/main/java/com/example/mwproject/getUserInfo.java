@@ -222,7 +222,7 @@ public class getUserInfo extends Application {
         task.execute(id, pw, nickname, year, month, date, gender);
     }
 
-    public void insertToPre(final int[] preChk) {
+    /*public void insertToPre(final int[] preChk) {
         class InsertData extends AsyncTask<Integer, Void, String> {
             @Override
             protected void onPreExecute() {
@@ -275,6 +275,6 @@ public class getUserInfo extends Application {
         for(int i = 0;i<10;i++){
             task.execute(preChk[i]);
         }
-    }
+    }*/
 
 }

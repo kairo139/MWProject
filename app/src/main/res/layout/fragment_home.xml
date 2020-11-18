@@ -45,69 +45,12 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vpPager" />
 
+            <ListView
+                android:layout_width="410dp"
+                android:layout_height="400dp"
+                android:id="@+id/listView"
+                android:scrollbars="none"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/IBtn1"
-                    android:layout_width="200dp"
-                    android:layout_height="125dp"
-                    android:layout_margin="10dp"
-                    android:scaleType="fitXY"
-                    android:background="@drawable/recom1" />
-
-                <TextView
-                    android:id="@+id/tvRecom1"
-                    android:layout_width="170dp"
-                    android:layout_height="125dp"
-                    android:layout_margin="10dp"
-                    android:text="전남친과 마주치는 최악의 시나리오 [연플리 시즌4] - EP.01" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/IBtn4"
-                    android:layout_width="200dp"
-                    android:layout_height="125dp"
-                    android:layout_margin="10dp"
-                    android:scaleType="fitXY"
-                    android:background="@drawable/recom2" />
-
-                <TextView
-                    android:id="@+id/tvRecom2"
-                    android:layout_width="170dp"
-                    android:layout_height="125dp"
-                    android:layout_margin="10dp"
-                    android:text="군대 가기 전 커플 특징 [연플리4] - EP.14" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/IBtn7"
-                    android:layout_width="200dp"
-                    android:layout_height="125dp"
-                    android:layout_margin="10dp"
-                    android:scaleType="fitXY"
-                    android:background="@drawable/recom3" />
-
-                <TextView
-                    android:id="@+id/tvRecom3"
-                    android:layout_width="170dp"
-                    android:layout_height="125dp"
-                    android:layout_margin="10dp"
-                    android:text="너냐, 내 여자친구가? [일진에게 찍혔을 때] EP01" />
-
-            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
