@@ -53,6 +53,7 @@ public class FragmentRanking extends Fragment {
     JSONArray video = null;
     ArrayList<HashMap<String, String>> videoList;
     ListView list;
+    ListAdapter adapter;
 
     @Nullable
     @Override
@@ -86,13 +87,14 @@ public class FragmentRanking extends Fragment {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
         return Current_v;
     }
 
+
     protected void showList() {
+        videoList.clear();
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             video = jsonObj.getJSONArray(TAG_RESULTS);
@@ -116,9 +118,8 @@ public class FragmentRanking extends Fragment {
             }
             //여까지
 
-
             //리스트에 띄워서 확인하려는거
-            ListAdapter adapter = new SimpleAdapter(
+            adapter = new SimpleAdapter(
                     getActivity(), videoList, R.layout.ranking_listitem,
                     new String[]{"tvNum1",TAG_WD_TITLE, TAG_WD_CASE, TAG_WD_CONTENT},
                     new int[]{R.id.tvNum1,R.id.tvRank_WDTitle, R.id.tvRank_WDCase,R.id.tvRank_WDContent}
