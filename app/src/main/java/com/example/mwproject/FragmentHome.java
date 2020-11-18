@@ -12,12 +12,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -64,7 +66,7 @@ public class FragmentHome extends Fragment {
     inputImage task;
     String dThumb;
     int uSeq;
-
+    String[] x;
     private static final String TAG_RESULTS = "result";
     private static final String TAG_DEPI = "Detail_Episode";
     private static final String TAG_DSUB = "Detail_subTitle";
@@ -111,7 +113,14 @@ public class FragmentHome extends Fragment {
         videoList = new ArrayList<HashMap<String, String>>();
         getData("https://mw-zhdtw.run.goorm.io/PHP_connection.php");
 
-
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(),Player.class);
+                intent.putExtra("videoID","ok9sgJtaIvY");
+                startActivity(intent);
+            }
+        });
         return Current_v;
     }
 
