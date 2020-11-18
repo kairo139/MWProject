@@ -36,6 +36,7 @@ import java.net.URL;
 import java.io.BufferedReader;
 
 public class dbtestt extends AppCompatActivity {
+
     View header;
     String myJSON;
     ImageView ivThumb;

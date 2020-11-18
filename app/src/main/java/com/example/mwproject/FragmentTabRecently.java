@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,45 +40,41 @@ public class FragmentTabRecently extends Fragment{
     String myJSON;
     JSONArray userDB = null;
 
-    ConstraintLayout constraintLayout;
     TextView textView;
-    ImageButton imageButton;
+
+    ArrayList<TabStorageVO> movieDataList;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Current_v = inflater.inflate(R.layout.tab_recently, container, false);
+        InitializeMovieData();
 
-        constraintLayout = Current_v.findViewById(R.id.wrap);
-        ConstraintSet constraintSet = new ConstraintSet();
-        constraintSet.clone(constraintLayout);
         getData("1");
 
-        imageButton = new ImageButton(this.getContext());
-        imageButton.setBackgroundResource(R.drawable.ep1);
-        imageButton.setId(View.generateViewId());
-        // 리스트 뷰 사용으로 변경 후 하기
-        imageButton.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,ConstraintLayout.LayoutParams.WRAP_CONTENT));
-        constraintSet.connect(imageButton.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
-        constraintSet.connect(imageButton.getId(),ConstraintSet.TOP,ConstraintSet.PARENT_ID,ConstraintSet.TOP,0);
+        ListView listView = (ListView)Current_v.findViewById(R.id.wrap);
+        final TabStorageAdapter myAdapter = new TabStorageAdapter(Current_v.getContext(),movieDataList);
 
-        textView = new TextView(this.getContext());
-        textView.setId(View.generateViewId());
-        textView.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,ConstraintLayout.LayoutParams.WRAP_CONTENT));
-        constraintSet.connect(textView.getId(),ConstraintSet.LEFT,imageButton.getId(),ConstraintSet.RIGHT,0);
-        constraintSet.connect(textView.getId(),ConstraintSet.TOP,ConstraintSet.PARENT_ID,ConstraintSet.TOP,0);
-        constraintSet.applyTo(constraintLayout);
+        listView.setAdapter(myAdapter);
 
-        /*recent_ep2 = Current_v.findViewById(R.id.recent_ep2);
-        recent_ep2.setOnClickListener(new View.OnClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Player.class);
-                intent.putExtra("playTime",80000);
-                intent.putExtra("videoID","ok9sgJtaIvY");
-                startActivity(intent);
+            public void onItemClick(AdapterView parent, View v, int position, long id){
+                Toast.makeText(Current_v.getContext(),myAdapter.getItem(position).getDramaName(),Toast.LENGTH_LONG).show();
             }
-        });*/
-                return Current_v;
+        });
+        return Current_v;
+    }
+
+    public void InitializeMovieData()
+    {
+        movieDataList = new ArrayList<TabStorageVO>();
+        Log.d("test","dddddd");
+        movieDataList.add(new TabStorageVO(R.drawable.ep1, "미션임파서블","15세 이상관람가"));
+        movieDataList.add(new TabStorageVO(R.drawable.ep1, "아저씨","19세 이상관람가"));
+        movieDataList.add(new TabStorageVO(R.drawable.ep1, "어벤져스","12세 이상관람가"));
+        Log.d("test",movieDataList.get(0).getDramaName());
+        Log.d("test",movieDataList.get(1).getDramaName());
+        Log.d("test",movieDataList.get(2).getDramaName());
     }
 
     public void getData(final String detail_seq) {
