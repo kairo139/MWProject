@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,56 +35,50 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FragmentTabRecently extends Fragment{
     View Current_v;
-    ImageButton recent_ep2;
 
     String myJSON;
     JSONArray userDB = null;
-
+    ArrayList<HashMap<String, String>> videoList;
     TextView textView;
     ListView listView;
-
+    String[] videoID;
+    int[] videoPlaytime;
+    ListAdapter adapter;
     ArrayList<TabStorageVO> movieDataList;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Current_v = inflater.inflate(R.layout.tab_recently, container, false);
-        InitializeMovieData();
 
-        getData(Integer.toString(((MainActivity)MainActivity.mContext).uSEQ));
-
-
+        Log.d("test",Integer.toString(((MainActivity)MainActivity.mContext).uSEQ));
         listView = (ListView)Current_v.findViewById(R.id.wrap);
-        final TabStorageAdapter myAdapter = new TabStorageAdapter(Current_v.getContext(),movieDataList);
-
-        listView.setAdapter(myAdapter);
+        videoList = new ArrayList<HashMap<String, String>>();
+        getData(Integer.toString(((MainActivity)MainActivity.mContext).uSEQ));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id){
-                Toast.makeText(Current_v.getContext(),myAdapter.getItem(position).getDramaName(),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), setEpisode.class);
+                intent.putExtra("playTime",videoPlaytime[position]);
+                intent.putExtra("videoID",videoID[position]);
+                startActivity(intent);
             }
         });
         return Current_v;
     }
 
-    public void InitializeMovieData()
-    {
-        movieDataList = new ArrayList<TabStorageVO>();
-        movieDataList.add(new TabStorageVO(R.drawable.ep1, "미션임파서블","15세 이상관람가","ok9sgJtaIvY"));
-        movieDataList.add(new TabStorageVO(R.drawable.ep1, "아저씨","19세 이상관람가","ok9sgJtaIvY"));
-        movieDataList.add(new TabStorageVO(R.drawable.ep1, "어벤져스","12세 이상관람가","ok9sgJtaIvY"));
-    }
-
-    public void getData(final String detail_seq) {
+    public void getData(String detail_seq) {
 
         class GetDataJSON extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
                 String uri = params[0];
-                String link = "https:/https://mw-zhdtw.run.goorm.io/selectStorageViewRecord.php?User_SEQ="+ Integer.parseInt(uri);
+                Log.d("test",uri);
+                String link = "https://mw-zhdtw.run.goorm.io/selectStorageViewRecord.php?User_SEQ="+ Integer.parseInt(uri);
 
                 BufferedReader bufferedReader = null;
 
@@ -118,21 +115,39 @@ public class FragmentTabRecently extends Fragment{
             }
         }
         GetDataJSON getDataJSON = new GetDataJSON();
+        Log.d("test",detail_seq);
         getDataJSON.execute(detail_seq);
     }
 
     protected void showList() {
+        videoList.clear();
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             userDB = jsonObj.getJSONArray("User_result");
-
+            Log.d("test",Integer.toString(userDB.length()));
 
             //사용자db정보 받기
             for (int i = 0; i < userDB.length(); i++) {
-                JSONObject c = userDB.getJSONObject(i);
+                videoID = new String[userDB.length()];
+                videoPlaytime = new int[userDB.length()];
 
-                textView.setText(c.getString("Detail_subTitle"));
+                JSONObject c = userDB.getJSONObject(i);
+                HashMap<String,String> videoInfo = new HashMap<>();
+                String subTitle = " [" + c.getString("Detail_Episode")
+                        + "] " + c.getString("Detail_subTitle");
+                videoInfo.put("subTitle",subTitle);
+                videoInfo.put("title",c.getString("WebDrama_title"));
+                videoID[i] = c.getString("Detail_VideoID");
+                videoPlaytime[i] = c.getInt("View_TIME");
+                videoList.add(videoInfo);
             }
+            adapter = new SimpleAdapter(
+                    getActivity(), videoList, R.layout.tabstorage_custom,
+                    new String[]{"title","subTitle"},
+                    new int[]{R.id.TabStorageTitle,R.id.TabStorageSubTitle}
+            );
+            listView.setAdapter(adapter);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
