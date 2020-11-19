@@ -137,8 +137,12 @@ public class MainActivity extends AppCompatActivity{
                 Intent intent;
                 switch (item.getItemId()){
                     case R.id.recently:
-                        intent = new Intent(getApplicationContext(),FragmentStorage.class);
-                        startActivity(intent);
+                        if(uSEQ != 0) {
+                            intent = new Intent(getApplicationContext(), FragmentStorage.class);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(getApplicationContext(),"로그인 후 사용 가능합니다.",Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case R.id.storageDrama:
                         break;
