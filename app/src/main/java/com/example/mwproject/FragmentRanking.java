@@ -1,5 +1,6 @@
 package com.example.mwproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,12 +37,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FragmentRanking extends Fragment {
+    //public static Object fragRanking_C;
     TextView tvRank_WDTitle, tvRank_WDCase, tvRank_WDContent;
     ImageView iv_Rank1;
     Spinner rank_spinner;
     View header;
     String myJSON;
     TextView tvNum1;
+    String wdSeq[] = new String[24];
+    String seq = "";
+    public static Context fragRanking_C;
+    static FragmentManager fragmentManager;
 
     private static final String TAG_RESULTS = "result";
     private static final String TAG_WD_SEQ = "WebDrama_SEQ";
@@ -57,12 +64,18 @@ public class FragmentRanking extends Fragment {
 
     @Nullable
     @Override
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View Current_v = inflater.inflate(R.layout.ranking, container, false);
-        header = getLayoutInflater().inflate(R.layout.ranking_listitem,null,false);
+        header = getLayoutInflater().inflate(R.layout.ranking_listitem, null, false);
         tvNum1 = (TextView) header.findViewById(R.id.tvNum1);
         iv_Rank1 = header.findViewById(R.id.ivRank);
-        tvRank_WDTitle = header.findViewById(R.id.tvRank_WDTitle); tvRank_WDCase = header.findViewById(R.id.tvRank_WDCase); tvRank_WDContent = header.findViewById(R.id.tvRank_WDContent);
+        tvRank_WDTitle = header.findViewById(R.id.tvRank_WDTitle);
+        tvRank_WDCase = header.findViewById(R.id.tvRank_WDCase);
+        tvRank_WDContent = header.findViewById(R.id.tvRank_WDContent);
+
+        //fragmentManager = getActivity().getSupportFragmentManager();
+        //fragRanking_C = getActivity().getApplicationContext();
 
         list = (ListView) Current_v.findViewById(R.id.listView);
         videoList = new ArrayList<HashMap<String, String>>();
@@ -78,17 +91,28 @@ public class FragmentRanking extends Fragment {
         rank_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
+                if (position == 0) {
                     getData("https://mw-zhdtw.run.goorm.io/PHP_ranking.php");
-                }
-                else{
+                } else {
                     getData("https://mw-zhdtw.run.goorm.io/PHP_rankingLookup.php");
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), setEpisode.class);
+                seq = wdSeq[position];
+                intent.putExtra("wdSeq",seq);
+                startActivity(intent);
+            }
+        });
+
         return Current_v;
     }
 
@@ -101,7 +125,7 @@ public class FragmentRanking extends Fragment {
 
             for (int i = 0; i < video.length(); i++) {
                 JSONObject c = video.getJSONObject(i);
-                String wdSeq = c.getString(TAG_WD_SEQ);
+                wdSeq[i] = c.getString(TAG_WD_SEQ);
                 String wdTitle = c.getString(TAG_WD_TITLE);
                 String wdCase = c.getString(TAG_WD_CASE);
                 String wdContent = c.getString(TAG_WD_CONTENT);
@@ -113,7 +137,7 @@ public class FragmentRanking extends Fragment {
                 videoInfo.put(TAG_WD_TITLE, wdTitle);
                 videoInfo.put(TAG_WD_CASE, wdCase);
                 videoInfo.put(TAG_WD_CONTENT, wdContent);
-                videoInfo.put("tvNum1", String.valueOf(i+1));
+                videoInfo.put("tvNum1", String.valueOf(i + 1));
                 videoList.add(videoInfo);
             }
             //여까지
@@ -121,8 +145,8 @@ public class FragmentRanking extends Fragment {
             //리스트에 띄워서 확인하려는거
             adapter = new SimpleAdapter(
                     getActivity(), videoList, R.layout.ranking_listitem,
-                    new String[]{"tvNum1",TAG_WD_TITLE, TAG_WD_CASE, TAG_WD_CONTENT},
-                    new int[]{R.id.tvNum1,R.id.tvRank_WDTitle, R.id.tvRank_WDCase,R.id.tvRank_WDContent}
+                    new String[]{"tvNum1", TAG_WD_TITLE, TAG_WD_CASE, TAG_WD_CONTENT},
+                    new int[]{R.id.tvNum1, R.id.tvRank_WDTitle, R.id.tvRank_WDCase, R.id.tvRank_WDContent}
             );
             list.setAdapter(adapter);
             //여까지

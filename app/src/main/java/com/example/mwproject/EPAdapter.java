@@ -38,7 +38,7 @@ public class EPAdapter extends BaseAdapter {
 
             holder = new CustomViewHolder();
             holder.imageView = (ImageView) convertView.findViewById(R.id.ivThumb);
-            holder.textTitle = (TextView) convertView.findViewById(R.id.tvEP);
+            //holder.textTitle = (TextView) convertView.findViewById(R.id.tvEP);
 
             convertView.setTag(holder);
         } else {

@@ -1,4 +1,4 @@
-package com.example.mwproject;
+/*package com.example.mwproject;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -14,6 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import com.example.mwproject.EPAdapter;
+import com.example.mwproject.Player;
+import com.example.mwproject.R;
 
 public class FragmentEpisode extends Fragment {
     private EPAdapter adapter;
@@ -36,7 +40,7 @@ public class FragmentEpisode extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
-                        Intent intent = new Intent(getActivity(),Player.class);
+                        Intent intent = new Intent(getActivity(), Player.class);
                         intent.putExtra("videoID","ok9sgJtaIvY");
                         startActivity(intent);
                         break;
@@ -59,4 +63,4 @@ public class FragmentEpisode extends Fragment {
             adapter.addItem(dto);
         }
     }
-}
+}*/

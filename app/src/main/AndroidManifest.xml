@@ -34,6 +34,7 @@
         <activity android:name=".FragmentStorage"/>
         <activity android:name=".advice"/>
         <activity android:name=".FragmentEpisode"/>
+        <activity android:name=".setEpisode"/>
         <activity android:name=".dbtestt"/>
 
     </application>

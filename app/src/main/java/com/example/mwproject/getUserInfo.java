@@ -1,5 +1,6 @@
 package com.example.mwproject;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -26,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class getUserInfo extends Application {
-    //public getUserInfo(String url) throws MalformedURLException { this.url = new URL(url); }
     String myJSON;
     JSONArray userDB = null;
     String uid, upw, uNickname;
@@ -48,8 +48,6 @@ public class getUserInfo extends Application {
 
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        UserInfoContext = this;
-
     }
 
     public void checkID(String getID, String check) {
