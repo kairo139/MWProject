@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -43,6 +44,7 @@ public class setEpisode extends AppCompatActivity {
     TextView Ep_tvTitle, Ep_tvCharacter, Ep_tvContent;
     TextView Ep_tvep, Ep_tvSubTitle;
     //FragmentRanking fragmentRanking = new FragmentRanking();
+    String videoID[] = new String[50];
 
     private static final String TAG_RESULTS = "result";
     private static final String TAG_WD_SEQ = "WebDrama_SEQ";
@@ -58,7 +60,7 @@ public class setEpisode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.episode);
         setEpisode_C = this;
-        Intent intentGet = getIntent();
+        final Intent intentGet = getIntent();
         String seq = intentGet.getStringExtra("wdSeq");
         header = getLayoutInflater().inflate(R.layout.episode_list_item, null, false);
 
@@ -74,6 +76,25 @@ public class setEpisode extends AppCompatActivity {
 
         getData2("https://mw-zhdtw.run.goorm.io/PHP_episode.php", seq, "head");
         getData2("https://mw-zhdtw.run.goorm.io/PHP_epList.php", seq, "list");
+
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(adapterView.getContext(),Player.class);
+                intent.putExtra("videoID",videoID[i]);
+                startActivity(intent);
+            }
+        });
+        /*list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), setEpisode.class);
+                seq = wdSeq[position];
+                intent.putExtra("wdSeq",seq);
+                startActivity(intent);
+            }
+        });*/
     }
 
     protected void showList(String wd_Seq, String param) {
@@ -99,12 +120,13 @@ public class setEpisode extends AppCompatActivity {
                 }
                 list.setAdapter(adapter);
             } else if (param.equals("list")) {
-                for (int i = 0; i < video.length(); i++) {
+                for (int i = 0, x = 0; i < video.length(); i++) {
                     JSONObject c = video.getJSONObject(i);
                     String wdSeq = c.getString(TAG_WD_SEQ);
                     if (selected_WDseq.equals(wdSeq)) {
                         String wdEp = c.getString(TAG_WD_EPISODE);
                         String wdSubTitle = c.getString(TAG_WD_SUBTITLE);
+                        videoID[x++] = c.getString("Detail_VideoID");
 
                         HashMap<String, String> videoInfo = new HashMap<String, String>();
 
