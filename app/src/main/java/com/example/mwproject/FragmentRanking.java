@@ -1,5 +1,6 @@
 package com.example.mwproject;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -30,9 +31,12 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -73,9 +77,6 @@ public class FragmentRanking extends Fragment {
         tvRank_WDTitle = header.findViewById(R.id.tvRank_WDTitle);
         tvRank_WDCase = header.findViewById(R.id.tvRank_WDCase);
         tvRank_WDContent = header.findViewById(R.id.tvRank_WDContent);
-
-        //fragmentManager = getActivity().getSupportFragmentManager();
-        //fragRanking_C = getActivity().getApplicationContext();
 
         list = (ListView) Current_v.findViewById(R.id.listView);
         videoList = new ArrayList<HashMap<String, String>>();
@@ -196,4 +197,55 @@ public class FragmentRanking extends Fragment {
         g.execute(url);
 
     }
+
+
+    /*private void insertToDatabase(String idx) { ///idx를 넣는 이유는 php파일로 idx값을 보내서, MySQL DB에서 해당하는 idx값 가진 레코드를 가져올거라서
+
+        class InsertData extends AsyncTask<String, Void, String> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(ColumnActivity.this, "Please Wait", null, true, true);
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                try {
+                    String idx = (String) params[0];
+
+
+                    String link = "여기는 데이터를 받고 보내는 url부분-내가 만든 php파일주소";
+                    String data = URLEncoder.encode("idx", "UTF-8") + "=" + URLEncoder.encode(idx, "UTF-8");
+
+
+                    URL url = new URL(link);
+                    URLConnection conn = url.openConnection();
+
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write(data);
+                    wr.flush();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+                    return sb.toString();
+
+                } catch (Exception e) {
+                    return new String("Exception: " + e.getMessage());
+                }
+
+            }*/
 }

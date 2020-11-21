@@ -31,6 +31,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.squareup.picasso.Picasso;
@@ -44,9 +45,12 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -89,6 +93,8 @@ public class FragmentHome extends Fragment {
         //위 방식처럼 하지 않으면 findViewById에서 에러가 남
         uSeq = ((MainActivity)MainActivity.mContext).uSEQ;
 
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
         btnGoRd = Current_v.findViewById(R.id.btnGoRd);
         btnGoRd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,8 +118,11 @@ public class FragmentHome extends Fragment {
         list = (ListView) Current_v.findViewById(R.id.listView);
         list.setVerticalScrollBarEnabled(false);
         videoList = new ArrayList<HashMap<String, String>>();
-        getData("https://mw-zhdtw.run.goorm.io/PHP_connection.php");
-
+        if(String.valueOf(uSeq).equals("0")){
+            preDefault("https://mw-zhdtw.run.goorm.io/PHP_preDefault.php");
+        }
+        else
+            getData("https://mw-zhdtw.run.goorm.io/PHP_pre.php",String.valueOf(uSeq));
 
         return Current_v;
     }
@@ -161,24 +170,22 @@ public class FragmentHome extends Fragment {
             video = jsonObj.getJSONArray(TAG_RESULTS);
 
             //웹드라마 db받는곳
-            for (int i = 0; i < video.length(); i++) {
+            for (int i = 0; i <3; i++) {
                 JSONObject c = video.getJSONObject(i);
                 String dEpi = c.getString(TAG_DEPI);
                 String dSub = c.getString(TAG_DSUB);
                 dThumb = c.getString(TAG_DTHUMB);
 
-
+                Log.d("dTumb",dThumb);
                 Log.d("task", String.valueOf(task));
-
-                System.out.println(dSub + "\n");
 
                 HashMap<String, String> videoInfo = new HashMap<String, String>();
 
                 videoInfo.put(TAG_DEPI, dEpi);
                 videoInfo.put(TAG_DSUB, dSub);
-                //videoInfo.put(TAG_DTHUMB, dThumb);
-                System.out.println(videoInfo);
+                videoInfo.put(TAG_DTHUMB, dThumb);
                 videoList.add(videoInfo);
+
             }
             //여까지
 
@@ -197,7 +204,61 @@ public class FragmentHome extends Fragment {
         }
     }
 
-    public void getData(String url) {
+    public void getData(String url, final String seq) {
+        class GetDataJSON extends AsyncTask<String, Void, String> {
+            String uSeq = seq;
+            @Override
+            protected String doInBackground(String... params) {
+                String uri = params[0];
+                BufferedReader bufferedReader = null;
+
+                try {
+                    String data = URLEncoder.encode("uSeq", "UTF-8") + "=" + URLEncoder.encode(uSeq, "UTF-8");
+                    URL url = new URL(uri);
+                    URLConnection conn = url.openConnection();
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write(data);
+                    wr.flush();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                    String json;
+                    while ((json = bufferedReader.readLine()) != null) {
+                        sb.append(json + "\n");
+                    }
+                    return sb.toString();
+                } catch (Exception e) {
+                    return new String("Exception: " + e.getMessage());
+                }
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                myJSON = result;
+                showList();
+                task.execute(imgUrl + dThumb);
+            }
+        }
+
+        GetDataJSON g = new GetDataJSON();
+        g.execute(url);
+
+    }
+
+    public void preDefault(String url) {
         class GetDataJSON extends AsyncTask<String, Void, String> {
 
             @Override
@@ -229,7 +290,6 @@ public class FragmentHome extends Fragment {
             protected void onPostExecute(String result) {
                 myJSON = result;
                 showList();
-                task.execute(imgUrl + dThumb);
             }
         }
 
@@ -238,9 +298,7 @@ public class FragmentHome extends Fragment {
 
     }
 
-
     class inputImage extends AsyncTask<String, Integer, Bitmap> {
-        URL myFileUrl = null;
 
         protected Bitmap doInBackground(String... urls) {
             try {
@@ -261,15 +319,11 @@ public class FragmentHome extends Fragment {
             return bmImg;
         }
 
-        public InputStream bATIS(byte[] srcBytes){
-            return new ByteArrayInputStream(srcBytes);
-        }
         protected void onPostExecute(Bitmap img) {
             Log.d("bitmapImg", String.valueOf(img));
             ivThumb.setImageBitmap(img);
             ivThumb.invalidate();
         }
+
     }
-
-
 }

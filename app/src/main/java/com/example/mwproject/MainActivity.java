@@ -256,8 +256,11 @@ public class MainActivity extends AppCompatActivity{
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
                 header.setVisibility(View.GONE);
                 uid = null; upw = null; uNickname = null;
+                uSEQ = 0;
+                transaction.detach(fragmentHome).attach(fragmentHome).commit();
                 notLogIn();
 
             }
@@ -292,6 +295,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     protected void showList(String id, String pw) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             userDB = jsonObj.getJSONArray(TAG_URESULTS);
@@ -308,12 +312,15 @@ public class MainActivity extends AppCompatActivity{
                     logIn(uNickname);
                     uSEQ = Integer.parseInt(c.getString(TAG_USEQ));
                     ad2.dismiss();
+                    transaction.detach(fragmentHome).attach(fragmentHome).commit();
                 }
+
                 Log.d("U_SQE", String.valueOf(uSEQ));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
     public void getData(final String uid, final String upw) {

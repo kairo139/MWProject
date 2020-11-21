@@ -14,6 +14,8 @@ import android.widget.SimpleAdapter;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 
 import java.io.ByteArrayInputStream;
@@ -34,6 +36,7 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.io.BufferedReader;
+import com.squareup.picasso.Picasso;
 
 public class dbtestt extends AppCompatActivity {
 
@@ -42,7 +45,7 @@ public class dbtestt extends AppCompatActivity {
     ImageView ivThumb;
     String imgUrl = "https://mw-zhdtw.run.goorm.io/image/";
     Bitmap bmImg;
-    inputImage task;
+    inputImage task2;
     String dThumb;
     int uSeq;
     private static final String TAG_RESULTS = "result";
@@ -66,14 +69,14 @@ public class dbtestt extends AppCompatActivity {
         setContentView(R.layout.dbtest);
         header = getLayoutInflater().inflate(R.layout.dbt_listitem,null,false);
         ivThumb = (ImageView) header.findViewById(R.id.ivThumb);
-        task = new inputImage();
+        task2 = new inputImage();
         uSeq = ((MainActivity)MainActivity.mContext).uSEQ;
 
         list = (ListView) findViewById(R.id.listView);
         videoList = new ArrayList<HashMap<String, String>>();
-        insertToDatabase(String.valueOf(uSeq));
+        //insertToDatabase(String.valueOf(uSeq));
         getData("https://mw-zhdtw.run.goorm.io/PHP_connection.php");
-        task.execute();
+
     }
 
     protected void showList() {
@@ -82,23 +85,21 @@ public class dbtestt extends AppCompatActivity {
             video = jsonObj.getJSONArray(TAG_RESULTS);
 
             //웹드라마 db받는곳
-            for (int i = 0; i < video.length(); i++) {
+            for (int i = 0; i < 3; i++) {
                 JSONObject c = video.getJSONObject(i);
                 String dEpi = c.getString(TAG_DEPI);
                 String dSub = c.getString(TAG_DSUB);
                 dThumb = c.getString(TAG_DTHUMB);
 
-
-                Log.d("task", String.valueOf(task));
-
-                System.out.println(dSub + "\n");
+                Log.d("dThumb",dThumb);
+                Log.d("task2", String.valueOf(task2));
 
                 HashMap<String, String> videoInfo = new HashMap<String, String>();
 
                 videoInfo.put(TAG_DEPI, dEpi);
                 videoInfo.put(TAG_DSUB, dSub);
                 videoInfo.put(TAG_DTHUMB, dThumb);
-                System.out.println(videoInfo);
+
                 videoList.add(videoInfo);
             }
             //여까지
@@ -116,6 +117,7 @@ public class dbtestt extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        task2.execute(imgUrl + dThumb);
     }
 
     public void getData(String url) {
@@ -146,11 +148,11 @@ public class dbtestt extends AppCompatActivity {
                 return uri;
             }
 
+
             @Override
             protected void onPostExecute(String result) {
                 myJSON = result;
                 showList();
-                task.execute(imgUrl + dThumb);
             }
         }
 
@@ -161,7 +163,6 @@ public class dbtestt extends AppCompatActivity {
 
 
     class inputImage extends AsyncTask<String, Integer, Bitmap> {
-        URL myFileUrl = null;
 
         protected Bitmap doInBackground(String... urls) {
             try {
@@ -171,7 +172,7 @@ public class dbtestt extends AppCompatActivity {
                 conn.connect();
 
                 InputStream is = conn.getInputStream();
-                Log.d("is", String.valueOf(is));
+                Log.d("myFileUrl", String.valueOf(myFileUrl));
                 bmImg = BitmapFactory.decodeStream(is);
                 Log.d("bmImg", String.valueOf(bmImg));
 
