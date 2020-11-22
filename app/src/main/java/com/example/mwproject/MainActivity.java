@@ -281,12 +281,15 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-    public void SearchResultView(String str){
+/*    public void SearchResultView(String str){
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.addToBackStack(null); //이전 화면 기억
+        Bundle bundle = new Bundle();
+        bundle.putString("name",str);
+
         System.out.println(str);
         transaction.replace(R.id.frameLayout, search_resultActivity).commitAllowingStateLoss();
-    }
+    }*/
 
     public  void ToEpisodeActivity(){
         FragmentTransaction transaction = fragmentManager.beginTransaction();
