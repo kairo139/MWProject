@@ -211,7 +211,6 @@ public class FragmentHome extends Fragment {
             protected String doInBackground(String... params) {
                 String uri = params[0];
                 BufferedReader bufferedReader = null;
-
                 try {
                     String data = URLEncoder.encode("uSeq", "UTF-8") + "=" + URLEncoder.encode(uSeq, "UTF-8");
                     URL url = new URL(uri);
