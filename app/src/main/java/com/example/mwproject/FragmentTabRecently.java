@@ -2,6 +2,9 @@ package com.example.mwproject;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,31 +46,32 @@ public class FragmentTabRecently extends Fragment{
     String myJSON;
     JSONArray userDB = null;
     ArrayList<HashMap<String, String>> videoList;
-    TextView textView;
     ListView listView;
     String[] videoID;
     int[] videoPlaytime;
     ListAdapter adapter;
-    ArrayList<TabStorageVO> movieDataList;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Current_v = inflater.inflate(R.layout.tab_recently, container, false);
 
         Log.d("test",Integer.toString(((MainActivity)MainActivity.mContext).uSEQ));
-        listView = (ListView)Current_v.findViewById(R.id.wrap);
+        listView = Current_v.findViewById(R.id.wraps);
         videoList = new ArrayList<HashMap<String, String>>();
         getData(Integer.toString(((MainActivity)MainActivity.mContext).uSEQ));
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView parent, View v, int position, long id){
-                Intent intent = new Intent(getActivity(), setEpisode.class);
-                intent.putExtra("playTime",videoPlaytime[position]);
-                intent.putExtra("videoID",videoID[position]);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), Player.class);
+                intent.putExtra("playTime",videoPlaytime[i]);
+                intent.putExtra("videoID",videoID[i]);
                 startActivity(intent);
             }
         });
+
+
         return Current_v;
     }
 
@@ -125,11 +129,10 @@ public class FragmentTabRecently extends Fragment{
             JSONObject jsonObj = new JSONObject(myJSON);
             userDB = jsonObj.getJSONArray("User_result");
             Log.d("test",Integer.toString(userDB.length()));
-
+            videoID = new String[userDB.length()];
+            videoPlaytime = new int[userDB.length()];
             //사용자db정보 받기
             for (int i = 0; i < userDB.length(); i++) {
-                videoID = new String[userDB.length()];
-                videoPlaytime = new int[userDB.length()];
 
                 JSONObject c = userDB.getJSONObject(i);
                 HashMap<String,String> videoInfo = new HashMap<>();
@@ -139,6 +142,7 @@ public class FragmentTabRecently extends Fragment{
                 videoInfo.put("title",c.getString("WebDrama_title"));
                 videoID[i] = c.getString("Detail_VideoID");
                 videoPlaytime[i] = c.getInt("View_TIME");
+
                 videoList.add(videoInfo);
             }
             adapter = new SimpleAdapter(
@@ -146,6 +150,7 @@ public class FragmentTabRecently extends Fragment{
                     new String[]{"title","subTitle"},
                     new int[]{R.id.TabStorageTitle,R.id.TabStorageSubTitle}
             );
+
             listView.setAdapter(adapter);
 
         } catch (JSONException e) {
