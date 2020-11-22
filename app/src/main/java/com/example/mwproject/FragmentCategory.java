@@ -3,9 +3,11 @@ package com.example.mwproject;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -26,22 +28,30 @@ import org.w3c.dom.Text;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class FragmentCategory extends Fragment {
     View Current_v;
     ImageButton ibGenre_school1;
     String myJSON;
 
+    String wdSeq[] = new String[24];
+    String seq = "";
+
     private static final String TAG_RESULTS = "result";
     private static final String TAG_WD_SEQ = "WebDrama_SEQ";
     private static final String TAG_WD_TITLE = "WebDrama_title";
     private static final String TAG_WD_CASE = "WebDrama_case"; //출연진
     private static final String TAG_WD_CONTENT = "WebDrama_content"; //소개
+    private static final String TAG_WD_GENERE = "Genere_SEQ";
     private static final String TAG_WD_RECOM = "WebDrama_Recom";
     private static final String TAG_WD_LOOKUP = "WebDrama_Lookup";
 
@@ -49,12 +59,16 @@ public class FragmentCategory extends Fragment {
     ArrayList<HashMap<String, String>> videoList;
     ListView list;
     ListAdapter adapter;
-    String PhpUrl = "";
+    String PhpUrl = "https://mw-zhdtw.run.goorm.io/PHP_category.php";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Current_v = inflater.inflate(R.layout.genre, container, false);
+        list = (ListView) Current_v.findViewById(R.id.listView);
+        videoList = new ArrayList<HashMap<String, String>>();
 
+        getData(PhpUrl, "1");
         TabLayout mTabLayout = Current_v.findViewById(R.id.layout_tab);
 
         mTabLayout.addTab(mTabLayout.newTab().setText("학교"));
@@ -68,7 +82,7 @@ public class FragmentCategory extends Fragment {
         mTabLayout.addTab(mTabLayout.newTab().setText("리얼리티"));
         mTabLayout.addTab(mTabLayout.newTab().setText("웹툰"));
 
-        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int pos = tab.getPosition();
@@ -77,7 +91,6 @@ public class FragmentCategory extends Fragment {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
@@ -86,68 +99,90 @@ public class FragmentCategory extends Fragment {
             }
         });
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), setEpisode.class);
+                seq = wdSeq[position];
+                intent.putExtra("wdSeq",seq);
+                startActivity(intent);
+            }
+        });
 
         return Current_v;
     }
 
-    public void changeView(int pos){
+    public void changeView(int pos) {
 
-        switch(pos){
-            case 0 :
-                //getData(PhpUrl, 해당하는 장르인자);
+        switch (pos) {
+            case 0:
+                getData(PhpUrl, "1");
+                Log.d("case1","okok");
                 break;
-            case 1 :
+            case 1:
+                getData(PhpUrl, "2");
                 break;
-            case 2 :
+            case 2:
+                getData(PhpUrl, "3");
                 break;
-            case 3 :
+            case 3:
+                getData(PhpUrl, "4");
                 break;
-            case 4 :
+            case 4:
+                getData(PhpUrl, "5");
                 break;
-            case 5 :
+            case 5:
+                getData(PhpUrl, "6");
                 break;
-            case 6 :
+            case 6:
+                getData(PhpUrl, "7");
                 break;
-            case 7 :
+            case 7:
+                getData(PhpUrl, "8");
                 break;
-            case 8 :
+            case 8:
+                getData(PhpUrl, "9");
                 break;
-            case 9 :
+            case 9:
+                getData(PhpUrl, "10");
                 break;
         }
     }
 
-    protected void showList(/*,해당하는 장르 인자 받고*/) {
+    protected void showList(String genreParam) {
+        String genre = genreParam;
+        videoList.clear();
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             video = jsonObj.getJSONArray(TAG_RESULTS);
 
             for (int i = 0; i < video.length(); i++) {
-                //장르 관련 데이터를 먼저 받고 비교문
-                //if(받은 장르.equals.(해당하는 인자)
-                //{나머지 쫘르륵}
                 JSONObject c = video.getJSONObject(i);
-                String wdTitle = c.getString(TAG_WD_TITLE);
-                String wdCase = c.getString(TAG_WD_CASE);
-                String wdContent = c.getString(TAG_WD_CONTENT);
-                String wdRecom = c.getString(TAG_WD_RECOM);
-                String wdLookup = c.getString(TAG_WD_LOOKUP);
+                wdSeq[i] = c.getString(TAG_WD_SEQ);
+                String genreSeq = c.getString(TAG_WD_GENERE);
+                //if (genreSeq.equals(genre)) {
+                    String wdTitle = c.getString(TAG_WD_TITLE);
+                    String wdCase = c.getString(TAG_WD_CASE);
+                    String wdContent = c.getString(TAG_WD_CONTENT);
+                    Log.d("2","okok");
 
-                HashMap<String, String> videoInfo = new HashMap<String, String>();
+                    HashMap<String, String> videoInfo = new HashMap<String, String>();
 
-                videoInfo.put(TAG_WD_TITLE, wdTitle);
-                videoInfo.put(TAG_WD_CASE, wdCase);
-                videoInfo.put(TAG_WD_CONTENT, wdContent);
-                videoInfo.put("tvNum1", String.valueOf(i + 1));
-                videoList.add(videoInfo);
+                    videoInfo.put(TAG_WD_TITLE, wdTitle);
+                    videoInfo.put(TAG_WD_CASE, wdCase);
+                    videoInfo.put(TAG_WD_CONTENT, wdContent);
+                    videoList.add(videoInfo);
+
+                    System.out.println(wdTitle);
+                //}
             }
             //여까지
 
             //리스트에 띄워서 확인하려는거
             adapter = new SimpleAdapter(
-                    getActivity(), videoList, R.layout.ranking_listitem,
-                    new String[]{"tvNum1", TAG_WD_TITLE, TAG_WD_CASE, TAG_WD_CONTENT},
-                    new int[]{R.id.tvNum1, R.id.tvRank_WDTitle, R.id.tvRank_WDCase, R.id.tvRank_WDContent}
+                    getActivity(), videoList, R.layout.genre_listitem,
+                    new String[]{TAG_WD_TITLE, TAG_WD_CASE, TAG_WD_CONTENT},
+                    new int[]{R.id.tvGenreTitle, R.id.tvGenreCase, R.id.tvGenreContent}
             );
             list.setAdapter(adapter);
             //여까지
@@ -157,7 +192,7 @@ public class FragmentCategory extends Fragment {
         }
     }
 
-    public void getData(String url/*,해당하는 장르 인자 받고*/) {
+    public void getData(String url, final String genreParam) {
         class GetDataJSON extends AsyncTask<String, Void, String> {
 
             @Override
@@ -165,30 +200,43 @@ public class FragmentCategory extends Fragment {
                 String uri = params[0];
                 BufferedReader bufferedReader = null;
                 try {
+                    String data = URLEncoder.encode("genreParam", "UTF-8") + "=" + URLEncoder.encode(genreParam, "UTF-8");
                     URL url = new URL(uri);
-                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                    StringBuilder sb = new StringBuilder();
+                    URLConnection conn = url.openConnection();
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
+                    wr.write(data);
+                    wr.flush();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
                     bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
                     String json;
                     while ((json = bufferedReader.readLine()) != null) {
                         sb.append(json + "\n");
                     }
-                    return sb.toString().trim();
+                    return sb.toString();
 
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    return new String("Exception: " + e.getMessage());
                 }
-                return uri;
             }
 
             @Override
             protected void onPostExecute(String result) {
                 myJSON = result;
-                showList(/*,해당하는 장르 인자 보내고*/);
+                showList(genreParam);
                 //task.execute(imgUrl + dThumb);
             }
         }
