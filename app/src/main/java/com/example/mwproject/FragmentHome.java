@@ -71,8 +71,8 @@ public class FragmentHome extends Fragment {
     ImageView ivThumb;
     String imgUrl = "https://mw-zhdtw.run.goorm.io/image/";
     Bitmap bmImg;
-    //inputImage task;
-    String[] dThumb = new String[3];
+    inputImage task;
+    String dThumb;
     int uSeq;
 
     private static final String TAG_RESULTS = "result";
@@ -81,7 +81,7 @@ public class FragmentHome extends Fragment {
     private static final String TAG_DTHUMB = "Detail_Thumb";
     private static final String TAG_Lookup = "WebDrama_content";
     private static final String TAG_TITLE = "Genere_SEQ";
-
+    String[] videoID;
     JSONArray video = null;
 
     ArrayList<HashMap<String, String>> videoList;
@@ -126,6 +126,15 @@ public class FragmentHome extends Fragment {
         }
         else
             getData("https://mw-zhdtw.run.goorm.io/PHP_pre.php",String.valueOf(uSeq));
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(getActivity(), Player.class);
+                    intent.putExtra("videoID",videoID[i]);
+                    startActivity(intent);
+            }
+        });
 
         return Current_v;
     }
@@ -172,12 +181,17 @@ public class FragmentHome extends Fragment {
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             video = jsonObj.getJSONArray(TAG_RESULTS);
-
+            videoID = new String[3];
             //웹드라마 db받는곳
             for (int i = 0; i <3; i++) {
+
                 JSONObject c = video.getJSONObject(i);
                 String dEpi = c.getString(TAG_DEPI);
                 String dSub = c.getString(TAG_DSUB);
+                dThumb = c.getString(TAG_DTHUMB);
+                videoID[i] = c.getString("Detail_VideoID");
+                Log.d("dTumb",dThumb);
+                Log.d("task", String.valueOf(task));
                 dThumb[i] = c.getString(TAG_DTHUMB);
 
                 Log.d("dTumb",dThumb[i]);
@@ -253,6 +267,7 @@ public class FragmentHome extends Fragment {
             protected void onPostExecute(String result) {
                 myJSON = result;
                 showList();
+                task.execute(imgUrl + dThumb);
             }
         }
 
