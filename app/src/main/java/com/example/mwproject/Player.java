@@ -46,7 +46,7 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
 
     String myJSON;
     JSONArray userDB = null;
-
+    int Seq;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,6 +152,7 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
                 player_hits.setText(lookup);
                 String x = mainTitle + " [" + num + "] " + title;
                 player_text.setText(x);
+                Seq = c.getInt("Detail_SEQ");
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -164,8 +165,8 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
 
         players.pause();
 
-        int User_SEQ = 1;
-        int Detail_SEQ = 1;
+        int User_SEQ = ((MainActivity)MainActivity.mContext).uSEQ;
+        int Detail_SEQ = Seq;
         int View_TIME = players.getCurrentTimeMillis();  // 영상을 실행 한 후 경과된 시간을 리턴
 
         insertToDatabase(Integer.toString(User_SEQ),Integer.toString(Detail_SEQ),Integer.toString(View_TIME));
@@ -179,7 +180,7 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
     }
 
     public void insertToDatabase(String User_SEQ, String Detail_SEQ, String View_TIME){
-        class InsertData extends AsyncTask<String, Void, String>{
+        class InsertData extends AsyncTask<String, String, String>{
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
