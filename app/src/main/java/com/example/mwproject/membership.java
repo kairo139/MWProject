@@ -210,6 +210,7 @@ public class membership extends AppCompatActivity {
 
                 if (pw.equals(chkPW)&&!(getuserinfo.isNickOverlap)&&!(getuserinfo.isIdOverlap)) {
                     getuserinfo.insertToDatabase(id,pw,nickname,uYear,uMonth,uDay,uGender,isImgBtnChk);
+                    //getuserinfo.insertToPre(isImgBtnChk);
                     finish();
                 }
                 else if(getuserinfo.isIdOverlap){Toast.makeText(getApplicationContext(), "아이디 중복확인을 완료해주세요.", Toast.LENGTH_SHORT).show();}

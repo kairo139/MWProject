@@ -207,7 +207,6 @@ public class FragmentRanking extends Fragment {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ColumnActivity.this, "Please Wait", null, true, true);
             }
 
             @Override

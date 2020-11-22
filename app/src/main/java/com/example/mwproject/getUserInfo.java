@@ -188,7 +188,16 @@ public class getUserInfo extends Application {
                                 + "&" + URLEncoder.encode("month", "UTF-8") + "=" + URLEncoder.encode(month, "UTF-8")
                                 + "&" + URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(date, "UTF-8")
                                 + "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender, "UTF-8")
-                                + "&" + URLEncoder.encode("preValue", "UTF-8") + "=" + URLEncoder.encode(java.util.Arrays.toString(preValue), "UTF-8");
+                                + "&" + URLEncoder.encode("preValue1", "UTF-8") + "=" + URLEncoder.encode(preValue[0], "UTF-8")
+                                + "&" + URLEncoder.encode("preValue2", "UTF-8") + "=" + URLEncoder.encode(preValue[1], "UTF-8")
+                                + "&" + URLEncoder.encode("preValue3", "UTF-8") + "=" + URLEncoder.encode(preValue[2], "UTF-8")
+                                + "&" + URLEncoder.encode("preValue4", "UTF-8") + "=" + URLEncoder.encode(preValue[3], "UTF-8")
+                                + "&" + URLEncoder.encode("preValue5", "UTF-8") + "=" + URLEncoder.encode(preValue[4], "UTF-8")
+                                + "&" + URLEncoder.encode("preValue6", "UTF-8") + "=" + URLEncoder.encode(preValue[5], "UTF-8")
+                                + "&" + URLEncoder.encode("preValue7", "UTF-8") + "=" + URLEncoder.encode(preValue[6], "UTF-8")
+                                + "&" + URLEncoder.encode("preValue8", "UTF-8") + "=" + URLEncoder.encode(preValue[7], "UTF-8")
+                                + "&" + URLEncoder.encode("preValue9", "UTF-8") + "=" + URLEncoder.encode(preValue[8], "UTF-8")
+                                + "&" + URLEncoder.encode("preValue10", "UTF-8") + "=" + URLEncoder.encode(preValue[9], "UTF-8");
 
                         URL url = new URL(link);
                         URLConnection conn = url.openConnection();
@@ -220,8 +229,8 @@ public class getUserInfo extends Application {
         task.execute(id, pw, nickname, year, month, date, gender);
     }
 
-    public void insertToPre(final int[] preChk) {
-        class InsertData extends AsyncTask<Integer, Void, String> {
+    public void insertToPre(final String[] preChk) {
+        class InsertData extends AsyncTask<String, Void, String> {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -233,12 +242,12 @@ public class getUserInfo extends Application {
             }
 
             @Override
-            protected String doInBackground(Integer... params) {
+            protected String doInBackground(String... params) {
                 for(int i = 0; i<10; i++){
                     preChk[i] = params[i];
                 }
                 try {
-                    String link = "https://mw-zhdtw.run.goorm.io/PHP_pre.php";
+                    String link = "https://mw-zhdtw.run.goorm.io/PHP_getUserInfo.php";
                     String data = URLEncoder.encode(String.valueOf(preChk[0]), "UTF-8") + "=" + URLEncoder.encode(String.valueOf(preChk[0]), "UTF-8");
                     for(int i = 1; i<10; i++){
                         data += "&" + URLEncoder.encode(String.valueOf(preChk[i]), "UTF-8") + "=" + URLEncoder.encode(String.valueOf(preChk[i]), "UTF-8");

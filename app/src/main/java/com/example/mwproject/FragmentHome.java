@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,6 +33,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.squareup.picasso.Picasso;
@@ -55,6 +57,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import me.relex.circleindicator.CircleIndicator;
+import com.squareup.picasso.Picasso;
 
 public class FragmentHome extends Fragment {
     private recommendationActivity recommendationActivity = new recommendationActivity();
@@ -68,8 +71,8 @@ public class FragmentHome extends Fragment {
     ImageView ivThumb;
     String imgUrl = "https://mw-zhdtw.run.goorm.io/image/";
     Bitmap bmImg;
-    inputImage task;
-    String dThumb;
+    //inputImage task;
+    String[] dThumb = new String[3];
     int uSeq;
 
     private static final String TAG_RESULTS = "result";
@@ -113,7 +116,7 @@ public class FragmentHome extends Fragment {
         ///////////////////////////////////
         header = getLayoutInflater().inflate(R.layout.recom_listitem,null,false);
         ivThumb = (ImageView) header.findViewById(R.id.ivThumb);
-        task = new inputImage();
+        //task = new inputImage();
 
         list = (ListView) Current_v.findViewById(R.id.listView);
         list.setVerticalScrollBarEnabled(false);
@@ -165,6 +168,7 @@ public class FragmentHome extends Fragment {
     }
 
     protected void showList() {
+
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             video = jsonObj.getJSONArray(TAG_RESULTS);
@@ -174,17 +178,17 @@ public class FragmentHome extends Fragment {
                 JSONObject c = video.getJSONObject(i);
                 String dEpi = c.getString(TAG_DEPI);
                 String dSub = c.getString(TAG_DSUB);
-                dThumb = c.getString(TAG_DTHUMB);
+                dThumb[i] = c.getString(TAG_DTHUMB);
 
-                Log.d("dTumb",dThumb);
-                Log.d("task", String.valueOf(task));
+                Log.d("dTumb",dThumb[i]);
 
                 HashMap<String, String> videoInfo = new HashMap<String, String>();
 
                 videoInfo.put(TAG_DEPI, dEpi);
                 videoInfo.put(TAG_DSUB, dSub);
-                videoInfo.put(TAG_DTHUMB, dThumb);
+                //videoInfo.put(TAG_DTHUMB, dThumb);
                 videoList.add(videoInfo);
+                doIn(imgUrl + "ij_ep1.jpg");
 
             }
             //여까지
@@ -206,6 +210,7 @@ public class FragmentHome extends Fragment {
 
     public void getData(String url, final String seq) {
         class GetDataJSON extends AsyncTask<String, Void, String> {
+
             String uSeq = seq;
             @Override
             protected String doInBackground(String... params) {
@@ -248,7 +253,6 @@ public class FragmentHome extends Fragment {
             protected void onPostExecute(String result) {
                 myJSON = result;
                 showList();
-                task.execute(imgUrl + dThumb);
             }
         }
 
@@ -297,9 +301,9 @@ public class FragmentHome extends Fragment {
 
     }
 
-    class inputImage extends AsyncTask<String, Integer, Bitmap> {
 
-        protected Bitmap doInBackground(String... urls) {
+
+        public Bitmap doIn(String... urls) {
             try {
                 URL myFileUrl = new URL(urls[0]);
                 HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
@@ -315,6 +319,7 @@ public class FragmentHome extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            onPostExecute(bmImg);
             return bmImg;
         }
 
@@ -324,5 +329,6 @@ public class FragmentHome extends Fragment {
             ivThumb.invalidate();
         }
 
-    }
+
+
 }
