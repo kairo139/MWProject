@@ -1,5 +1,6 @@
 package com.example.mwproject;
-
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -33,9 +33,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -57,7 +57,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import me.relex.circleindicator.CircleIndicator;
-import com.squareup.picasso.Picasso;
 
 public class FragmentHome extends Fragment {
     private recommendationActivity recommendationActivity = new recommendationActivity();
@@ -74,6 +73,7 @@ public class FragmentHome extends Fragment {
     inputImage task;
     String dThumb;
     int uSeq;
+    String videoID[] = new String[50];
 
     private static final String TAG_RESULTS = "result";
     private static final String TAG_DEPI = "Detail_Episode";
@@ -81,12 +81,13 @@ public class FragmentHome extends Fragment {
     private static final String TAG_DTHUMB = "Detail_Thumb";
     private static final String TAG_Lookup = "WebDrama_content";
     private static final String TAG_TITLE = "Genere_SEQ";
-    String[] videoID;
+
     JSONArray video = null;
 
     ArrayList<HashMap<String, String>> videoList;
 
     ListView list;
+    ListViewAdapter adapter2;
 
     @Nullable
     @Override
@@ -116,26 +117,32 @@ public class FragmentHome extends Fragment {
         ///////////////////////////////////
         header = getLayoutInflater().inflate(R.layout.recom_listitem,null,false);
         ivThumb = (ImageView) header.findViewById(R.id.ivThumb);
-        //task = new inputImage();
+        task = new inputImage();
 
         list = (ListView) Current_v.findViewById(R.id.listView);
+        adapter2 = new ListViewAdapter();
+        list.setAdapter(adapter2);
         list.setVerticalScrollBarEnabled(false);
         videoList = new ArrayList<HashMap<String, String>>();
+
+
         if(String.valueOf(uSeq).equals("0")){
             preDefault("https://mw-zhdtw.run.goorm.io/PHP_preDefault.php");
         }
         else
             getData("https://mw-zhdtw.run.goorm.io/PHP_pre.php",String.valueOf(uSeq));
 
+        //adapter2.addItem("1화","제목");
+        //adapter2.notifyDataSetChanged();
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent intent = new Intent(getActivity(), Player.class);
-                    intent.putExtra("videoID",videoID[i]);
-                    startActivity(intent);
+                Intent intent = new Intent(adapterView.getContext(),Player.class);
+                intent.putExtra("videoID",videoID[i]);
+                startActivity(intent);
             }
         });
-
         return Current_v;
     }
 
@@ -176,45 +183,43 @@ public class FragmentHome extends Fragment {
 
     }
 
-    protected void showList() {
 
+    protected void showList() {
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             video = jsonObj.getJSONArray(TAG_RESULTS);
-            videoID = new String[3];
-            //웹드라마 db받는곳
-            for (int i = 0; i <3; i++) {
 
+            //웹드라마 db받는곳
+            for (int i = 0, x=0; i <3; i++) {
                 JSONObject c = video.getJSONObject(i);
                 String dEpi = c.getString(TAG_DEPI);
                 String dSub = c.getString(TAG_DSUB);
                 dThumb = c.getString(TAG_DTHUMB);
-                videoID[i] = c.getString("Detail_VideoID");
+                videoID[x++] = c.getString("Detail_VideoID");
+
                 Log.d("dTumb",dThumb);
                 Log.d("task", String.valueOf(task));
-                dThumb[i] = c.getString(TAG_DTHUMB);
-
-                Log.d("dTumb",dThumb[i]);
 
                 HashMap<String, String> videoInfo = new HashMap<String, String>();
 
                 videoInfo.put(TAG_DEPI, dEpi);
                 videoInfo.put(TAG_DSUB, dSub);
-                //videoInfo.put(TAG_DTHUMB, dThumb);
+                videoInfo.put(TAG_DTHUMB, dThumb);
                 videoList.add(videoInfo);
-                doIn(imgUrl + "ij_ep1.jpg");
+                Glide.with(getContext()).load(imgUrl+"ij_ep1.jpg").into(ivThumb);
+
+                adapter2.addItem(dEpi,dSub,dThumb);
+                adapter2.notifyDataSetChanged();
 
             }
-            //여까지
-
-
             //리스트에 띄워서 확인하려는거
-            ListAdapter adapter = new SimpleAdapter(
+            /*ListAdapter adapter = new SimpleAdapter(
                     getActivity(), videoList, R.layout.recom_listitem,
                     new String[]{TAG_DEPI, TAG_DSUB},
                     new int[]{R.id.tv_epi, R.id.tv_subTitle}
             );
-            list.setAdapter(adapter);
+
+            list.setAdapter(adapter);*/
             //여까지
 
         } catch (JSONException e) {
@@ -224,7 +229,6 @@ public class FragmentHome extends Fragment {
 
     public void getData(String url, final String seq) {
         class GetDataJSON extends AsyncTask<String, Void, String> {
-
             String uSeq = seq;
             @Override
             protected String doInBackground(String... params) {
@@ -316,9 +320,9 @@ public class FragmentHome extends Fragment {
 
     }
 
+    class inputImage extends AsyncTask<String, Integer, Bitmap> {
 
-
-        public Bitmap doIn(String... urls) {
+        protected Bitmap doInBackground(String... urls) {
             try {
                 URL myFileUrl = new URL(urls[0]);
                 HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
@@ -334,7 +338,6 @@ public class FragmentHome extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            onPostExecute(bmImg);
             return bmImg;
         }
 
@@ -343,6 +346,8 @@ public class FragmentHome extends Fragment {
             ivThumb.setImageBitmap(img);
             ivThumb.invalidate();
         }
+
+    }
 
 
 
