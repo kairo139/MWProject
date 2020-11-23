@@ -41,11 +41,9 @@ public class TabStorageAdapter extends BaseAdapter {
     public View getView(int position, View converView, ViewGroup parent) {
         View view = mLayoutInflater.inflate(R.layout.tabstorage_custom, null);
 
-        ImageButton imageView = (ImageButton)view.findViewById(R.id.TabStorageImage);
         TextView movieName = (TextView)view.findViewById(R.id.TabStorageTitle);
         TextView grade = (TextView)view.findViewById(R.id.TabStorageSubTitle);
 
-        imageView.setImageResource(sample.get(position).getPoster());
         movieName.setText(sample.get(position).getDramaName());
         grade.setText(sample.get(position).getContent());
 

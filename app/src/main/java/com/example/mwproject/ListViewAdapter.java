@@ -1,6 +1,10 @@
 package com.example.mwproject;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +13,19 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
     private ImageView ivThumb;
     private TextView tvEpi;
     private TextView tvTitle;
-    private TextView tvCase;
-    private TextView tvContent;
 
     private  ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>();
 
@@ -54,6 +63,7 @@ public class ListViewAdapter extends BaseAdapter {
         final int pos = position;
         final Context context = parent.getContext();
 
+
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.recom_listitem,parent,false);
@@ -67,6 +77,7 @@ public class ListViewAdapter extends BaseAdapter {
 
         tvTitle.setText(listViewItem.getTitle());
         tvEpi.setText(listViewItem.getEpiStr());
+        Glide.with(context).load(listViewItem.getThumb()).into(ivThumb);
 
         return convertView;
     }

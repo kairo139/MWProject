@@ -60,11 +60,12 @@ public class FragmentRanking extends Fragment {
     private static final String TAG_WD_CONTENT = "WebDrama_content"; //소개
     private static final String TAG_WD_RECOM = "WebDrama_Recom";
     private static final String TAG_WD_LOOKUP = "WebDrama_Lookup";
+    private static final String TAG_WD_THUMB = "WebDrama_Thumb";
 
     JSONArray video = null;
     ArrayList<HashMap<String, String>> videoList;
     ListView list;
-    ListAdapter adapter;
+    ListViewAdapter2 adapter;
 
     @Nullable
     @Override
@@ -80,6 +81,8 @@ public class FragmentRanking extends Fragment {
 
         list = (ListView) Current_v.findViewById(R.id.listView);
         videoList = new ArrayList<HashMap<String, String>>();
+        adapter = new ListViewAdapter2();
+        list.setAdapter(adapter);
 
         rank_spinner = Current_v.findViewById(R.id.spinner);
 
@@ -93,8 +96,10 @@ public class FragmentRanking extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
+                    adapter.clearList();
                     getData("https://mw-zhdtw.run.goorm.io/PHP_ranking.php");
                 } else {
+                    adapter.clearList();
                     getData("https://mw-zhdtw.run.goorm.io/PHP_rankingLookup.php");
                 }
             }
@@ -119,7 +124,6 @@ public class FragmentRanking extends Fragment {
 
 
     protected void showList() {
-        videoList.clear();
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             video = jsonObj.getJSONArray(TAG_RESULTS);
@@ -130,28 +134,11 @@ public class FragmentRanking extends Fragment {
                 String wdTitle = c.getString(TAG_WD_TITLE);
                 String wdCase = c.getString(TAG_WD_CASE);
                 String wdContent = c.getString(TAG_WD_CONTENT);
-                String wdRecom = c.getString(TAG_WD_RECOM);
-                String wdLookup = c.getString(TAG_WD_LOOKUP);
+                String dThumb = c.getString(TAG_WD_THUMB);
 
-                HashMap<String, String> videoInfo = new HashMap<String, String>();
-
-                videoInfo.put(TAG_WD_TITLE, wdTitle);
-                videoInfo.put(TAG_WD_CASE, wdCase);
-                videoInfo.put(TAG_WD_CONTENT, wdContent);
-                videoInfo.put("tvNum1", String.valueOf(i + 1));
-                videoList.add(videoInfo);
+                adapter.addItem2(wdTitle,wdCase,wdContent,dThumb,String.valueOf(i + 1));
+                adapter.notifyDataSetChanged();
             }
-            //여까지
-
-            //리스트에 띄워서 확인하려는거
-            adapter = new SimpleAdapter(
-                    getActivity(), videoList, R.layout.ranking_listitem,
-                    new String[]{"tvNum1", TAG_WD_TITLE, TAG_WD_CASE, TAG_WD_CONTENT},
-                    new int[]{R.id.tvNum1, R.id.tvRank_WDTitle, R.id.tvRank_WDCase, R.id.tvRank_WDContent}
-            );
-            list.setAdapter(adapter);
-            //여까지
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -189,7 +176,6 @@ public class FragmentRanking extends Fragment {
             protected void onPostExecute(String result) {
                 myJSON = result;
                 showList();
-                //task.execute(imgUrl + dThumb);
             }
         }
 

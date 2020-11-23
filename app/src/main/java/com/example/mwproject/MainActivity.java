@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity{
     private FragmentRanking fragmentRanking = new FragmentRanking();
     private FragmentCategory fragmentCategory = new FragmentCategory();
     //private FragmentEpisode episode = new FragmentEpisode();
-    private search_resultActivity search_resultActivity = new search_resultActivity();
 
     DrawerLayout drawerLayout;
 
@@ -115,15 +114,6 @@ public class MainActivity extends AppCompatActivity{
 
         notLogIn(); //default(비 로그인)
 
-        btnSearch = findViewById(R.id.ibSearch);
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, searchActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
         //바텀 네비게이션 (fragment)
         FragmentTransaction transaction = fragmentManager.beginTransaction(); //맨 처음에 나타날 frameLayout 설정
         transaction.replace(R.id.frameLayout, fragmentHome).commitAllowingStateLoss();
@@ -144,17 +134,11 @@ public class MainActivity extends AppCompatActivity{
                             Toast.makeText(getApplicationContext(),"로그인 후 사용 가능합니다.",Toast.LENGTH_SHORT).show();
                         }
                         break;
-                    case R.id.storageDrama:
-                        break;
                     case R.id.btnLogin:
                         //Toast.makeText(getApplicationContext(),"d",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.advice:
                         intent = new Intent(getApplicationContext(),advice.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.dbtest:
-                        intent = new Intent(getApplicationContext(),dbtestt.class);
                         startActivity(intent);
                         break;
                 }
@@ -209,9 +193,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 inputUID = edtID.getText().toString(); inputPW = edtPW.getText().toString();
-
                 userList = new ArrayList<HashMap<String, String>>();
-
                 getData(inputUID,inputPW);
 
             }
@@ -243,14 +225,6 @@ public class MainActivity extends AppCompatActivity{
         userNickname = header.findViewById(R.id.tvUserName);
         userNickname.setText(unickname);
 
-        //정보수정 버튼
-        btnPchange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),ProfileChange.class);
-                startActivity(intent);
-            }
-        });
 
         //logout
         btnLogOut.setOnClickListener(new View.OnClickListener() {
@@ -280,21 +254,9 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-
-/*    public void SearchResultView(String str){
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.addToBackStack(null); //이전 화면 기억
-        Bundle bundle = new Bundle();
-        bundle.putString("name",str);
-
-        System.out.println(str);
-        transaction.replace(R.id.frameLayout, search_resultActivity).commitAllowingStateLoss();
-    }*/
-
     public  void ToEpisodeActivity(){
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.addToBackStack(null); //이전 화면 기억
-        //transaction.replace(R.id.frameLayout, episode).commitAllowingStateLoss();
     }
 
     protected void showList(String id, String pw) {
@@ -318,12 +280,11 @@ public class MainActivity extends AppCompatActivity{
                     transaction.detach(fragmentHome).attach(fragmentHome).commit();
                 }
 
-                Log.d("U_SQE", String.valueOf(uSEQ));
             }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     public void getData(final String uid, final String upw) {

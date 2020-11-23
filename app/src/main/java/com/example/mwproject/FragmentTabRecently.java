@@ -136,7 +136,7 @@ public class FragmentTabRecently extends Fragment{
 
                 JSONObject c = userDB.getJSONObject(i);
                 HashMap<String,String> videoInfo = new HashMap<>();
-                String subTitle = " [" + c.getString("Detail_Episode")
+                String subTitle = " [Ep." + c.getString("Detail_Episode")
                         + "] " + c.getString("Detail_subTitle");
                 videoInfo.put("subTitle",subTitle);
                 videoInfo.put("title",c.getString("WebDrama_title"));

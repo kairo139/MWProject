@@ -23,10 +23,8 @@ public class VPAdapter extends FragmentPagerAdapter {
         super(fm);
         items = new ArrayList<Fragment>();
         items.add(new FragmentTabRecently());
-        items.add(new FragmentTabStorage());
 
         itext.add("최근 본 영상");
-        itext.add("구독한 영상");
     }
 
     @NonNull

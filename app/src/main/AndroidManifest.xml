@@ -22,20 +22,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ProfileChange"/>
-        <activity android:name=".birthchange"/>
-        <activity android:name=".genderchange"/>
-        <activity android:name=".namechange"/>
-        <activity android:name=".passwdchange"/>
         <activity android:name=".Player"/>
         <activity android:name=".membership"/>
-        <activity android:name=".search_resultActivity"/>
-        <activity android:name=".searchActivity"/>
         <activity android:name=".FragmentStorage"/>
         <activity android:name=".advice"/>
-        <activity android:name=".FragmentEpisode"/>
         <activity android:name=".setEpisode"/>
-        <activity android:name=".dbtestt"/>
 
     </application>
 

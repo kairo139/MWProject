@@ -6,19 +6,11 @@
             <item
                 android:id="@+id/recently"
                 android:title="최근 본 영상"/>
-            <item
-                android:id="@+id/storageDrama"
-                android:title="저장한 영상"/>
         </menu>
     </item>
-
     <item
         android:id="@+id/advice"
         android:title="도움말">
     </item>
 
-    <item
-        android:id="@+id/dbtest"
-        android:title="DBtest">
-    </item>
 </menu>

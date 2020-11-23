@@ -97,35 +97,4 @@
         android:layout_margin="10dp"
         android:textSize="15dp"
         />
-
-    <TextView
-        android:id="@+id/num4_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/num3_value"
-        android:text=" 정보수정"
-        android:layout_margin="10dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        />
-
-    <TextView
-        android:id="@+id/num4_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/num4_title"
-        android:text=" 좌측 상단 메뉴 클릭 -> 정보수정 클릭 ->  정보수정                          모웹의 정보수정은 이름, 생년월일, 성별, 비밀번호 변경이 가능합니다. 각 항목은 우측에 위치한 버튼을 클릭하면 수정할수 있는 페이지로 이동이 되며 정보수정후 저장하시면 됩니다. 또한 자신의 웹드라마 취향을 원 그래프 형식으로 보실수 있습니다."
-        android:layout_margin="10dp"
-        android:textSize="15dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="회원탈퇴"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>

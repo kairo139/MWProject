@@ -79,7 +79,7 @@ public class membership extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if(!(imgBtn_Pre[INDEX].isSelected())) {
-                            imgBtn_Pre[INDEX].setBackgroundColor(Color.parseColor("#6c9bd4"));
+                            imgBtn_Pre[INDEX].setBackgroundColor(Color.parseColor("#81BEF7"));
                             imgBtn_Pre[INDEX].setSelected(true);
                             System.out.println(imgBtn_Pre[INDEX] + "는 " + imgBtn_Pre[INDEX].isSelected());
                             isImgBtnChk[INDEX]="1";

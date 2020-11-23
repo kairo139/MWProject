@@ -52,13 +52,12 @@ public class FragmentCategory extends Fragment {
     private static final String TAG_WD_CASE = "WebDrama_case"; //출연진
     private static final String TAG_WD_CONTENT = "WebDrama_content"; //소개
     private static final String TAG_WD_GENERE = "Genere_SEQ";
-    private static final String TAG_WD_RECOM = "WebDrama_Recom";
-    private static final String TAG_WD_LOOKUP = "WebDrama_Lookup";
+    private static final String TAG_WD_THUMB = "WebDrama_Thumb";
 
     JSONArray video = null;
     ArrayList<HashMap<String, String>> videoList;
     ListView list;
-    ListAdapter adapter;
+    ListViewAdapter3 adapter;
     String PhpUrl = "https://mw-zhdtw.run.goorm.io/PHP_category.php";
 
     @Nullable
@@ -67,6 +66,8 @@ public class FragmentCategory extends Fragment {
         Current_v = inflater.inflate(R.layout.genre, container, false);
         list = (ListView) Current_v.findViewById(R.id.listView);
         videoList = new ArrayList<HashMap<String, String>>();
+        adapter = new ListViewAdapter3();
+        list.setAdapter(adapter);
 
         getData(PhpUrl, "1");
         TabLayout mTabLayout = Current_v.findViewById(R.id.layout_tab);
@@ -104,7 +105,7 @@ public class FragmentCategory extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), setEpisode.class);
                 seq = wdSeq[position];
-                intent.putExtra("wdSeq",seq);
+                intent.putExtra("wdSeq", seq);
                 startActivity(intent);
             }
         });
@@ -116,34 +117,43 @@ public class FragmentCategory extends Fragment {
 
         switch (pos) {
             case 0:
+                adapter.clearList();
                 getData(PhpUrl, "1");
-                Log.d("case1","okok");
                 break;
             case 1:
+                adapter.clearList();
                 getData(PhpUrl, "2");
                 break;
             case 2:
+                adapter.clearList();
                 getData(PhpUrl, "3");
                 break;
             case 3:
+                adapter.clearList();
                 getData(PhpUrl, "4");
                 break;
             case 4:
+                adapter.clearList();
                 getData(PhpUrl, "5");
                 break;
             case 5:
+                adapter.clearList();
                 getData(PhpUrl, "6");
                 break;
             case 6:
+                adapter.clearList();
                 getData(PhpUrl, "7");
                 break;
             case 7:
+                adapter.clearList();
                 getData(PhpUrl, "8");
                 break;
             case 8:
+                adapter.clearList();
                 getData(PhpUrl, "9");
                 break;
             case 9:
+                adapter.clearList();
                 getData(PhpUrl, "10");
                 break;
         }
@@ -151,7 +161,6 @@ public class FragmentCategory extends Fragment {
 
     protected void showList(String genreParam) {
         String genre = genreParam;
-        videoList.clear();
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             video = jsonObj.getJSONArray(TAG_RESULTS);
@@ -160,31 +169,24 @@ public class FragmentCategory extends Fragment {
                 JSONObject c = video.getJSONObject(i);
                 wdSeq[i] = c.getString(TAG_WD_SEQ);
                 String genreSeq = c.getString(TAG_WD_GENERE);
-                //if (genreSeq.equals(genre)) {
-                    String wdTitle = c.getString(TAG_WD_TITLE);
-                    String wdCase = c.getString(TAG_WD_CASE);
-                    String wdContent = c.getString(TAG_WD_CONTENT);
-                    Log.d("2","okok");
+                String wdTitle = c.getString(TAG_WD_TITLE);
+                String wdCase = c.getString(TAG_WD_CASE);
+                String wdContent = c.getString(TAG_WD_CONTENT);
+                String dThumb = c.getString(TAG_WD_THUMB);
 
-                    HashMap<String, String> videoInfo = new HashMap<String, String>();
+                adapter.addItem3(wdTitle,wdCase,wdContent,dThumb);
+                adapter.notifyDataSetChanged();
 
-                    videoInfo.put(TAG_WD_TITLE, wdTitle);
-                    videoInfo.put(TAG_WD_CASE, wdCase);
-                    videoInfo.put(TAG_WD_CONTENT, wdContent);
-                    videoList.add(videoInfo);
-
-                    System.out.println(wdTitle);
-                //}
             }
             //여까지
 
             //리스트에 띄워서 확인하려는거
-            adapter = new SimpleAdapter(
+            /*adapter = new SimpleAdapter(
                     getActivity(), videoList, R.layout.genre_listitem,
                     new String[]{TAG_WD_TITLE, TAG_WD_CASE, TAG_WD_CONTENT},
                     new int[]{R.id.tvGenreTitle, R.id.tvGenreCase, R.id.tvGenreContent}
             );
-            list.setAdapter(adapter);
+            list.setAdapter(adapter);*/
             //여까지
 
         } catch (JSONException e) {
@@ -237,7 +239,6 @@ public class FragmentCategory extends Fragment {
             protected void onPostExecute(String result) {
                 myJSON = result;
                 showList(genreParam);
-                //task.execute(imgUrl + dThumb);
             }
         }
 

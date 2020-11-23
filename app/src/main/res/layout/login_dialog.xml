@@ -25,14 +25,6 @@
         android:hint="Password"
         android:id="@+id/edtPW"/>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/edtPW"
-        app:layout_constraintLeft_toLeftOf="@+id/edtID"
-        android:id="@+id/chkautoLogin"
-        android:text="자동로그인"/>
-
     <Button
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -43,7 +35,7 @@
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/chkautoLogin"
+        app:layout_constraintTop_toBottomOf="@+id/edtPW"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/login"
@@ -57,12 +49,11 @@
         app:layout_constraintRight_toRightOf="parent"
         android:text="회원가입"
         android:layout_marginBottom="20dp"/>
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/btnSignUp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="비밀번호를 잊으셨나요?"
-        android:background="#00ff0000"/>
+        app:layout_constraintLeft_toLeftOf="@+id/btnSignUp"
+        android:text=" "/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

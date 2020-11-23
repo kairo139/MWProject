@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -17,9 +18,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,15 +42,17 @@ import java.util.HashMap;
 public class setEpisode extends AppCompatActivity {
     ArrayList<HashMap<String, String>> videoList;
     ListView list;
-    ListAdapter adapter;
     View header;
     public static Context setEpisode_C;
     String myJSON;
     JSONArray video = null;
     TextView Ep_tvTitle, Ep_tvCharacter, Ep_tvContent;
     TextView Ep_tvep, Ep_tvSubTitle;
-    //FragmentRanking fragmentRanking = new FragmentRanking();
+    ImageView iv;
+
     String videoID[] = new String[50];
+    ListViewAdapter adapter;
+    String imgUrl = "https://mw-zhdtw.run.goorm.io/image/";
 
     private static final String TAG_RESULTS = "result";
     private static final String TAG_WD_SEQ = "WebDrama_SEQ";
@@ -53,6 +61,8 @@ public class setEpisode extends AppCompatActivity {
     private static final String TAG_WD_CONTENT = "WebDrama_content"; //소개
     private static final String TAG_WD_EPISODE = "Detail_Episode";
     private static final String TAG_WD_SUBTITLE = "Detail_subTitle";
+    private static final String TAG_WD_THUMB = "WebDrama_Thumb";
+    private static final String TAG_DTHUMB = "Detail_Thumb";
 
     //setEpisode
     @Override
@@ -69,10 +79,13 @@ public class setEpisode extends AppCompatActivity {
 
         list = (ListView) findViewById(R.id.listView2);
         videoList = new ArrayList<HashMap<String, String>>();
+        adapter = new ListViewAdapter();
+        list.setAdapter(adapter);
 
         Ep_tvTitle = findViewById(R.id.Ep_tvTitle);
         Ep_tvCharacter = findViewById(R.id.Ep_tvCharacter);
         Ep_tvContent = findViewById(R.id.Ep_tvContent);
+        iv = findViewById(R.id.Ep_imgTitle);
 
         getData2("https://mw-zhdtw.run.goorm.io/PHP_episode.php", seq, "head");
         getData2("https://mw-zhdtw.run.goorm.io/PHP_epList.php", seq, "list");
@@ -86,15 +99,6 @@ public class setEpisode extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), setEpisode.class);
-                seq = wdSeq[position];
-                intent.putExtra("wdSeq",seq);
-                startActivity(intent);
-            }
-        });*/
     }
 
     protected void showList(String wd_Seq, String param) {
@@ -111,14 +115,18 @@ public class setEpisode extends AppCompatActivity {
                         String wdTitle = c.getString(TAG_WD_TITLE);
                         String wdCase = c.getString(TAG_WD_CASE);
                         String wdContent = c.getString(TAG_WD_CONTENT);
+                        String wdThumb = c.getString(TAG_WD_THUMB);
+                        Log.d("wdThumb",wdThumb);
 
                         Ep_tvTitle.setText(wdTitle);
                         Ep_tvCharacter.setText(wdCase);
                         Ep_tvContent.setText(wdContent);
 
+                        Glide.with(this).load(wdThumb).into(iv);
+
                     }
                 }
-                list.setAdapter(adapter);
+                //list.setAdapter(adapter);
             } else if (param.equals("list")) {
                 for (int i = 0, x = 0; i < video.length(); i++) {
                     JSONObject c = video.getJSONObject(i);
@@ -126,6 +134,7 @@ public class setEpisode extends AppCompatActivity {
                     if (selected_WDseq.equals(wdSeq)) {
                         String wdEp = c.getString(TAG_WD_EPISODE);
                         String wdSubTitle = c.getString(TAG_WD_SUBTITLE);
+                        String dThumb = c.getString(TAG_DTHUMB);
                         videoID[x++] = c.getString("Detail_VideoID");
 
                         HashMap<String, String> videoInfo = new HashMap<String, String>();
@@ -133,14 +142,18 @@ public class setEpisode extends AppCompatActivity {
                         videoInfo.put(TAG_WD_EPISODE, wdEp);
                         videoInfo.put(TAG_WD_SUBTITLE, wdSubTitle);
                         videoList.add(videoInfo);
+
+                        adapter.addItem(wdEp,wdSubTitle,imgUrl+dThumb);
+                        adapter.notifyDataSetChanged();
                     }
                 }
-                adapter = new SimpleAdapter(
+
+                /*adapter = new SimpleAdapter(
                         this.getApplicationContext(), videoList, R.layout.episode_list_item,
                         new String[]{TAG_WD_EPISODE, TAG_WD_SUBTITLE},
                         new int[]{R.id.Ep_tvep, R.id.Ep_tvSubTitle}
                 );
-                list.setAdapter(adapter);
+                list.setAdapter(adapter);*/
             }
 
         } catch (JSONException e) {

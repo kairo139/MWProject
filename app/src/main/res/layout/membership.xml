@@ -102,6 +102,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:hint="n글자 미만"
+                android:inputType="textPassword"
                 app:layout_constraintLeft_toRightOf="@id/m_txtpasswd"
                 app:layout_constraintTop_toBottomOf="@id/m_edtname" />
 
@@ -121,20 +122,10 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:hint="n글자 미만"
+                android:inputType="textPassword"
                 app:layout_constraintLeft_toRightOf="@id/m_txtpasswdchk"
                 app:layout_constraintTop_toBottomOf="@id/m_edtpasswd" />
 
-            <!-- 비밀번호 힌트-->
-            <!--<TextView
-                android:id="@+id/m_txtpasswdhint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:text="비밀번호 힌트"
-                android:textSize="20dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/m_txtpasswdchk" />
-            -->
             <!--생년월일-->
             <TextView
                 android:id="@+id/m_txtbirth"
@@ -267,25 +258,119 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/m_txtliketitle" />
 
+
+
+            <TextView
+                android:id="@+id/tvSchool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="학원"
+                app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@id/guideline3" />
+
+            <TextView
+                android:id="@+id/tvCompany"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회사"
+                app:layout_constraintLeft_toRightOf="@+id/tvSchool"
+                app:layout_constraintRight_toLeftOf="@+id/tvAction"
+                app:layout_constraintTop_toBottomOf="@id/guideline3" />
+
+            <TextView
+                android:id="@+id/tvAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="액션"
+                app:layout_constraintLeft_toRightOf="@+id/tvCompany"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline3" />
+
+            <TextView
+                android:id="@+id/tvComedy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="코미디"
+                app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@id/guideline5" />
+
+            <TextView
+                android:id="@+id/tvdaily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일상"
+                app:layout_constraintLeft_toRightOf="@+id/tvSchool"
+                app:layout_constraintRight_toLeftOf="@+id/tvAction"
+                app:layout_constraintTop_toBottomOf="@id/guideline5" />
+
+            <TextView
+                android:id="@+id/tvRomance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="로맨스"
+                app:layout_constraintLeft_toRightOf="@+id/tvCompany"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline5" />
+
+            <TextView
+                android:id="@+id/tvFan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="판타지"
+                app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@id/guideline6" />
+
+            <TextView
+                android:id="@+id/tvIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="추리"
+                app:layout_constraintLeft_toRightOf="@+id/tvSchool"
+                app:layout_constraintRight_toLeftOf="@+id/tvAction"
+                app:layout_constraintTop_toBottomOf="@id/guideline6" />
+
+            <TextView
+                android:id="@+id/tvReal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="리얼리티"
+                app:layout_constraintLeft_toRightOf="@+id/tvCompany"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline6" />
+
+            <TextView
+                android:id="@+id/tvWeb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="웹툰원작"
+                app:layout_constraintLeft_toRightOf="@+id/tvCompany"
+                app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@id/guideline7" />
             <!-- 장르 표시 -->
+
             <GridLayout
                 android:id="@+id/membership_gridlayout"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:columnCount="3"
-                android:orientation="horizontal"
                 android:rowCount="4"
-
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/m_txtlikebody">
 
                 <ImageButton
                     android:id="@+id/imgBtn_school"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_school_icon" />
+                    android:src="@drawable/membership_school_icon"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/m_txtlikebody" />
+
 
                 <ImageButton
                     android:id="@+id/imgBtn_company"
@@ -293,65 +378,104 @@
                     android:layout_height="100dp"
                     android:layout_row="0"
                     android:layout_column="1"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_company_img" />
+                    android:src="@drawable/membership_company_img"
+                    app:layout_constraintLeft_toRightOf="@+id/imgBtn_school"
+                    app:layout_constraintTop_toBottomOf="@+id/m_txtlikebody" />
 
                 <ImageButton
                     android:id="@+id/imgBtn_action"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_action_img" />
+                    android:src="@drawable/membership_action_img"
+                    app:layout_constraintLeft_toRightOf="@+id/imgBtn_company"
+                    app:layout_constraintTop_toBottomOf="@+id/m_txtlikebody" />
 
                 <ImageButton
                     android:id="@+id/imgBtn_comedy"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_comedy_img" />
+                    android:src="@drawable/membership_comedy_img"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgBtn_school" />
 
                 <ImageButton
                     android:id="@+id/imgBtn_daily"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_daily_img" />
+                    android:src="@drawable/membership_daily_img"
+                    app:layout_constraintLeft_toRightOf="@+id/imgBtn_comedy"
+                    app:layout_constraintTop_toBottomOf="@+id/imgBtn_company" />
 
                 <ImageButton
                     android:id="@+id/imgBtn_romance"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_romance_img" />
+                    android:src="@drawable/membership_romance_img"
+                    app:layout_constraintLeft_toRightOf="@+id/imgBtn_daily"
+                    app:layout_constraintTop_toBottomOf="@+id/imgBtn_action" />
 
                 <ImageButton
                     android:id="@+id/imgBtn_fantasy"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_fantasy_img" />
+                    android:src="@drawable/membership_fantasy_img"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgBtn_comedy" />
 
                 <ImageButton
                     android:id="@+id/imgBtn_inference"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_inference_img" />
+                    android:src="@drawable/membership_inference_img"
+                    app:layout_constraintLeft_toRightOf="@+id/imgBtn_fantasy"
+                    app:layout_constraintTop_toBottomOf="@+id/imgBtn_daily" />
 
                 <ImageButton
                     android:id="@+id/imgBtn_reality"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/membership_reality_img" />
+                    android:src="@drawable/membership_reality_img"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgBtn_romance" />
 
                 <ImageButton
                     android:id="@+id/imgBtn_webtoon"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     android:src="@drawable/membership_webtoon_img" />
             </GridLayout>
+
 
             <!-- 이전 완료 버튼 -->
             <Button
@@ -387,6 +511,43 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_begin="307dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="475dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="76dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="590dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="714dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="836dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

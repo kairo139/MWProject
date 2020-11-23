@@ -59,11 +59,8 @@ import java.util.HashMap;
 import me.relex.circleindicator.CircleIndicator;
 
 public class FragmentHome extends Fragment {
-    private recommendationActivity recommendationActivity = new recommendationActivity();
     private FragmentManager fragmentManager;
     FragmentPagerAdapter adapterViewPager;
-    Button btnGoRd;
-    ImageButton ibSearch;
 
     View Current_v, header;
     String myJSON;
@@ -79,8 +76,6 @@ public class FragmentHome extends Fragment {
     private static final String TAG_DEPI = "Detail_Episode";
     private static final String TAG_DSUB = "Detail_subTitle";
     private static final String TAG_DTHUMB = "Detail_Thumb";
-    private static final String TAG_Lookup = "WebDrama_content";
-    private static final String TAG_TITLE = "Genere_SEQ";
 
     JSONArray video = null;
 
@@ -99,14 +94,6 @@ public class FragmentHome extends Fragment {
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        btnGoRd = Current_v.findViewById(R.id.btnGoRd);
-        btnGoRd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentManager.beginTransaction().replace(R.id.frameLayout,recommendationActivity).commitAllowingStateLoss();
-            }
-        });
-
         ViewPager vpPager = Current_v.findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter((getChildFragmentManager()));
         vpPager.setAdapter(adapterViewPager);
@@ -114,7 +101,6 @@ public class FragmentHome extends Fragment {
         CircleIndicator indicator = Current_v.findViewById(R.id.indicator);
         indicator.setViewPager(vpPager);
 
-        ///////////////////////////////////
         header = getLayoutInflater().inflate(R.layout.recom_listitem,null,false);
         ivThumb = (ImageView) header.findViewById(R.id.ivThumb);
         task = new inputImage();
@@ -131,9 +117,6 @@ public class FragmentHome extends Fragment {
         }
         else
             getData("https://mw-zhdtw.run.goorm.io/PHP_pre.php",String.valueOf(uSeq));
-
-        //adapter2.addItem("1화","제목");
-        //adapter2.notifyDataSetChanged();
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -154,13 +137,11 @@ public class FragmentHome extends Fragment {
             super(fragmentManager);
         }
 
-        // Returns total number of pages
         @Override
         public int getCount() {
             return NUM_ITEMS;
         }
 
-        // Returns the fragment to display for that page
         @Override
         public Fragment getItem(int position) {
             switch (position) {
@@ -206,22 +187,11 @@ public class FragmentHome extends Fragment {
                 videoInfo.put(TAG_DSUB, dSub);
                 videoInfo.put(TAG_DTHUMB, dThumb);
                 videoList.add(videoInfo);
-                Glide.with(getContext()).load(imgUrl+"ij_ep1.jpg").into(ivThumb);
 
-                adapter2.addItem(dEpi,dSub,dThumb);
+                adapter2.addItem(dEpi,dSub,imgUrl+dThumb);
                 adapter2.notifyDataSetChanged();
 
             }
-            //리스트에 띄워서 확인하려는거
-            /*ListAdapter adapter = new SimpleAdapter(
-                    getActivity(), videoList, R.layout.recom_listitem,
-                    new String[]{TAG_DEPI, TAG_DSUB},
-                    new int[]{R.id.tv_epi, R.id.tv_subTitle}
-            );
-
-            list.setAdapter(adapter);*/
-            //여까지
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
